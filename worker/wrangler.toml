@@ -1,0 +1,12 @@
+name = "aula-filosofia-ia"
+main = "src/worker.js"
+compatibility_date = "2026-09-01"
+
+[vars]
+# En Mercantil el valor por defecto del codigo no bastaba: hubo que declararlo.
+# Se declara aqui desde el principio para no repetir el diagnostico del 502.
+MODELO = "gemini-3.8-flash"
+
+# Origenes autorizados, separados por comas. Si se deja fuera, rigen los del
+# codigo: el aula publicada y http://localhost:8000 para pruebas.
+# ORIGENES = "https://carloseduardochica-art.github.io,http://localhost:8000"

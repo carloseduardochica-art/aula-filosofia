@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Filosofía del Derecho · Lectura del Bloque 3</title>
+<style>
+:root{
+  --papel:#fcf9f4;
+  --papel-alt:#f3ecdf;
+  --tinta:#1f1810;
+  --tinta-suave:#3f3323;
+  --sepia:#65441c;
+  --sepia-claro:#7d5c2e;
+  --linea:#cbbda3;
+  --nota:#5b4a34;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
+  --escala:1;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  padding:0 1.1rem 4rem;
+  background:var(--papel);
+  color:var(--tinta);
+  font-family:var(--serif);
+  font-size:calc(19.5px * var(--escala));
+  line-height:1.72;
+}
+.hoja{max-width:1180px;margin:0 auto}
+.lectura{
+  position:sticky;top:0;z-index:20;
+  display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;justify-content:center;
+  background:var(--papel);border-bottom:1px solid var(--linea);
+  padding:.5rem;margin:0 -1.1rem 0;font-size:.8rem;
+}
+.lectura span{color:var(--nota);letter-spacing:.1em;text-transform:uppercase;font-size:.7rem}
+.lectura button{
+  font-family:var(--serif);font-size:.88rem;
+  background:var(--papel-alt);color:var(--tinta);
+  border:1px solid var(--linea);border-radius:2px;
+  padding:.34rem .72rem;cursor:pointer;min-height:34px;
+}
+.lectura button:hover{background:#e8dcc7}
+.lectura button:focus-visible{outline:2px solid var(--sepia);outline-offset:2px}
+body.contraste{--papel:#fffdf9;--papel-alt:#f2ece1;--tinta:#000;--tinta-suave:#1a1a1a;
+  --sepia:#4a3110;--sepia-claro:#4a3110;--linea:#8d7f68;--nota:#3a3025}
+.cabecera{padding:2.2rem 0 .4rem;text-align:center}
+.filete{border:0;border-top:2px solid var(--tinta);margin:0}
+.filete--fino{border-top:1px solid var(--linea);margin:.28rem 0 0}
+.rotulo{
+  font-size:clamp(1.5rem,4.8vw,2.7rem);
+  letter-spacing:.28em;text-transform:uppercase;
+  margin:.85rem 0 .6rem;font-weight:400;text-indent:.28em;
+}
+.membrete{
+  display:flex;flex-wrap:wrap;gap:.4rem 1.5rem;justify-content:center;
+  font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--nota);padding:.5rem 0 .7rem;
+}
+.antetitulo{
+  text-align:center;font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--sepia);margin:2.2rem 0 .7rem;
+}
+.titular{
+  font-size:clamp(1.9rem,5.6vw,3.2rem);
+  line-height:1.14;text-align:center;font-weight:400;
+  margin:0 auto .9rem;max-width:21ch;letter-spacing:-.01em;
+}
+.entradilla{
+  text-align:center;max-width:58ch;margin:0 auto 1.3rem;
+  font-size:1.06rem;font-style:italic;color:var(--tinta-suave);line-height:1.6;
+}
+.firma{
+  text-align:center;font-size:.82rem;color:var(--nota);
+  margin-bottom:1.9rem;line-height:1.7;
+}
+.firma b{color:var(--tinta);font-weight:400;letter-spacing:.04em}
+.firma .rol{
+  display:block;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+  margin-top:.3rem;
+}
+.cuerpo{
+  column-count:2;column-gap:3rem;
+  column-rule:1px solid var(--linea);
+  text-align:justify;hyphens:auto;-webkit-hyphens:auto;
+  padding-top:1.6rem;border-top:1px solid var(--linea);
+}
+.cuerpo > *{break-inside:avoid-column}
+.cuerpo p{margin:0 0 1.05em;break-inside:auto}
+.cuerpo p + p{text-indent:1.25em}
+h2{
+  font-size:.86rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sepia);font-weight:400;
+  margin:2em 0 .75em;padding-bottom:.45em;border-bottom:1px solid var(--linea);
+  break-after:avoid;
+}
+h3{
+  font-size:1.04rem;font-weight:400;font-style:italic;
+  margin:1.55em 0 .4em;color:var(--tinta);break-after:avoid;
+}
+.capitular::first-letter{
+  float:left;font-size:4em;line-height:.8;
+  padding:.06em .1em 0 0;margin:.02em .05em 0 0;
+  color:var(--sepia);font-weight:400;
+}
+.destacado{
+  margin:1.6em 0;padding:1.1em 0;
+  border-top:2px solid var(--tinta);border-bottom:1px solid var(--linea);
+  font-size:1.24rem;line-height:1.4;font-style:italic;text-align:left;
+  color:var(--sepia);text-indent:0;hyphens:none;
+}
+.destacado cite{display:block;margin-top:.6em;font-size:.7rem;font-style:normal;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--nota)}
+.caso{
+  background:var(--papel-alt);border-left:4px solid var(--sepia-claro);
+  padding:1em 1.1em;margin:1.35em 0;font-size:.97rem;text-indent:0;
+}
+.caso .etiqueta,.aviso .etiqueta{
+  display:block;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sepia);margin-bottom:.5em;
+}
+.aviso{
+  border:1px solid var(--sepia-claro);padding:1.05em 1.15em;margin:1.6em 0;
+  font-size:.96rem;text-indent:0;background:var(--papel-alt);
+}
+.procede{
+  display:block;margin:.2em 0 1.4em;padding-left:.9em;
+  border-left:2px solid var(--linea);
+  font-size:.82rem;font-style:italic;color:var(--nota);
+  text-indent:0;text-align:left;hyphens:none;
+}
+.grabado{margin:1.6em 0;padding:0;text-indent:0;break-inside:avoid}
+.grabado .marco{
+  border:1px solid var(--linea);
+  background:repeating-linear-gradient(45deg,rgba(101,68,28,.06) 0 7px,transparent 7px 14px);
+  aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;
+  color:var(--nota);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+  text-align:center;padding:1rem;
+}
+.grabado figcaption{
+  font-size:.82rem;color:var(--nota);line-height:1.55;
+  padding-top:.55em;border-top:1px solid var(--linea);margin-top:.55em;
+  text-align:left;hyphens:none;
+}
+.grabado figcaption b{color:var(--sepia);font-weight:400}
+.cierre{
+  column-span:all;margin:2.8rem 0 0;padding:1.8rem 1.5rem;
+  border-top:2px solid var(--tinta);border-bottom:2px solid var(--tinta);
+  text-align:center;
+}
+.cierre .etiqueta{
+  display:block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--sepia);margin-bottom:.85em;
+}
+.cierre p{
+  font-size:1.2rem;font-style:italic;line-height:1.55;max-width:56ch;
+  margin:0 auto;text-indent:0;text-align:center;hyphens:none;
+}
+.cierre .apunte{font-size:.86rem;font-style:normal;color:var(--nota);margin-top:1.15em}
+.aporte{
+  column-span:all;margin:1.7rem 0 0;padding:1.3rem 1.4rem;
+  border:1px dashed var(--sepia-claro);background:var(--papel-alt);
+  font-size:.95rem;color:var(--tinta);text-align:left;hyphens:none;
+}
+.aporte .etiqueta{
+  display:block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sepia);margin-bottom:.9em;text-align:center;
+}
+.aporte p{margin:0 0 .85em;text-indent:0;line-height:1.65}
+.aporte b{color:var(--sepia);font-weight:400}
+.aporte u{
+  text-decoration:none;border-bottom:1px solid var(--sepia-claro);
+  background:rgba(101,68,28,.07);font-style:italic;color:var(--nota);
+}
+.aporte .cautela{
+  margin:1.1em 0 0;padding-top:.8em;border-top:1px solid var(--linea);
+  font-size:.83rem;font-style:italic;color:var(--nota);
+}
+.aporte .sugerida{
+  font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--nota);font-style:normal;
+}
+.grabado svg,.grabado img{display:block;width:100%;height:auto;border:1px solid var(--linea)}
+.grabado[hidden]{display:none}
+.pendiente{
+  column-span:all;margin:1.6rem 0;padding:1.1rem 1.2rem;
+  border:1px solid var(--sepia-claro);background:var(--papel-alt);
+  font-size:.9rem;text-indent:0;hyphens:none;
+}
+.pendiente .etiqueta{
+  display:block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sepia);margin-bottom:.6em;
+}
+.pendiente table{border-collapse:collapse;width:100%;margin:.7em 0;font-size:.86rem}
+.pendiente th,.pendiente td{
+  border-bottom:1px solid var(--linea);padding:.34em .5em;text-align:left;vertical-align:top;
+}
+.pendiente th{color:var(--sepia);font-weight:400;font-size:.74rem;
+  letter-spacing:.12em;text-transform:uppercase}
+.pendiente .mal{color:#8a2f14}
+.pendiente .bien{color:#3d5c2a}
+.pie{
+  column-span:all;margin-top:2.5rem;padding-top:1.1rem;
+  border-top:1px solid var(--linea);
+  font-size:.85rem;color:var(--nota);line-height:1.7;
+  text-align:left;hyphens:none;
+}
+.pie h4{
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sepia);margin:1.4em 0 .6em;font-weight:400;
+}
+.pie h4:first-child{margin-top:0}
+.pie ol,.pie ul{margin:0;padding-left:1.3em}
+.pie li{margin-bottom:.55em}
+.pie .refs{list-style:none;padding-left:0}
+.pie .refs li{padding-left:2.2em;text-indent:-2.2em;margin-bottom:.7em}
+@media (max-width:820px){
+  .cuerpo{column-count:1;column-rule:none}
+  .rotulo{letter-spacing:.16em}
+  .capitular::first-letter{font-size:3.2em}
+  .destacado{font-size:1.1rem}
+}
+@media print{
+  @page{size:A4;margin:17mm 15mm}
+  body{background:#fff;color:#000;font-size:10.5pt;padding:0}
+  .lectura{display:none}
+  .hoja{max-width:none}
+  .cuerpo{column-gap:9mm}
+  .grabado .marco{aspect-ratio:16/9}
+  .destacado,.caso,.aviso,.grabado,.cierre,.pie{break-inside:avoid}
+  h2,h3{break-after:avoid}
+  .aporte{border-style:solid}
+}
+.comparativa{
+  column-span:all;margin:2rem 0;
+  border-top:2px solid var(--tinta);border-bottom:2px solid var(--tinta);
+  padding:1.2rem 0;
+}
+.comparativa .etiqueta{
+  display:block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--sepia);margin-bottom:.9em;text-align:center;
+}
+.tabla-envoltorio{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.comparativa table{
+  border-collapse:collapse;width:100%;min-width:640px;
+  font-size:.92rem;text-align:left;hyphens:none;
+}
+.comparativa th,.comparativa td{
+  border-bottom:1px solid var(--linea);padding:.75em .8em;vertical-align:top;
+  line-height:1.5;
+}
+.comparativa thead th{
+  border-bottom:2px solid var(--sepia);color:var(--sepia);font-weight:400;
+  font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;
+}
+.comparativa tbody th{
+  color:var(--tinta);font-weight:400;font-style:italic;width:20%;
+  background:var(--papel-alt);
+}
+.comparativa .gana{color:#2f5a1f}
+.comparativa .pierde{color:#8a2f14}
+@media (max-width:820px){
+  .comparativa table{font-size:.86rem}
+}
+@media print{
+  .comparativa table{min-width:0;font-size:8.5pt}
+  .comparativa{break-inside:avoid}
+}
+
+/* ---------- BARRA SUPERIOR ----------
+   La barra de lectura y las pestanas van juntas dentro de un unico
+   contenedor pegajoso. Por separado, ambas declaraban `top:0` y se
+   superponian: las pestanas quedaban ocultas bajo la barra de lectura en
+   cuanto se desplazaba la pagina. */
+.barra-superior{
+  position:sticky;top:0;z-index:20;
+  background:var(--papel);
+  margin:0 -1.1rem;
+}
+.barra-superior .lectura{
+  position:static;margin:0;
+}
+
+/* ---------- NAVEGACION POR PESTANAS ---------- */
+.pestanas{
+  background:var(--papel);
+  border-top:1px solid var(--linea);
+  border-bottom:2px solid var(--tinta);
+  margin:0;padding:0;
+}
+.pestanas-pista{
+  display:flex;gap:0;overflow-x:auto;scrollbar-width:thin;
+  -webkit-overflow-scrolling:touch;
+  max-width:1180px;margin:0 auto;padding:0 1.1rem;
+}
+.pestanas button{
+  flex:0 0 auto;
+  font-family:var(--serif);font-size:.74rem;
+  letter-spacing:.14em;text-transform:uppercase;
+  background:none;color:var(--nota);
+  border:0;border-bottom:3px solid transparent;
+  padding:.85rem .95rem;cursor:pointer;white-space:nowrap;
+  min-height:44px;
+}
+.pestanas button:hover{color:var(--tinta);background:var(--papel-alt)}
+.pestanas button:focus-visible{outline:2px solid var(--sepia);outline-offset:-3px}
+.pestanas button[aria-selected="true"]{
+  color:var(--sepia);border-bottom-color:var(--sepia);
+}
+.seccion[hidden]{display:none}
+.seccion:focus{outline:none}
+
+/* aviso de seccion para lectores de pantalla y para imprimir */
+.marca-seccion{
+  display:none;
+  font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--sepia);text-align:center;margin:1.5rem 0 .4rem;
+}
+
+@media (max-width:820px){
+  .pestanas button{font-size:.7rem;padding:.8rem .7rem}
+}
+
+@media print{
+  .barra-superior{display:none}
+  .seccion[hidden]{display:block !important}
+  .seccion{break-before:page}
+  .seccion:first-of-type{break-before:auto}
+  .marca-seccion{display:block}
+}
+
+
+/* ---------- CONTROL DE LECTURA ---------- */
+.identificacion{
+  column-span:all;margin:1.6rem 0 0;padding:1.1rem 1.2rem;
+  border:1px solid var(--sepia-claro);background:var(--papel-alt);
+  text-indent:0;hyphens:none;
+}
+.identificacion label{
+  display:block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sepia);margin-bottom:.55em;
+}
+.identificacion input{
+  font-family:var(--serif);font-size:1rem;
+  width:100%;max-width:34ch;padding:.5em .6em;
+  border:1px solid var(--linea);border-radius:2px;
+  background:var(--papel);color:var(--tinta);
+}
+.identificacion input:focus-visible{outline:2px solid var(--sepia);outline-offset:1px}
+.identificacion .nota-id{font-size:.85rem;color:var(--nota);margin:.7em 0 0;text-indent:0}
+
+.control{
+  border:1px solid var(--sepia-claro);border-left:4px solid var(--sepia);
+  background:var(--papel-alt);
+  padding:1em 1.1em;margin:1.5em 0;
+  font-size:.95rem;text-indent:0;hyphens:none;break-inside:avoid;
+}
+.control .etiqueta{
+  display:block;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sepia);margin-bottom:.6em;
+}
+.control .enunciado{margin:0 0 .8em;text-indent:0;line-height:1.55}
+.control ul{list-style:none;margin:0;padding:0}
+.control li{margin:0 0 .45em}
+.control button.opcion{
+  display:block;width:100%;text-align:left;
+  font-family:var(--serif);font-size:.93rem;line-height:1.5;
+  background:var(--papel);color:var(--tinta);
+  border:1px solid var(--linea);border-radius:2px;
+  padding:.6em .75em;cursor:pointer;min-height:44px;
+}
+.control button.opcion:hover{background:#f7f1e5}
+.control button.opcion:focus-visible{outline:2px solid var(--sepia);outline-offset:1px}
+.control button.opcion[disabled]{cursor:default}
+.control button.opcion.acierto{
+  border-color:#3d5c2a;border-width:2px;background:rgba(61,92,42,.09);
+}
+.control button.opcion.fallo{
+  border-color:#8a2f14;border-width:2px;background:rgba(138,47,20,.08);
+}
+.control .respuesta{margin:.7em 0 0;font-size:.88rem;font-style:italic;color:var(--nota);text-indent:0}
+.control .respuesta b{font-style:normal;font-weight:400;color:var(--sepia)}
+.control[hidden]{display:none}
+
+/* aviso cuando aun no hay nombre */
+.control .pide-nombre{margin:0;font-size:.9rem;font-style:italic;color:var(--nota);text-indent:0}
+
+/* panel de avance y constancia */
+.avance{
+  column-span:all;margin:2rem 0 0;padding:1.3rem 1.4rem;
+  border-top:2px solid var(--tinta);border-bottom:2px solid var(--tinta);
+  text-indent:0;hyphens:none;
+}
+.avance .etiqueta{
+  display:block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--sepia);margin-bottom:.85em;text-align:center;
+}
+.avance .barra{
+  height:10px;background:var(--papel-alt);border:1px solid var(--linea);
+  margin:.6em 0;overflow:hidden;
+}
+.avance .barra i{display:block;height:100%;background:var(--sepia);width:0}
+.avance .cifras{font-size:.9rem;color:var(--nota);text-align:center;margin:.4em 0 0}
+.avance ol{margin:1em 0 0;padding-left:1.4em;font-size:.88rem;color:var(--nota)}
+.avance li{margin-bottom:.3em}
+.avance li.completa{color:var(--tinta)}
+.avance li.completa::marker{color:var(--sepia)}
+
+.constancia{margin:1.2em 0 0;padding-top:1em;border-top:1px solid var(--linea)}
+.constancia textarea{
+  font-family:ui-monospace,"Cascadia Mono","Consolas",monospace;
+  font-size:.95rem;letter-spacing:.06em;
+  width:100%;min-height:5.5em;padding:.6em;
+  border:1px solid var(--sepia-claro);border-radius:2px;
+  background:var(--papel-alt);color:var(--tinta);resize:vertical;
+}
+.constancia .acciones{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.6em}
+.constancia button{
+  font-family:var(--serif);font-size:.88rem;
+  background:var(--papel-alt);color:var(--tinta);
+  border:1px solid var(--linea);border-radius:2px;
+  padding:.45rem .9rem;cursor:pointer;min-height:40px;
+}
+.constancia button:hover{background:#e8dcc7}
+.constancia button:focus-visible{outline:2px solid var(--sepia);outline-offset:2px}
+.constancia .instruccion{font-size:.88rem;color:var(--nota);margin:.2em 0 .7em;text-indent:0}
+.constancia .cierre-seccion{
+  margin:0 0 .8em;padding:.7em .85em;
+  border-left:4px solid var(--sepia);background:var(--papel-alt);
+  font-size:.92rem;text-indent:0;
+}
+.constancia code.pase{
+  display:block;margin-top:.6em;padding:.5em;
+  font-family:ui-monospace,"Cascadia Mono","Consolas",monospace;font-size:.78rem;
+  word-break:break-all;background:var(--papel);border:1px dashed var(--sepia-claro);
+}
+.constancia .aun-no{font-size:.9rem;font-style:italic;color:var(--nota);text-indent:0;margin:0}
+
+/* La version de demostracion tiene que distinguirse de un vistazo de la
+   tarea real: es la unica salvaguarda visual contra publicar por error un
+   archivo con el banco a medias. */
+.aviso-muestra{
+  margin:1.4rem 0 0;padding:.8rem 1rem;
+  border:2px solid #8a2f14;background:rgba(138,47,20,.07);color:#8a2f14;
+  font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;text-align:center;
+}
+.identificacion .fila{display:flex;flex-wrap:wrap;gap:1.2rem}
+.identificacion .campo{flex:1 1 16rem;min-width:0}
+.identificacion .aviso-campo{
+  display:block;font-size:.83rem;font-style:italic;color:var(--nota);margin-top:.4em;
+}
+.identificacion input[readonly]{background:var(--papel-alt);color:var(--nota)}
+.identificacion .fijada{
+  font-size:.83rem;font-style:italic;color:var(--sepia);margin:.6em 0 0;text-indent:0;
+}
+.identificacion .fijada[hidden]{display:none}
+.identificacion details{margin-top:.9em}
+.identificacion summary{
+  font-size:.83rem;color:var(--nota);cursor:pointer;
+}
+.identificacion .acciones-id{margin-top:.7em}
+.identificacion .acciones-id button{
+  font-family:var(--serif);font-size:.85rem;
+  background:var(--papel);color:#8a2f14;
+  border:1px solid #8a2f14;border-radius:2px;
+  padding:.45rem .9rem;cursor:pointer;min-height:40px;
+}
+.identificacion .acciones-id button:hover{background:rgba(138,47,20,.07)}
+.identificacion .acciones-id button:focus-visible{outline:2px solid #8a2f14;outline-offset:2px}
+.identificacion details textarea{
+  font-family:ui-monospace,"Cascadia Mono","Consolas",monospace;font-size:.8rem;
+  width:100%;min-height:4em;margin-top:.5em;padding:.5em;
+  border:1px solid var(--linea);border-radius:2px;
+  background:var(--papel);color:var(--tinta);
+}
+
+/* ---------- HOJA DE CONSTANCIA (solo al imprimir) ---------- */
+#hoja-constancia{display:none}
+.cons-carat{text-align:center;border-bottom:2px solid #000;padding-bottom:1em;margin-bottom:1.4em}
+.cons-carat h1{font-size:20pt;font-weight:400;margin:.3em 0;letter-spacing:.04em}
+.cons-inst{font-size:9pt;letter-spacing:.18em;text-transform:uppercase;margin:0}
+.cons-sub{font-size:10pt;margin:.2em 0;color:#333}
+.cons-datos,.cons-tabla{border-collapse:collapse;width:100%;margin-bottom:1.3em;font-size:10.5pt}
+.cons-datos th,.cons-datos td{border-bottom:1px solid #bbb;padding:.5em .6em;text-align:left;vertical-align:top}
+.cons-datos th{width:11em;font-weight:400;color:#555}
+.cons-tabla th,.cons-tabla td{border:1px solid #bbb;padding:.45em .6em;text-align:left}
+.cons-tabla thead th{background:#eee;font-weight:400;font-size:9.5pt;letter-spacing:.06em;text-transform:uppercase}
+.cons-tabla tfoot th{background:#f6f6f6;font-weight:400}
+.cons-grupo{color:#555;font-size:9.5pt}
+.cons-nota{font-size:14pt;text-align:center;margin:1.2em 0;padding:.6em;border:2px solid #000}
+.cons-cod{margin-top:1.4em;font-size:9.5pt;color:#333}
+.cons-cod code{
+  display:block;font-family:ui-monospace,"Consolas",monospace;font-size:10pt;
+  word-break:break-all;padding:.5em;border:1px dashed #888;margin-top:.4em;
+}
+.cons-pie{margin-top:1.2em;font-size:8.5pt;color:#555;border-top:1px solid #ccc;padding-top:.6em}
+
+@media print{
+  .identificacion,.control,.avance{display:none}
+  /* Al generar la constancia se imprime SOLO la constancia: el periodico
+     entero saldria en decenas de hojas y el estudiante subiria un PDF
+     inservible a la tarea. */
+  body.imprimiendo-constancia > *{display:none !important}
+  body.imprimiendo-constancia #hoja-constancia{display:block !important}
+  body.imprimiendo-constancia{background:#fff;color:#000}
+}
+
+</style>
+</head>
+<body>
+
+<div class="hoja">
+
+<header class="cabecera">
+  <hr class="filete"><hr class="filete filete--fino">
+  <h1 class="rotulo">Filosofía del Derecho · Bloque 3</h1>
+  <hr class="filete filete--fino"><hr class="filete">
+  <div class="membrete">
+    <span>Universidad Católica de Cuenca</span>
+    <span>Bloque 3 · Neoconstitucionalismo, facticidad y validez</span>
+    <span>Primer ciclo</span>
+    <span>Año 2026</span>
+  </div>
+  <hr class="filete filete--fino">
+</header>
+
+<div class="identificacion">
+  <div class="fila">
+    <div class="campo">
+      <label for="nombre-estudiante">Nombres y apellidos completos</label>
+      <input type="text" id="nombre-estudiante" autocomplete="name"
+             placeholder="Como consta en su matr&#237;cula">
+    </div>
+    <div class="campo">
+      <label for="cedula-estudiante">N&#250;mero de c&#233;dula</label>
+      <input type="text" id="cedula-estudiante" inputmode="numeric"
+             maxlength="10" autocomplete="off" placeholder="10 d&#237;gitos">
+      <span class="aviso-campo" id="aviso-cedula" role="status"></span>
+    </div>
+  </div>
+  <p class="nota-id">LECTURA NO CALIFICADA. Las preguntas de control de este bloque son para su propio uso: no se entregan ni suman puntos. El bloque 3 se evalúa en el informe final y en la sustentación, donde se le preguntará por estos mismos contenidos aplicados al caso.</p>
+  <p class="fijada" id="identidad-fijada" hidden>C&#233;dula fijada: ya hay respuestas registradas con ella.</p>
+  <details>
+    <summary>&#191;Perdi&#243; su avance, o necesita empezar de nuevo?</summary>
+    <label for="restaurar-avance">Pegue aqu&#237; el texto que empieza por RESPALDO</label>
+    <textarea id="restaurar-avance" placeholder="RESPALDO|..."></textarea>
+    <span class="aviso-campo" id="aviso-restaurar" role="status"></span>
+    <div class="acciones-id">
+      <button type="button" id="reiniciar-control">Empezar de nuevo (borra mi avance en este navegador)</button>
+    </div>
+  </details>
+</div>
+</div>
+
+<div class="barra-superior">
+  <nav class="lectura" aria-label="Ajustes de lectura">
+    <span>Lectura</span>
+    <button type="button" onclick="escala(-1)" aria-label="Reducir el tama&#241;o del texto">A&minus;</button>
+    <button type="button" onclick="escala(0)" aria-label="Tama&#241;o de texto normal">A</button>
+    <button type="button" onclick="escala(1)" aria-label="Aumentar el tama&#241;o del texto">A+</button>
+    <button type="button" onclick="document.body.classList.toggle('contraste')">Alto contraste</button>
+    <button type="button" onclick="document.body.classList.toggle('unacol')">Una columna</button>
+  </nav>
+  <nav class="pestanas" aria-label="Secciones del bloque">
+    <div class="pestanas-pista" role="tablist" aria-label="Secciones del bloque">
+      <button type="button" role="tab" id="tab-la-constitucion-invasora" aria-controls="la-constitucion-invasora" aria-selected="true" tabindex="0">LA CONSTITUCIÓN INVASORA</button>
+      <button type="button" role="tab" id="tab-el-derecho-vivo" aria-controls="el-derecho-vivo" aria-selected="false" tabindex="-1">EL DERECHO VIVO</button>
+      
+      
+      
+      
+      
+      
+      
+    </div>
+  </nav>
+</div>
+
+<div class="hoja">
+<section class="seccion" id="la-constitucion-invasora" role="tabpanel" aria-labelledby="tab-la-constitucion-invasora" tabindex="0">
+  <p class="marca-seccion">LA CONSTITUCIÓN INVASORA</p>
+  <p class="antetitulo">Subpuntos 2.5.1 a 2.5.3 · Constitución, Constitucionalización y Constitucionalismo · Noción del Neoconstitucionalismo · Clases de Neoconstitucionalismo</p>
+  <p class="titular">La Constitución entrometida</p>
+  <p class="entradilla">Guastini llama a la Constitución del Estado constitucional «invasora» y «entrometida», y el adjetivo no es un reproche: describe con precisión qué hace cuando funciona. Este apartado distingue tres palabras que suelen confundirse, mide en siete grados cuánto ha penetrado una constitución en un ordenamiento y termina en la discusión que sigue abierta: si el neoconstitucionalismo superó la vieja polémica entre iusnaturalismo y positivismo, o si es una de las dos con ropa nueva.</p>
+  <p class="firma"><b>Prof. Carlos Eduardo Chica-Villacís</b>
+  <span class="rol">Docente autor · Universidad Católica de Cuenca</span></p>
+<div class="cuerpo">
+
+  <h2>a · Tres palabras que no son sinónimas</h2>
+
+  <p>Conviene empezar deslindando, porque las tres se usan como si dijeran lo mismo y dicen cosas distintas.</p>
+
+  <p>La <b>Constitución</b> es una norma jurídica suprema y obligatoria de contenido material. No solo organiza el poder —esa es su dimensión orgánica— sino que reconoce un sistema denso de principios y derechos fundamentales que rigen tanto las relaciones públicas como las privadas. Romero Martínez, exponiendo a Barroso, lo formula así: la Constitución deja de ser un documento político de buenas intenciones y se convierte en norma plenamente exigible, cuya supremacía condiciona la validez de todo lo demás.</p>
+
+  <p>La <b>constitucionalización</b> es un proceso, no un estado. Carbonell, exponiendo a Guastini, la define como aquel proceso al término del cual el ordenamiento resulta enteramente impregnado por las normas constitucionales. Y añade una precisión que ahorra discusiones estériles: no es bipolar, no se trata de estar o no estar constitucionalizado. <b>Es cuestión de grado.</b></p>
+
+  <p>El <b>constitucionalismo</b> es un movimiento político e ideológico histórico que persigue limitar el poder estatal y garantizar las libertades frente al despotismo. Romero Martínez, exponiendo a Fioravanti, marca el contraste: frente al Estado de derecho legalista del siglo XIX, donde la ley del Parlamento era soberana e incondicionada, el constitucionalismo contemporáneo asienta el Estado constitucional de derecho, donde la ley queda subordinada a los contenidos y valores de la Constitución.</p>
+
+  <div class="destacado">
+    Una es una norma. Otra es un proceso que se mide en grados. La tercera es un movimiento histórico. Confundirlas hace imposible preguntar cuánto ha avanzado el proceso, que es la pregunta útil.
+    <cite>Deslinde a partir de Romero Martínez y Carbonell</cite>
+  </div>
+
+  <span class="procede">Apartado elaborado a partir de Romero Martínez (2015) y Carbonell (s. f.). Guastini, Barroso y Fioravanti llegan expuestos por ellos.</span>
+
+  
+  <div class="control" data-control="la-constitucion-invasora::0" role="group" aria-label="Pregunta de control de lectura"></div>
+<h2>b · Siete condiciones para medir el grado</h2>
+
+  <p>Si la constitucionalización se mide en grados, hace falta con qué medirla. Carbonell recoge las siete condiciones que Guastini enumera, y conviene leerlas como una escala, no como una lista de requisitos que se cumplen o no. En las siete es cuestión de grado, y del conjunto depende que tengamos delante una constitución entrometida o un texto decorativo.</p>
+
+  <div class="comparativa">
+    <table>
+      <thead>
+        <tr><th>Condición</th><th>Qué significa</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>Constitución rígida</b></td><td>No puede modificarse por el procedimiento legislativo ordinario. El grado sube cuando además hay principios intangibles, que no puede tocar ni la reforma constitucional</td></tr>
+        <tr><td><b>Garantía jurisdiccional</b></td><td>Existe control judicial que impone la supremacía constitucional sobre la ley ordinaria</td></tr>
+        <tr><td><b>Fuerza vinculante</b></td><td>Todas las normas constitucionales obligan y son aplicables, sin relegar los derechos sociales a meras normas programáticas</td></tr>
+        <tr><td><b>Sobreinterpretación</b></td><td>El intérprete no se limita a la letra: extrae del texto normas implícitas que alcanzan casi cualquier aspecto de la vida social</td></tr>
+        <tr><td><b>Aplicación directa</b></td><td>Cualquier juez puede aplicar la Constitución para resolver un caso, incluso entre particulares, sin esperar una ley de desarrollo</td></tr>
+        <tr><td><b>Interpretación conforme</b></td><td>Ante una ley con varios significados posibles, el juez escoge el compatible con la Constitución en lugar de anularla</td></tr>
+        <tr><td><b>Influencia sobre las relaciones políticas</b></td><td>Los conflictos entre órganos se dirimen ante los tribunales, y los jueces no se abstienen invocando que son cuestiones políticas</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>La cuarta merece un momento de atención porque es la más resbaladiza. La sobreinterpretación es lo que permite que una constitución de doscientos artículos regule situaciones que sus redactores nunca imaginaron. Es también lo que permite que dos jueces igualmente competentes extraigan del mismo texto normas implícitas incompatibles.</p>
+
+
+  <figure class="grabado">
+    <img src="Ilustraciones/B2_lamina13_cuestion_de_grado.jpeg" alt="Lámina cuadrada a tinta sepia con el panel frontal de un instrumento de medida antiguo, de madera y latón. Sobre el panel hay siete esferas circulares idénticas dispuestas en dos filas, cuatro arriba y tres abajo. Cada esfera es un manómetro con marco de latón, un arco de marcas graduadas sin números y una aguja fina que apunta a un punto distinto del arco en cada una de las siete. Bajo cada esfera, una cartela con el nombre de la condición que mide.">
+    <figcaption><b>Lámina 13.</b> Las siete agujas están en posiciones distintas a propósito. Una tabla invita a leer las condiciones como casillas que se marcan o no; el panel obliga a leerlas como lo que son, siete medidas que pueden estar altas o bajas de forma independiente.</figcaption>
+  </figure>
+
+  <span class="procede">Apartado elaborado a partir de Carbonell (s. f.). Las siete condiciones son de Guastini y llegan expuestas por él.</span>
+
+  
+  <div class="control" data-control="la-constitucion-invasora::1" role="group" aria-label="Pregunta de control de lectura"></div>
+<h2>c · De dónde viene la palabra</h2>
+
+  <p>El término tiene fecha, lugar y autora. Núñez Leiva, exponiendo a Comanducci, explica que la etiqueta la acuñó la Escuela Genovesa de Teoría del Derecho para clasificar y someter a examen crítico un conjunto de tesis postpositivistas. El uso inaugural fue una ponencia de <b>Susanna Pozzolo en 1997</b>, en el XVIII Congreso Mundial de la IVR celebrado en Buenos Aires, publicada al año siguiente en <i>Doxa</i>.</p>
+
+  <p>Conviene subrayar el detalle: la palabra nace <b>desde fuera y con intención crítica</b>. No se la pusieron sus partidarios; se la pusieron quienes querían examinarla. Es una etiqueta puesta desde fuera, y eso condiciona cómo debe leerse. Pozzolo la empleó para designar un modo peculiar de acercarse al Derecho que compartían autores como Alexy, Nino y Zagrebelsky, y lo hizo articulándolo en cuatro oposiciones.</p>
+
+  <p>Primera, <b>principios frente a reglas</b>: las reglas se identifican por su origen formal, los principios valen por su contenido material. Segunda, <b>ponderación frente a subsunción</b>: la ponderación sopesa principios en conflicto y establece una jerarquía móvil para el caso, mientras la subsunción encaja un hecho en el supuesto cerrado de una regla y deduce una consecuencia invariable. Tercera, <b>Constitución frente a independencia del legislador</b>: el legislador deja de ser absoluto. Cuarta, <b>jueces frente a libertad del legislador</b>: al juez se le atribuye un papel activo en la realización de los derechos fundamentales.</p>
+
+
+  <figure class="grabado">
+    <img src="Ilustraciones/B2_lamina14_etiqueta_desde_fuera.jpeg" alt="Lámina cuadrada a tinta sepia. Sobre una mesa de gabinete reposa un espécimen de latón formado por cuatro pares de platillos montados en una misma columna vertical, uno sobre otro. De la columna cuelga, atada con un cordel de nudo bien visible, una etiqueta de cartón rectangular con la esquina perforada, ladeada por su propio peso y claramente ajena a la pieza. Junto al espécimen, una lupa de mango largo apoyada en la mesa, sin ninguna mano que la sostenga. A la derecha, cuatro cartelas nombran cada par de platillos.">
+    <figcaption><b>Lámina 14.</b> La etiqueta cuelga de un cordel y no está grabada en el latón: ese es todo el argumento. La palabra se la pusieron desde fuera quienes querían examinar la pieza, y a quien la ató no se le ve, aunque dejó la lupa encima de la mesa.</figcaption>
+  </figure>
+
+  <span class="procede">Apartado elaborado a partir de Núñez Leiva (2015) y Pozzolo (2015). Comanducci, Alexy, Nino y Zagrebelsky llegan expuestos por ellos.</span>
+
+  
+  <div class="control" data-control="la-constitucion-invasora::2" role="group" aria-label="Pregunta de control de lectura"></div>
+<h2>d · Las cinco tesis, y lo que arrastran</h2>
+
+  <p>Núñez Leiva empieza deslindando: el neoconstitucionalismo no es el Nuevo Constitucionalismo Latinoamericano, doctrina de contrapoderes centrada en la soberanía popular, ni el constitucionalismo popular estadounidense, que nació como reacción al activismo judicial conservador. Hecho el deslinde, identifica cinco tesis compartidas.</p>
+
+  <p><b>La separación del Derecho respecto de la ley.</b> El Derecho ya no se reduce a la ley estatal. Prieto Sanchís lo llama rematerialización constitucional: la Constitución se satura de valores y directrices que desplazan a la ley ordinaria a un plano subalterno. La validez de una ley deja de depender solo de quién la dictó y pasa a depender también de su conformidad sustancial con la Constitución.</p>
+
+  <p><b>Los principios como criaturas de la moralidad.</b> La expresión es de García Figueroa y nombra bien el problema: los principios incorporan exigencias éticas al sistema y carecen de supuesto de hecho cerrado. De ahí sale la <b>derrotabilidad</b>, la propiedad por la cual la obligatoriedad de una regla puede quedar desplazada ante excepciones implícitas basadas en razones de justicia no previstas de antemano.</p>
+
+  <p><b>La expansión de las lagunas axiológicas.</b> Una laguna axiológica no es un vacío: es una situación en que sí existe norma aplicable, pero aplicarla resulta injusto porque el legislador omitió considerar una propiedad moralmente relevante del caso. Núñez Leiva, exponiendo a Guastini, usa una imagen que vale la pena retener: en el Estado constitucional, la Constitución opera como una máquina de producción de lagunas axiológicas, porque habilita al juez a inaplicar la ley e integrar el hueco con principios.</p>
+
+  <p><b>La concepción argumentativa del Derecho.</b> Si se pierde certeza, hace falta un método que legitime la decisión judicial. Prieto Sanchís sitúa ahí la ponderación. Zagrebelsky pide una ciencia jurídica práctica y dúctil, capaz de sostener la coexistencia de valores plurales en tensión.</p>
+
+  <p><b>Un modelo militante de juez.</b> El juez deja de ser la boca de la ley y pasa a ser, según Atienza y Zagrebelsky, coautor del Derecho y garante de esa coexistencia.</p>
+
+  <span class="procede">Apartado elaborado a partir de Núñez Leiva (2015). Prieto Sanchís, García Figueroa, Guastini, Zagrebelsky, Atienza, Viciano y Martínez Dalmau llegan expuestos por él.</span>
+
+  
+  <div class="control" data-control="la-constitucion-invasora::3" role="group" aria-label="Pregunta de control de lectura"></div>
+<h2>e · Las tres clases de Comanducci</h2>
+
+  <p>Comanducci hace con el neoconstitucionalismo lo que Bobbio hizo con el positivismo: partirlo en tres para poder aceptar una parte y rechazar el resto. La deuda es explícita.</p>
+
+  <p>El <b>neoconstitucionalismo teórico</b> describe el proceso de constitucionalización de los sistemas contemporáneos. Comanducci distingue dentro de él una versión débil, que lo considera una continuación del iuspositivismo con el objeto modificado, y una fuerte —Ferrajoli, Zagrebelsky— que reclama un cambio metodológico radical y una ciencia jurídica normativa. Contra esta última dirige su crítica más técnica: al exigir que la ciencia jurídica evalúe la validez sustancial de las leyes y denuncie lagunas, Ferrajoli derivaría el deber ser del ser y colapsaría la distinción entre describir y prescribir.</p>
+
+  <p>El <b>neoconstitucionalismo ideológico</b> es la toma de posición que valora positivamente ese proceso y propugna ampliarlo, priorizando la garantía de los derechos sobre la mera limitación del poder. Comanducci lo califica de variante moderna del positivismo ideológico: donde antes había obligación moral de obedecer la ley, ahora la hay de obedecer la Constitución. Y le objeta que el uso desmedido de principios vagos y de la ponderación reduce la certeza y aumenta la discrecionalidad, hasta que los jueces imponen su concepción particular de la justicia con ropaje argumentativo.</p>
+
+  <p>El <b>neoconstitucionalismo metodológico</b> sostiene que hay conexión necesaria entre derecho positivo y moral, con los principios haciendo de puente. Comanducci lo ataca en tres planos: como descripción es falso, porque los jueces justifican sus fallos en normas jurídicas; como tesis conceptual es una tautología, si se define de antemano toda justificación última como moral; y como norma es peligroso, porque obligar al juez a justificar en sus propias creencias morales aumenta la arbitrariedad allí donde no hay moral común.</p>
+
+  <span class="procede">Apartado elaborado a partir de Comanducci (2002). Bobbio, Ferrajoli y Zagrebelsky llegan expuestos por él.</span>
+
+  
+  <div class="control" data-control="la-constitucion-invasora::4" role="group" aria-label="Pregunta de control de lectura"></div>
+<h2>f · La réplica de Moreso</h2>
+
+  <p>Moreso responde a las tres objeciones, y lo hace no para corregir un error sino para sostener que el neoconstitucionalismo es compatible con un positivismo metodológico bien entendido.</p>
+
+  <p>Sobre la crítica al teórico, defiende la ciencia jurídica normativa de Ferrajoli y la considera inocua. Explicar que la validez de una ley depende de su conformidad sustancial con los principios constitucionales, o denunciar que el legislador omitió dictar la ley necesaria para garantizar un derecho, es una operación dogmática corriente que describe un sistema jerárquico. De ahí su conclusión: el neoconstitucionalismo teórico es, sencillamente, el positivismo jurídico de nuestros días.</p>
+
+  <p>Sobre la crítica al ideológico, niega que exija obediencia moral ciega. Un neoconstitucionalista racional puede juzgar injusta una norma constitucional y criticarla desde fuera; Moreso pone como ejemplo la denegación del voto y las trabas a la nacionalidad que sufren los inmigrantes en democracias europeas, injusticia flagrante y constitucionalmente permitida. Y recuerda que el propio Dworkin aclaró que no leía la Constitución de su país como si contuviera todas sus preferencias morales.</p>
+
+  <div class="aviso">
+    <span class="etiqueta">El argumento sobre la certeza, que es el mejor de los suyos</span>
+    Moreso concede que la certeza importa, y aun así muestra que no puede ser absoluta sin volverse monstruosa. Un sistema penal que prohibiera matar o herir sin admitir la legítima defensa sería certísimo y profundamente injusto. Un sistema civil que no permitiera anular contratos por intimidación o error garantizaría transacciones previsibles al precio de legitimar la opresión y el fraude. La ponderación sacrifica certeza, sí, y lo hace a cambio de autonomía y de un derecho habitable.
+  </div>
+
+  <p>Sobre el metodológico, sostiene que la conexión entre derecho y moral no es conceptualmente necesaria sino contingente: depende de que una constitución incorpore o no pautas morales en sus criterios de validez. Por eso es compatible con el positivismo incluyente. Y para la justificación defiende la unidad de la razón práctica, apoyándose en la secuencia de cuatro etapas de Rawls —posición original, etapa constitucional, etapa legislativa y aplicación judicial— para mostrar que, en una teoría ideal, el razonamiento jurídico es una especie del razonamiento moral.</p>
+
+  <span class="procede">Apartado elaborado a partir de Moreso (2003). Ferrajoli, Dworkin y Rawls llegan expuestos por él. Los ejemplos penal y civil son suyos.</span>
+
+  
+  <div class="control" data-control="la-constitucion-invasora::5" role="group" aria-label="Pregunta de control de lectura"></div>
+<h2>g · Lo que sigue sin resolverse</h2>
+
+  <p>Queda por decir lo más importante, y conviene decirlo sin adornos: <b>el neoconstitucionalismo no ha superado la polémica entre iusnaturalismo y positivismo.</b> Presentarlo como síntesis superadora es tomar partido en una discusión que sigue abierta, no describir un consenso.</p>
+
+  <p>Los dos autores que acaban de leerse discrepan justamente en eso. Para Pozzolo y Comanducci, cuando el neoconstitucionalismo defiende una conexión necesaria entre derecho y moral no está superando nada: es una variante contemporánea del iusnaturalismo metodológico, y compromete tanto la objetividad de la ciencia jurídica como el garantismo del principio de legalidad. Para Moreso, en cambio, puede entenderse coherentemente como positivismo incluyente, que mantiene la separación conceptual —el derecho puede ser injusto— y admite que la moralidad se incorporó de forma positiva y contingente en las constituciones de posguerra.</p>
+
+  <p class="apunte">Las dos tradiciones siguen teniendo defensores activos disputando los fundamentos de la validez y de la interpretación. Mientras eso siga así, la pretensión de superación es una posición más dentro de la discusión, no su final.</p>
+
+  <span class="procede">Apartado elaborado a partir de Comanducci (2002), Moreso (2003), Pozzolo (2015) y Núñez Leiva (2015).</span>
+
+  <div class="cierre">
+    <span class="etiqueta">Qué cambia en el escritorio de un abogado</span>
+    <p>Bajo el modelo legalista del siglo XIX, el abogado buscaba la solución en la letra de los códigos y daba por hecho que la Constitución era un manifiesto lejano dirigido a los poderes públicos. En el Estado constitucional, tres cosas cambian de golpe: hay que examinar si la ley aplicable al caso es conforme con los derechos fundamentales y pedir interpretación conforme cuando no lo sea; se puede invocar directamente principios constitucionales ante cualquier juez, alegando laguna axiológica o pidiendo la derrotabilidad de una regla cuya aplicación estricta produciría una injusticia intolerable; y la técnica de litigación se desplaza del silogismo a la argumentación, con la ponderación y la proporcionalidad como herramientas de trabajo.</p>
+    <p class="apunte">Dicho de otro modo: el abogado deja de ser quien encuentra la norma aplicable y pasa a ser quien argumenta cuál debe prevalecer.</p>
+  </div>
+
+  <div class="aporte">
+    <span class="etiqueta">Aporte del docente</span>
+    <p><b>Midan el grado, no repitan la etiqueta</b><br>
+    «De este apartado quiero que se lleven una herramienta, no un vocabulario. La herramienta son las siete condiciones de Guastini, y sirve para algo que casi nadie hace: <b>medir</b> en vez de proclamar.
+    <br><br>
+    Escucharán decir que vivimos en un Estado constitucional como si fuera una descripción evidente. Pregúntense entonces, condición por condición, en qué grado. ¿Hay rigidez efectiva o la reforma es accesible a la mayoría de turno? ¿La garantía jurisdiccional funciona o depende de quién integra el tribunal? ¿Los derechos sociales son exigibles ante un juez o siguen tratándose como programáticos? ¿Los jueces aplican la Constitución directamente entre particulares, o esperan siempre una ley de desarrollo? Verifiquen ustedes cada respuesta con el articulado y con jurisprudencia real antes de sostenerla; yo indicaré en la sesión qué fuentes consultar.
+    <br><br>
+    Y una advertencia sobre la palabra. Nació en 1997, en boca de quienes querían examinar críticamente esas tesis, no de quienes las defendían. Eso debería bastar para desconfiar de quien la usa como elogio automático o como insulto. Comanducci y Moreso, que son los dos que acaban de leer, discrepan en casi todo salvo en una cosa: los dos argumentan. Esa es la parte que quiero que imiten.»</p>
+  </div>
+
+  <div class="pie">
+    <h4>Referencias</h4>
+    <ul class="refs">
+      <li>Carbonell, M. (s. f.). <i>La constitucionalización del ordenamiento jurídico</i>. Centro de Estudios Jurídicos Carbonell.</li>
+      <li>Comanducci, P. (2002). Formas de (neo)constitucionalismo: un análisis metateórico. <i>Isonomía</i>, 16, 89&ndash;112.</li>
+      <li>Moreso, J. J. (2003). Comanducci sobre neoconstitucionalismo. <i>Isonomía</i>, 19, 267&ndash;282.</li>
+      <li>Núñez Leiva, J. I. (2015). Explorando el neoconstitucionalismo a partir de sus tesis principales. <i>Ius et Praxis</i>, 21(1), 315&ndash;343.</li>
+      <li>Pozzolo, S. (2015). Apuntes sobre «neoconstitucionalismo». En <i>Enciclopedia de Filosofía y Teoría del Derecho</i> (vol. 1). Instituto de Investigaciones Jurídicas, UNAM.</li>
+      <li>Romero Martínez, J. M. (2015). <i>El neoconstitucionalismo y los principios en el derecho</i> (pp. 5&ndash;36). Instituto de Investigaciones Jurídicas, UNAM.</li>
+    </ul>
+  </div>
+  <div class="control" data-control="la-constitucion-invasora::6" role="group" aria-label="Pregunta de control de lectura"></div>
+
+</section>
+
+<section class="seccion" id="el-derecho-vivo" role="tabpanel" aria-labelledby="tab-el-derecho-vivo" tabindex="0" hidden>
+  <p class="marca-seccion">EL DERECHO VIVO</p>
+  <p class="antetitulo">Subpuntos 2.6.1 a 2.6.3 · La sociedad como red de relaciones · Pensamiento de los precursores · Facticidad y validez</p>
+  <p class="titular">Encerrar el río en un estanque</p>
+  <p class="entradilla">Ehrlich escribió que reducir todo el derecho a la ley del Estado es como encerrar las aguas de un río en un estanque. Con esa imagen se abre el último apartado del bloque, que hace algo distinto de los siete anteriores: en vez de preguntar qué hace válida a una norma, pregunta qué ocurre con el derecho realmente vivido, el que la gente obedece sin que ningún juez se lo mande. Y termina explicando por qué el bloque acaba aquí y no en el neoconstitucionalismo.</p>
+  <p class="firma"><b>Prof. Carlos Eduardo Chica-Villacís</b>
+  <span class="rol">Docente autor · Universidad Católica de Cuenca</span></p>
+<div class="cuerpo">
+
+  <h2>a · De la relación aislada a la red</h2>
+
+  <p>El punto de partida clásico es la relación jurídica, tratada como unidad básica de análisis bajo la premisa de que la vida social consiste en un cúmulo de vínculos entre personas. Cárdenas Gracia recoge las tres formas en que la teoría contemporánea la concibe: como realidad intranormativa, que Kelsen reduce al vínculo de imputación entre supuesto de hecho y sanción dentro de la misma norma; como relación abstracta entre la norma y sus destinatarios; y como vínculo real entre personas, determinado por el derecho objetivo, que es la herencia de Savigny.</p>
+
+  <p>La delimitación kantiana es útil porque enseña qué queda fuera. Para Kant hay relación jurídica cuando dos personas tienen a la vez derechos y deberes. Quedan excluidos, por tanto, los vínculos con quien solo tiene deberes, con quien solo tiene derechos y con lo que no tiene ninguno de los dos.</p>
+
+  <p>El problema del enfoque bilateral aislado es que se queda corto. Álvarez Gálvez lo señala al exponer la dogmática clásica: el derecho subjetivo, entendido como facultad individual de exigir, solo muestra su verdadera dimensión de poder cuando alguien lo pone en duda y hay que afirmarlo ante un tribunal. Antes de eso es una abstracción.</p>
+
+  <p>De ahí el desplazamiento que abre este apartado: de la relación jurídica aislada a <b>la sociedad como una red de relaciones</b>. Sánchez lo introduce por la vía de Durkheim, para quien la sociedad no es la suma de contratos individuales sino una estructura externa y objetiva, sostenida por una conciencia colectiva —el conjunto de creencias y sentimientos comunes al término medio de los miembros de una sociedad, que se impone con fuerza obligatoria—. En esa red, el derecho deja de ser un mandato fragmentado y pasa a ser el signo visible de la cohesión social.</p>
+
+  <span class="procede">Apartado elaborado a partir de Cárdenas Gracia (2010), Álvarez Gálvez (2002) y Sánchez (2023). Kant, Kelsen, Savigny, Somló y Durkheim llegan expuestos por ellos.</span>
+
+  
+  <div class="control" data-control="el-derecho-vivo::0" role="group" aria-label="Pregunta de control de lectura"></div>
+<h2>b · Dos miradas sobre el mismo objeto</h2>
+
+  <p>Sánchez deslinda con precisión la dogmática jurídica de la sociología jurídica, y el deslinde no es de temas sino de posición del observador.</p>
+
+  <p>La <b>dogmática</b> opera desde el punto de vista interno, el del participante: el juez, el abogado o el académico que acepta las normas vigentes como guía de su conducta y como criterio de crítica. Su objeto es el derecho positivo como sistema formal y su pregunta es qué establece el ordenamiento como válido.</p>
+
+  <p>La <b>sociología jurídica</b> opera desde el punto de vista externo, el del observador, que analiza el juego normativo desde fuera sin comprometerse con su obligatoriedad. Sánchez, exponiendo a Treves, le asigna dos tareas: describir la sociedad en el derecho, es decir los comportamientos reales conformes o disconformes con los textos legales, y estudiar la posición y la función del derecho en la sociedad entendida como un todo.</p>
+
+  <div class="destacado">
+    No estudian cosas distintas. Estudian lo mismo desde posiciones incompatibles, y por eso ninguna de las dos puede absorber a la otra.
+    <cite>Consecuencia del deslinde que traza Sánchez</cite>
+  </div>
+
+  <p>Sánchez recoge además dos advertencias que conviene retener. De Pérez Luño, el peligro de que una dogmática formalista extrema se reduzca a elaborar estructuras verbales de segundo grado sin anclaje en la experiencia jurídica. De Krawietz, la exigencia de abandonar un concepto positivistamente reducido del derecho para entenderlo como <b>orden vivido</b>, realmente vigente y eficaz en la vida de las personas.</p>
+
+  <span class="procede">Apartado elaborado a partir de Sánchez (2023). Treves, Pérez Luño y Krawietz llegan expuestos por ella.</span>
+
+  
+  <div class="control" data-control="el-derecho-vivo::1" role="group" aria-label="Pregunta de control de lectura"></div>
+<h2>c · Ehrlich y el derecho vivo</h2>
+
+  <p>Iannello reconstruye la aportación de Eugen Ehrlich, y su tesis central es una impugnación frontal del monismo estatal: el centro de gravedad del derecho no está en la ley, ni en la dogmática, ni en los precedentes de los tribunales, sino en la sociedad misma. La imagen con que lo dijo se ha quedado: pretender reducir todo el derecho a la actividad legislativa del Estado es como <b>encerrar las aguas de un río en un estanque</b>.</p>
+
+  <p>El <b>derecho vivo</b> es el conjunto de normas que las personas, en su convivencia dentro de asociaciones como la familia, las corporaciones o el comercio, tienen por obligatorias y a las que ajustan de hecho su conducta. No es folclore ni costumbre pintoresca: es el trasfondo social sobre el que los códigos se escriben.</p>
+
+  <p>De ahí sale el <b>pluralismo jurídico</b>, la coexistencia de ordenamientos normativos superpuestos e interconectados dentro de una misma realidad social. Iannello, exponiendo a Griffiths, distingue dos versiones que conviene no confundir.</p>
+
+  <div class="comparativa">
+    <table>
+      <thead>
+        <tr><th>Versión</th><th>Qué sostiene</th><th>Quién manda</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Pluralismo débil</b><br><span class="apunte">descriptivo-formal</span></td>
+          <td>El Estado reconoce y otorga validez subordinada a costumbres preexistentes, obligándolas a adaptarse a sus categorías</td>
+          <td>El Estado, que decide qué reconoce</td>
+        </tr>
+        <tr>
+          <td><b>Pluralismo fuerte</b><br><span class="apunte">empírico-social</span></td>
+          <td>De hecho coexisten múltiples centros de producción normativa, con independencia de que el Estado los reconozca</td>
+          <td>Nadie en exclusiva: el derecho estatal es uno más</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Bajo la versión fuerte, las personas se mueven a diario entre varios ordenamientos. Iannello lo explica con dos nociones complementarias: la gestión del fuero que describe Vanderlinden, y la <b>selección situacional</b> de Evans-Pritchard, según la cual quien está en conflicto escoge de forma pragmática, dentro de un menú de opciones normativas concurrentes —morales, comunitarias o estatales—, la que estima más eficaz para su caso.</p>
+
+
+  <figure class="grabado">
+    <img src="Ilustraciones/B2_lamina15_rio_estanque.jpeg" alt="Lámina cuadrada a tinta sepia. Vista aérea en picado de un río ancho que cruza la lámina en diagonal, dibujado como un plano hidrográfico antiguo: el cauce se abre en muchos brazos trenzados, con islas de arena entre ellos y líneas de corriente con flechas que marcan la dirección del flujo. En el centro del cauce hay un estanque rectangular de sillería, con muros de piedra labrada y dos compuertas de madera y herraje; dentro, el agua está quieta y lisa, sin líneas de corriente. Los brazos del río pasan de largo por ambos lados de los muros y siguen hasta el borde de la lámina.">
+    <figcaption><b>Lámina 15.</b> Dentro del estanque el agua está quieta y su nivel es más bajo. Alrededor, el río sigue su curso por brazos que nunca entran en él. Lo que la imagen añade a la frase de Ehrlich es la proporción: el estanque está bien construido y es pequeño.</figcaption>
+  </figure>
+
+  <span class="procede">Apartado elaborado a partir de Iannello (2015). Ehrlich, Griffiths, Vanderlinden y Evans-Pritchard llegan expuestos por él.</span>
+
+  
+  <div class="control" data-control="el-derecho-vivo::2" role="group" aria-label="Pregunta de control de lectura"></div>
+<h2>d · Ross, o qué queda del derecho subjetivo</h2>
+
+  <p>El realismo escandinavo asume una postura antimetafísica estricta. Rubio Castro muestra cómo Alf Ross desmonta los dos conceptos que la dogmática daba por sólidos.</p>
+
+  <p>Sobre la validez: para Ross el derecho vigente es el conjunto de directivas que los tribunales de hecho aplican porque las viven con sentimiento de obligatoriedad. Lo ilustra con el ajedrez —una regla está vigente si los jugadores la observan y se sienten obligados por ella— y de ahí concluye que <b>la validez es una predicción de la conducta futura de los tribunales</b>. Las proposiciones de la ciencia jurídica no serían juicios normativos sino profecías.</p>
+
+  <div class="aviso">
+    <span class="etiqueta">La objeción de Hart, que conviene tener a mano</span>
+    Hart replicó que la validez no es una predicción sino un enunciado de aceptación interna: el juez no predice lo que hará, usa la norma como razón para justificar lo que hace. Un juez que dijera «predigo que fallaré así» no estaría justificando nada. La objeción llega aquí expuesta por Rubio Castro, y enlaza con la distinción entre punto de vista interno y externo del apartado anterior.
+  </div>
+
+  <p>Sobre el derecho subjetivo, Ross ataca en <i>Tû-Tû</i>, de 1951, con una etnografía imaginaria: el «Doctor Nadie» estudia al «pueblo Ficción» de las «islas Ilusión», donde la palabra <i>tû-tû</i> nombra un estado de impureza mágica que sobreviene a quien infringe un tabú y que exige un ritual de purificación. Ross sostiene que «derecho subjetivo» funciona igual: no señala ningún objeto observable de la realidad.</p>
+
+  <p>Y sin embargo no pide desterrarlo, y ahí está lo interesante. Lo conserva como <b>herramienta de presentación técnica</b>: un término de conexión que enlaza de forma económica una pluralidad de hechos condicionantes —comprar, heredar, recibir en donación— con una pluralidad de consecuencias —vender, usar, demandar—. En lugar de escribir miles de normas que conecten cada hecho con cada consecuencia, el sistema interpone un concepto intermedio. No nombra nada real; ahorra un trabajo enorme.</p>
+
+  <span class="procede">Apartado elaborado a partir de Rubio Castro (1987). Ross y la objeción de Hart llegan expuestos por ella.</span>
+
+  
+  <div class="control" data-control="el-derecho-vivo::3" role="group" aria-label="Pregunta de control de lectura"></div>
+<h2>e · Reale: hecho, valor y norma</h2>
+
+  <p>Frente a los reduccionismos que aíslan el valor, la norma o el hecho, Cano-Nava expone la teoría tridimensional de Miguel Reale, que sostiene que el derecho tiene una naturaleza triádica de dimensiones inseparables.</p>
+
+  <p>La <b>dimensión fáctica</b> es la circunstancia social, económica e histórica en que surge la regulación. La <b>dimensión axiológica</b> es la de la justicia, con el valor de la persona como fuente de los demás. La <b>dimensión normativa</b> es la regla coactiva que pretende ordenar conductas conforme a esos valores.</p>
+
+  <p>La aportación de Reale no es la lista sino la relación entre las tres, que es funcional y dialéctica. Cano-Nava lo explica así: hecho y valor no se excluyen, están en implicación y polaridad, y de esa tensión nace la norma, que la resuelve de manera provisional. Pero al aplicarse, la norma transforma el hecho del que salió y abre paso a nuevos valores, que exigen una norma nueva. El proceso no se cierra.</p>
+
+  <span class="procede">Apartado elaborado a partir de Cano-Nava (2011). Reale y Hegel llegan expuestos por ella.</span>
+
+  
+  <div class="control" data-control="el-derecho-vivo::4" role="group" aria-label="Pregunta de control de lectura"></div>
+<h2>f · Habermas: facticidad y validez</h2>
+
+  <p>Loos y Zoffoli exponen, cada uno por su lado, la propuesta de Habermas en <i>Facticidad y validez</i>. El núcleo es una tensión que el propio Habermas considera insuperable.</p>
+
+  <p>La <b>facticidad</b> es la dimensión empírica y coactiva del derecho: opera como hecho social respaldado por sanciones y por el poder administrativo del Estado, y obliga incluso a quien actúa de forma puramente estratégica. La <b>validez</b> es la dimensión de legitimidad racional: una norma no vale solo porque se imponga por la fuerza, necesita aceptabilidad racional de quienes deben poder concebirse a la vez como autores de las leyes a las que están sometidos.</p>
+
+  <p>Zoffoli subraya que las dos se necesitan. Una validez sin institucionalización fáctica se queda en objetividad dogmática estéril; una facticidad sin pretensión de validez se reduce a un dato de fuerza.</p>
+
+  <p>Loos aporta la explicación histórica de por qué el problema es moderno. En las sociedades tradicionales, facticidad y validez venían unidas por garantías metasociales: la religión, el derecho natural. Al colapsar esas cosmovisiones compartidas, el derecho moderno queda como la <b>única instancia capaz de sostener las dos a la vez</b>. Es una bisagra de doble cara: por un lado descarga a los ciudadanos de tener que acordar qué es la vida buena y les exige solo acatamiento externo; por otro garantiza que las leyes coactivas salgan de un procedimiento democrático abierto a la deliberación.</p>
+
+  <p>El criterio de legitimidad es el principio discursivo: válidas son las normas a las que podrían prestar su asentimiento, como participantes en discursos racionales, todos los que puedan verse afectados por ellas. Zoffoli insiste en que esto no es un ideal platónico que el filósofo deduce a solas, sino una <b>trascendencia desde el interior</b>, generada en procesos reales de argumentación pública.</p>
+
+  <p>Para sociedades con desacuerdos profundos, Habermas distingue los discursos morales, donde la justicia reclama validez universal, de los ético-políticos, ligados a la identidad de un grupo concreto. Y añade una exigencia de <b>traducción</b>: quien argumenta desde una doctrina religiosa o ética comprehensiva debe verter sus razones a un lenguaje público que todos puedan entender, de modo que nadie quede excluido por sus contenidos y todos sean evaluados por la aceptabilidad de sus argumentos.</p>
+
+
+  <figure class="grabado">
+    <img src="Ilustraciones/B2_lamina16_bisagra.jpeg" alt="Lámina cuadrada a tinta sepia con el despiece de una sola bisagra de herrería antigua, abierta en ángulo y vista de frente. La hoja izquierda es gruesa y maciza, de hierro forjado tosco con remaches grandes, atornillada a un bloque de piedra de sillería del que cuelgan una cadena corta y un candado cerrado. La hoja derecha es delgada y calada, trabajada como una celosía de perforaciones geométricas por las que pasa la luz, atornillada a una estructura abierta de listones finos. En el centro exacto, el nudillo con su pasador atraviesa los ojales de ambas hojas y es lo único que las mantiene unidas.">
+    <figcaption><b>Lámina 16.</b> Las dos hojas no son simétricas: una pesa y encierra, la otra deja pasar la luz. El pasador del centro es la única pieza que las sostiene juntas, y si se retira no quedan dos mitades de una cosa, quedan dos cosas que ya no se aguantan.</figcaption>
+  </figure>
+
+  <span class="procede">Apartado elaborado a partir de Loos (2009) y Zoffoli (2010), que exponen a Habermas cada uno por separado.</span>
+
+  
+  <div class="control" data-control="el-derecho-vivo::5" role="group" aria-label="Pregunta de control de lectura"></div>
+<h2>g · Por qué el bloque termina aquí</h2>
+
+  <p>Podría parecer que el orden natural sería cerrar en el neoconstitucionalismo, que es lo más reciente. El bloque termina en la facticidad por una razón de coherencia, no de cronología.</p>
+
+  <p>Las tres tradiciones que estructuran el bloque —el iusnaturalismo, el iuspositivismo y el neoconstitucionalismo— discuten en el mismo plano: el de la validez y la justificación racional del sistema. El iusnaturalismo reconduce la validez última a la conformidad con exigencias morales. El iuspositivismo metodológico la define por actos de voluntad estatal. El neoconstitucionalismo la resuelve mediante argumentación judicial sobre principios positivados. Discrepan mucho entre sí, y comparten un supuesto: que la corrección racional del razonamiento basta para dar orden y estabilidad al sistema.</p>
+
+  <div class="cierre">
+    <span class="etiqueta">La pregunta que ninguna de las tres responde</span>
+    <p>Cómo conserva el derecho su fuerza de obligar y su capacidad de integrar cuando la sociedad real —desigual, asimétrica en poder, con desacuerdos éticos que no se van a cerrar— hace imposible el consenso unánime sobre lo justo.</p>
+    <p class="apunte">La sociología jurídica y el modelo de Habermas son los que se hacen cargo de esa pregunta, y por eso van al final: no porque superen a las tres tradiciones anteriores, sino porque trabajan en el plano que las tres dejaban fuera.</p>
+  </div>
+
+  <div class="aporte">
+    <span class="etiqueta">Aporte del docente</span>
+    <p><b>El derecho vivo que ya conocen</b><br>
+    «Cierro el bloque pidiéndoles algo que no requiere biblioteca. Piensen en un ordenamiento normativo que ustedes obedecen todos los días y que ningún juez les impone: las reglas de su familia sobre quién decide qué, los acuerdos no escritos de un mercado o de un gremio, el turno en una fila. Ehrlich diría que ahí hay derecho vivo, y que es anterior y más denso que el código.
+    <br><br>
+    Ahora la pregunta difícil, que es donde este bloque se conecta con el país en que van a ejercer. Cuando un ordenamiento de esos entra en conflicto con la ley estatal, ¿qué pasa? El pluralismo débil responde que vale mientras el Estado lo reconozca y en los términos en que lo reconozca. El fuerte responde que existe lo reconozcan o no. La diferencia no es académica: decide quién tiene la última palabra.
+    <br><br>
+    En Ecuador esa pregunta tiene respuesta constitucional expresa, y es de las que más litigio genera. Yo indicaré en la sesión qué disposiciones y qué jurisprudencia de la Corte Constitucional conviene leer; ustedes tráiganlas verificadas, con su número y su texto, no de memoria ni de resumen.
+    <br><br>
+    Y una última cosa, que es la lección del bloque entero. Han recorrido ocho apartados de gente muy inteligente discutiendo qué hace que una norma valga. Ninguno ganó. Si algo se llevan, que sea esto: en Derecho, saber quién tiene razón importa menos que saber en qué plano se está discutiendo. Casi todas las discusiones que van a presenciar en su vida profesional no se resuelven porque las partes están hablando de planos distintos sin advertirlo.»</p>
+  </div>
+
+  <div class="pie">
+    <h4>Referencias</h4>
+    <ul class="refs">
+      <li>Álvarez Gálvez, I. (2002). Una aproximación a la Escuela Histórica del Derecho según Savigny. <i>Boletín Jurídico de la Universidad Europea de Madrid</i>, 5.</li>
+      <li>Cano-Nava, M. O. (2011). Modelo epistemológico de la teoría tridimensional del derecho. <i>Convergencia</i>, 18(57), 209&ndash;228.</li>
+      <li>Cárdenas Gracia, J. F. (2010). Conceptos jurídicos fundamentales. En <i>Introducción al estudio del derecho</i> (cap. VII). Instituto de Investigaciones Jurídicas, UNAM, y Nostra Ediciones.</li>
+      <li>Iannello, P. (2015). Pluralismo jurídico. En <i>Enciclopedia de Filosofía y Teoría del Derecho</i> (vol. 1). Instituto de Investigaciones Jurídicas, UNAM.</li>
+      <li>Loos, F. (2009). Habermas, «Facticidad y validez» (recensión crítica). <i>Zeitschrift für Internationale Strafrechtsdogmatik</i>, 5, 240&ndash;248.</li>
+      <li>Rubio Castro, A. M. (1987). Teoría del derecho y derecho subjetivo en Alf Ross. <i>Anuario de Filosofía del Derecho</i>, 279&ndash;302.</li>
+      <li>Sánchez, M. N. (2023). Sociología jurídica: introducción y principales enfoques teóricos. <i>Oñati Socio-Legal Series</i>, 13(2), 536&ndash;562.</li>
+      <li>Zoffoli, E. (2010). Jürgen Habermas: entre hechos y normas. <i>Isonomía</i>, 32, 69&ndash;90.</li>
+    </ul>
+  </div>
+  <div class="control" data-control="el-derecho-vivo::6" role="group" aria-label="Pregunta de control de lectura"></div>
+
+</section>
+
+
+
+
+
+
+
+
+<div class="avance">
+  <span class="etiqueta">Su avance en la lectura</span>
+  <div class="barra"><i></i></div>
+  <p class="cifras"></p>
+  <ol><li></li><li></li></ol>
+  <div class="constancia"></div>
+</div>
+</div>
+<div id="hoja-constancia" aria-hidden="true"></div>
+<script type="application/json" id="datos-control">{"sal": "B1-constancia-v1", "bloque": "B3", "titulo": "Filosofía del Derecho · Lectura del Bloque 3", "institucion": "Universidad Católica de Cuenca", "membrete": "Universidad Católica de Cuenca · Bloque 3 · El giro contemporáneo · Primer ciclo · Año 2026", "muestra": false, "secciones_del_bloque": 2, "nota_maxima": 10.0, "puntos_seccion": 5.0, "indice": {"la-constitucion-invasora::0": {"grupos": {"pares": {"e": "¿Qué precisión añade Carbonell sobre la constitucionalización?", "o": ["Que se alcanza de golpe al aprobarse una constitución rígida.", "Que solo puede medirse comparando dos ordenamientos distintos.", "Que no es bipolar: es cuestión de grado."], "h": 3769704084}, "impares": {"e": "¿Qué es el constitucionalismo, a diferencia de la Constitución y de la constitucionalización?", "o": ["Una norma jurídica suprema de contenido material.", "Un proceso al término del cual el ordenamiento queda impregnado por normas constitucionales.", "Un movimiento político e ideológico histórico que persigue limitar el poder estatal."], "h": 3546527317}}}, "la-constitucion-invasora::1": {"grupos": {"pares": {"e": "¿En qué consiste la condición de Constitución rígida?", "o": ["En que ningún juez puede apartarse de su literalidad.", "En que no puede modificarse por el procedimiento legislativo ordinario.", "En que sus normas obligan solo a los poderes públicos."], "h": 2744108360}, "impares": {"e": "¿Qué hace el intérprete cuando hay sobreinterpretación?", "o": ["Se limita estrictamente a la letra del texto constitucional.", "Remite al legislador toda cuestión que la constitución no resuelva.", "Extrae del texto normas implícitas que alcanzan casi cualquier aspecto de la vida social."], "h": 3923324227}}}, "la-constitucion-invasora::2": {"grupos": {"pares": {"e": "¿Cuál fue el uso inaugural del término neoconstitucionalismo?", "o": ["Un artículo de Comanducci publicado en Isonomía en 2002.", "Una ponencia de Susanna Pozzolo en 1997, en el XVIII Congreso Mundial de la IVR.", "Un libro de Alexy sobre la fórmula de Radbruch."], "h": 3035173982}, "impares": {"e": "¿Con qué intención nace la etiqueta?", "o": ["Desde fuera y con intención crítica: se la pusieron quienes querían examinarla.", "Con intención neutral, como simple etiqueta cronológica.", "Desde dentro y con intención reivindicativa, para agrupar a sus partidarios."], "h": 377621589}}}, "la-constitucion-invasora::3": {"grupos": {"pares": {"e": "¿Cómo llama Prieto Sanchís al proceso por el que la Constitución se satura de valores?", "o": ["Autointegración normativa.", "Rematerialización constitucional.", "Sobreinterpretación sistémica."], "h": 3250570110}, "impares": {"e": "¿Cómo denomina García Figueroa a los principios, y por qué?", "o": ["Reglas de segundo grado, porque regulan la aplicación de otras reglas.", "Criaturas de la moralidad, porque incorporan exigencias éticas al sistema.", "Normas programáticas, porque carecen de fuerza vinculante."], "h": 441612866}}}, "la-constitucion-invasora::4": {"grupos": {"pares": {"e": "¿Qué reclama la versión fuerte del neoconstitucionalismo teórico?", "o": ["Un cambio metodológico radical y una ciencia jurídica normativa.", "La supresión del control judicial de constitucionalidad.", "La vuelta al legicentrismo del siglo XIX."], "h": 710873961}, "impares": {"e": "¿Cómo califica Comanducci al neoconstitucionalismo ideológico?", "o": ["Como una forma encubierta de realismo jurídico estadounidense.", "Como una variante moderna del positivismo ideológico.", "Como la única versión defendible de las tres."], "h": 3042974622}}}, "la-constitucion-invasora::5": {"grupos": {"pares": {"e": "¿A qué conclusión llega Moreso sobre el neoconstitucionalismo teórico?", "o": ["Que constituye una ruptura total con el positivismo jurídico.", "Que es, sencillamente, el positivismo jurídico de nuestros días.", "Que carece de valor descriptivo y debe abandonarse."], "h": 2836641598}, "impares": {"e": "¿Qué ejemplo pone Moreso de injusticia flagrante y constitucionalmente permitida?", "o": ["La pena de muerte vigente en algunos Estados federados.", "La denegación del voto y las trabas a la nacionalidad que sufren los inmigrantes en democracias europeas.", "La desigualdad salarial entre hombres y mujeres en el sector privado."], "h": 3588989061}}}, "la-constitucion-invasora::6": {"grupos": {"pares": {"e": "Para Pozzolo y Comanducci, ¿qué es el neoconstitucionalismo cuando defiende una conexión necesaria entre derecho y moral?", "o": ["Una síntesis que supera definitivamente la vieja polémica.", "Una variante contemporánea del iusnaturalismo metodológico.", "Una forma de realismo jurídico aplicada a la constitución."], "h": 2103877635}, "impares": {"e": "¿Cómo puede entenderse el neoconstitucionalismo según Moreso?", "o": ["Como iusnaturalismo clásico revestido de vocabulario constitucional.", "Como una doctrina incompatible con cualquier forma de positivismo.", "Como positivismo incluyente, que mantiene la separación conceptual y admite la incorporación contingente de la moralidad."], "h": 3012526182}}}, "el-derecho-vivo::0": {"grupos": {"pares": {"e": "¿Cuándo hay relación jurídica para Kant?", "o": ["Cuando una de las partes tiene derechos y la otra solo deberes.", "Cuando dos personas tienen a la vez derechos y deberes.", "Cuando existe un contrato escrito entre las partes."], "h": 2924106947}, "impares": {"e": "¿A qué reduce Kelsen la relación jurídica?", "o": ["Al vínculo de imputación entre supuesto de hecho y sanción dentro de la misma norma.", "A la relación abstracta entre la norma y sus destinatarios.", "Al vínculo real entre personas determinado por el derecho objetivo."], "h": 107250739}}}, "el-derecho-vivo::1": {"grupos": {"pares": {"e": "¿Desde qué punto de vista opera la dogmática jurídica?", "o": ["Desde el punto de vista externo, el del observador que no se compromete con su obligatoriedad.", "Desde el punto de vista interno, el del participante que acepta las normas como guía de conducta.", "Desde un punto de vista mixto que combina ambas posiciones."], "h": 2361088351}, "impares": {"e": "¿Por qué ninguna de las dos disciplinas puede absorber a la otra?", "o": ["Porque una es científica y la otra carece de método.", "Porque estudian lo mismo desde posiciones incompatibles.", "Porque estudian objetos completamente distintos y sin relación."], "h": 3280161613}}}, "el-derecho-vivo::2": {"grupos": {"pares": {"e": "¿Con qué imagen expresa Ehrlich su impugnación del monismo estatal?", "o": ["Que el derecho estatal es la punta de un iceberg cuya masa permanece oculta.", "Que reducir todo el derecho a la ley del Estado es como encerrar las aguas de un río en un estanque.", "Que la ley es un molde rígido en el que la sociedad no cabe."], "h": 3100710298}, "impares": {"e": "¿Qué es el derecho vivo, y qué no es?", "o": ["Es la parte de la ley estatal que efectivamente se cumple.", "Es el conjunto de sentencias firmes que los tribunales han dictado.", "Es el trasfondo social sobre el que los códigos se escriben, no folclore ni costumbre pintoresca."], "h": 4268435860}}}, "el-derecho-vivo::3": {"grupos": {"pares": {"e": "¿A qué concluye Ross que se reduce la validez?", "o": ["A una predicción de la conducta futura de los tribunales.", "A la aceptación moral de la norma por parte de sus destinatarios.", "A la conformidad de la norma con la norma fundamental del sistema."], "h": 605429100}, "impares": {"e": "¿Qué replicó Hart a esa tesis?", "o": ["Que la validez no es una predicción sino un enunciado de aceptación interna.", "Que la validez depende exclusivamente de la eficacia social de la norma.", "Que la validez solo puede establecerla el tribunal de última instancia."], "h": 1495649558}}}, "el-derecho-vivo::4": {"grupos": {"pares": {"e": "¿Qué representa la dimensión axiológica en la teoría tridimensional?", "o": ["La de la justicia, con el valor de la persona como fuente de los demás.", "La regla coactiva que pretende ordenar conductas.", "La circunstancia social, económica e histórica en que surge la regulación."], "h": 380037082}, "impares": {"e": "Una vez que la norma resuelve la tensión entre hecho y valor, ¿qué ocurre?", "o": ["El sistema alcanza un equilibrio definitivo entre las tres dimensiones.", "La dimensión fáctica desaparece y solo quedan valor y norma.", "Al aplicarse transforma el hecho del que salió y abre paso a nuevos valores: el proceso no se cierra."], "h": 2962499218}}}, "el-derecho-vivo::5": {"grupos": {"pares": {"e": "¿Qué caracteriza a la facticidad del derecho?", "o": ["Que depende de un consenso moral previo sobre lo bueno.", "Que opera como hecho social respaldado por sanciones y obliga incluso a quien actúa de forma puramente estratégica.", "Que exige la aceptabilidad racional de quienes deben obedecer la norma."], "h": 2379145429}, "impares": {"e": "Según Zoffoli, ¿en qué se queda una validez sin institucionalización fáctica?", "o": ["En una regla eficaz pero ilegítima.", "En objetividad dogmática estéril.", "En un dato de pura fuerza coactiva."], "h": 2090384458}}}, "el-derecho-vivo::6": {"grupos": {"pares": {"e": "¿Qué supuesto comparten las tres tradiciones que estructuran el bloque?", "o": ["Que la corrección racional del razonamiento basta para dar orden y estabilidad al sistema.", "Que la validez de una norma depende siempre de su eficacia social.", "Que el derecho debe subordinarse por completo a la moral positiva."], "h": 90726016}, "impares": {"e": "¿Cuál es la pregunta que ninguna de las tres responde?", "o": ["Cómo se resuelve una antinomia entre dos normas del mismo rango.", "Cómo se determina qué órgano es competente para dictar una norma.", "Cómo obliga el derecho cuando la sociedad real hace imposible el consenso unánime sobre lo justo."], "h": 2772368422}}}}, "secciones": [{"pestana": "LA CONSTITUCIÓN INVASORA", "apartados": [{"id": "la-constitucion-invasora::0", "titulo": "a · Tres palabras que no son sinónimas"}, {"id": "la-constitucion-invasora::1", "titulo": "b · Siete condiciones para medir el grado"}, {"id": "la-constitucion-invasora::2", "titulo": "c · De dónde viene la palabra"}, {"id": "la-constitucion-invasora::3", "titulo": "d · Las cinco tesis, y lo que arrastran"}, {"id": "la-constitucion-invasora::4", "titulo": "e · Las tres clases de Comanducci"}, {"id": "la-constitucion-invasora::5", "titulo": "f · La réplica de Moreso"}, {"id": "la-constitucion-invasora::6", "titulo": "g · Lo que sigue sin resolverse"}]}, {"pestana": "EL DERECHO VIVO", "apartados": [{"id": "el-derecho-vivo::0", "titulo": "a · De la relación aislada a la red"}, {"id": "el-derecho-vivo::1", "titulo": "b · Dos miradas sobre el mismo objeto"}, {"id": "el-derecho-vivo::2", "titulo": "c · Ehrlich y el derecho vivo"}, {"id": "el-derecho-vivo::3", "titulo": "d · Ross, o qué queda del derecho subjetivo"}, {"id": "el-derecho-vivo::4", "titulo": "e · Reale: hecho, valor y norma"}, {"id": "el-derecho-vivo::5", "titulo": "f · Habermas: facticidad y validez"}, {"id": "el-derecho-vivo::6", "titulo": "g · Por qué el bloque termina aquí"}]}]}</script>
+
+<script>
+var nivel = 0;
+function escala(d){
+  nivel = d === 0 ? 0 : Math.max(-1, Math.min(4, nivel + d));
+  document.documentElement.style.setProperty('--escala', (1 + nivel * 0.12).toFixed(2));
+}
+var css = document.createElement('style');
+css.textContent = '.unacol .cuerpo{column-count:1;column-rule:none}';
+document.head.appendChild(css);
+
+(function(){
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  var paneles = tabs.map(function(t){ return document.getElementById(t.getAttribute('aria-controls')); });
+  if (!tabs.length) return;
+
+  function activar(i, mover, marcarUrl){
+    for (var j = 0; j < tabs.length; j++) {
+      var sel = j === i;
+      tabs[j].setAttribute('aria-selected', sel ? 'true' : 'false');
+      tabs[j].tabIndex = sel ? 0 : -1;
+      paneles[j].hidden = !sel;
+    }
+    if (mover) {
+      tabs[i].focus();
+      if (tabs[i].scrollIntoView) tabs[i].scrollIntoView({block:'nearest', inline:'nearest'});
+    }
+    // Abierto con file:// hay navegadores que rechazan replaceState. Si
+    // fallara sin proteger, la excepcion cortaria el manejador y las
+    // pestanas dejarian de responder: la navegacion importa mas que la URL.
+    if (marcarUrl && window.history && history.replaceState) {
+      try { history.replaceState(null, '', '#' + paneles[i].id); } catch (e) {}
+    }
+  }
+
+  for (var k = 0; k < tabs.length; k++) {
+    (function(i){
+      tabs[i].addEventListener('click', function(){
+        activar(i, false, true);
+        window.scrollTo(0, 0);
+      });
+      tabs[i].addEventListener('keydown', function(e){
+        var d = e.key === 'ArrowLeft' ? -1 : (e.key === 'ArrowRight' ? 1 : 0);
+        if (d) { e.preventDefault(); activar((i + d + tabs.length) % tabs.length, true, true); }
+        else if (e.key === 'Home') { e.preventDefault(); activar(0, true, true); }
+        else if (e.key === 'End') { e.preventDefault(); activar(tabs.length - 1, true, true); }
+      });
+    })(k);
+  }
+
+  // Enlace directo a una seccion concreta: archivo.html#ancla
+  if (location.hash) {
+    for (var m = 0; m < paneles.length; m++) {
+      if ('#' + paneles[m].id === location.hash) { activar(m, false, false); break; }
+    }
+  }
+})();
+
+/* ---------- CONTROL DE LECTURA ---------- */
+(function(){
+  var nodo = document.getElementById('datos-control');
+  if (!nodo) return;
+  var BANCO = JSON.parse(nodo.textContent);
+  var SAL = BANCO.sal;
+  /* La clave lleva version de esquema Y marca de muestra. Sin lo primero, un
+     avance guardado por una version anterior del material se cuela en la
+     nueva; sin lo segundo, probar la demostracion contamina el avance real de
+     la tarea. Ambas cosas ya pasaron una vez. */
+  var CLAVE = 'control-lectura::' + BANCO.bloque + '::v2'
+            + (BANCO.muestra ? '::muestra' : '');
+  var TOPE = BANCO.nota_maxima;
+  /* ---------- redondeo de la nota (regla tomada de Derecho Mercantil) ----------
+     El docente califica en medios puntos y la nota informada sube SIEMPRE al
+     medio punto inmediato superior: 12,10 se informa 12,5 y 14,23 se informa
+     14,5. Nunca baja, y nunca pasa del tope. El epsilon evita que un 14,5
+     exacto, guardado como 14,499999 por la aritmetica de coma flotante, suba
+     a 15. */
+  function mediaPuntoArriba(n){
+    var r = Math.ceil(n * 2 - 1e-9) / 2;
+    if (r < 0) r = 0;
+    return Math.min(TOPE, r);
+  }
+  /* Para mostrarla: sin ceros de relleno. 14,5 y 14, no 14,50 ni 14,00. */
+  function fmtNota(n){
+    return String(Math.round(n * 2) / 2);
+  }
+
+  var PUNTOS_SECCION = BANCO.puntos_seccion; // 1 por seccion
+
+  function djb2(s){
+    var h = 5381;
+    for (var i = 0; i < s.length; i++) h = ((h * 33) + s.charCodeAt(i)) >>> 0;
+    return h;
+  }
+  function b36(n){ return n.toString(36).toUpperCase(); }
+
+  function normNombre(s){
+    return (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '')
+      .replace(/\s+/g, ' ').trim().toUpperCase();
+  }
+  function soloDigitos(s){ return (s || '').replace(/\D/g, ''); }
+
+  /* Validacion de cedula ecuatoriana. Importa mas de lo que parece: el ultimo
+     digito decide que banco de preguntas le toca, asi que un error de tecleo
+     no solo ensucia el registro, tambien cambia el cuestionario. */
+  function cedulaValida(c){
+    c = soloDigitos(c);
+    if (c.length !== 10) return false;
+    var prov = parseInt(c.slice(0, 2), 10);
+    if (!((prov >= 1 && prov <= 24) || prov === 30)) return false;
+    if (parseInt(c[2], 10) > 5) return false;
+    var suma = 0;
+    for (var i = 0; i < 9; i++) {
+      var d = parseInt(c[i], 10) * (i % 2 === 0 ? 2 : 1);
+      if (d > 9) d -= 9;
+      suma += d;
+    }
+    var ver = (10 - (suma % 10)) % 10;
+    return ver === parseInt(c[9], 10);
+  }
+  function grupoDe(c){
+    return (parseInt(soloDigitos(c).slice(-1), 10) % 2 === 0) ? 'pares' : 'impares';
+  }
+
+  var TOTAL_AP = 0;
+  for (var s = 0; s < BANCO.secciones.length; s++) TOTAL_AP += BANCO.secciones[s].apartados.length;
+
+  /* ---------- estado ---------- */
+  var estado = cargar();
+  function vacio(){ return { nombre:'', cedula:'', respuestas:{}, inicio:0, ultima:0 }; }
+
+  /* Un avance guardado por una version anterior del material puede tener otra
+     forma: la primera version repartia las preguntas por nombre y ni siquiera
+     pedia cedula. Si ese estado se acepta tal cual, la pagina ve que ya hay
+     respuestas, bloquea el campo de la cedula —que esta vacio— y el estudiante
+     no puede empezar. Por eso se valida la forma antes de aceptarlo, y ante la
+     duda se descarta: perder un avance de prueba es molesto, quedarse sin
+     poder escribir la cedula es un callejon sin salida. */
+  function coherente(st){
+    if (!st || typeof st !== 'object') return false;
+    if (!st.respuestas || typeof st.respuestas !== 'object') return false;
+    var hay = Object.keys(st.respuestas).length > 0;
+    if (hay && !cedulaValida(st.cedula)) return false;
+    return true;
+  }
+  function cargar(){
+    try {
+      var c = localStorage.getItem(CLAVE);
+      if (c) {
+        var st = JSON.parse(c);
+        if (coherente(st)) return st;
+        localStorage.removeItem(CLAVE);
+      }
+    } catch (e) {}
+    return vacio();
+  }
+  function guardar(){
+    estado.ultima = Date.now();
+    try { localStorage.setItem(CLAVE, JSON.stringify(estado)); } catch (e) {}
+  }
+  function identificado(){
+    return normNombre(estado.nombre).length > 2 && cedulaValida(estado.cedula);
+  }
+
+  function pregunta(clave){
+    var ap = BANCO.indice[clave];
+    if (!ap) return null;
+    return ap.grupos[grupoDe(estado.cedula)];
+  }
+  function acerto(clave){
+    var d = estado.respuestas[clave];
+    if (d === undefined) return false;
+    var p = pregunta(clave);
+    return !!p && djb2(SAL + clave + grupoDe(estado.cedula) + p.o[d]) === p.h;
+  }
+
+  /* ---------- nota ----------
+     Cada seccion vale PUNTOS_SECCION, repartido a partes iguales entre sus
+     apartados. La suma de las secciones da exactamente la nota maxima, de
+     modo que no hay margen: ninguna seccion es opcional. La nota informada
+     se redondea al medio punto superior. */
+  function notaPorSeccion(){
+    return BANCO.secciones.map(function(sec){
+      var n = sec.apartados.length, bien = 0, hechos = 0;
+      for (var a = 0; a < n; a++) {
+        var k = sec.apartados[a].id;
+        if (estado.respuestas[k] !== undefined) hechos++;
+        if (acerto(k)) bien++;
+      }
+      return { pestana: sec.pestana, total: n, hechos: hechos, aciertos: bien,
+               puntos: n ? (bien * PUNTOS_SECCION / n) : 0 };
+    });
+  }
+  function resumen(){
+    var por = notaPorSeccion(), bruto = 0, bien = 0, hechos = 0;
+    for (var i = 0; i < por.length; i++) {
+      bruto += por[i].puntos; bien += por[i].aciertos; hechos += por[i].hechos;
+    }
+    return { por: por, bruto: bruto, nota: mediaPuntoArriba(bruto),
+             aciertos: bien, hechos: hechos, completo: hechos === TOTAL_AP && TOTAL_AP > 0 };
+  }
+
+  /* ---------- identificacion ---------- */
+  var campoN = document.getElementById('nombre-estudiante');
+  var campoC = document.getElementById('cedula-estudiante');
+  var avisoC = document.getElementById('aviso-cedula');
+
+  /* La cedula se fija cuando ya se ha respondido CON ella. Nunca se bloquea un
+     campo vacio: dejaria al estudiante sin poder empezar, sin entender por que
+     y sin salida. */
+  function bloquearIdentidad(){
+    var fijar = Object.keys(estado.respuestas).length > 0 && cedulaValida(estado.cedula);
+    if (campoC) campoC.readOnly = fijar;
+    var nota = document.getElementById('identidad-fijada');
+    if (nota) nota.hidden = !fijar;
+  }
+
+  function revisarCedula(){
+    var c = soloDigitos(campoC.value);
+    campoC.value = c;
+    if (!c) { avisoC.textContent = ''; return false; }
+    if (!cedulaValida(c)) {
+      avisoC.textContent = 'Esa cédula no es válida. Revísela: el último dígito no cuadra.';
+      return false;
+    }
+    avisoC.textContent = 'Cédula correcta. Le corresponde el cuestionario de cédulas '
+      + grupoDe(c) + '.';
+    return true;
+  }
+
+  if (campoN) {
+    campoN.value = estado.nombre || '';
+    campoN.addEventListener('input', function(){ estado.nombre = campoN.value; guardar(); pintarTodo(); });
+  }
+  if (campoC) {
+    campoC.value = estado.cedula || '';
+    campoC.addEventListener('input', function(){
+      var antes = estado.cedula;
+      var ahora = soloDigitos(campoC.value);
+      var hay = Object.keys(estado.respuestas).length;
+      // Cambiar la cedula cambia el banco de preguntas: lo respondido dejaria
+      // de corresponder. Se avisa antes de borrar nada.
+      if (hay && antes && grupoDe(ahora) !== grupoDe(antes)) {
+        if (!confirm('Cambiar la cédula a otro grupo (par/impar) cambia su cuestionario '
+            + 'y reinicia las ' + hay + ' respuestas ya registradas. ¿Continuar?')) {
+          campoC.value = antes; return;
+        }
+        estado.respuestas = {};
+      }
+      estado.cedula = ahora;
+      if (!estado.inicio) estado.inicio = Date.now();
+      revisarCedula(); guardar(); pintarTodo();
+    });
+    revisarCedula();
+  }
+
+  /* ---------- preguntas ---------- */
+  function pintarControl(caja){
+    var clave = caja.getAttribute('data-control');
+    if (!BANCO.indice[clave]) return;
+
+    if (!identificado()) {
+      caja.innerHTML = '<span class="etiqueta">Control de lectura</span>'
+        + '<p class="pide-nombre">Escriba su nombre y su cédula al principio del '
+        + 'documento para activar las preguntas.</p>';
+      return;
+    }
+
+    var p = pregunta(clave), dada = estado.respuestas[clave];
+    var html = '<span class="etiqueta">Control de lectura</span>'
+      + '<p class="enunciado">' + p.e + '</p><ul>';
+    for (var i = 0; i < p.o.length; i++) {
+      var cl = 'opcion';
+      if (dada !== undefined) {
+        if (djb2(SAL + clave + grupoDe(estado.cedula) + p.o[i]) === p.h) cl += ' acierto';
+        else if (i === dada) cl += ' fallo';
+      }
+      html += '<li><button type="button" class="' + cl + '" data-i="' + i + '"'
+        + (dada !== undefined ? ' disabled' : '') + '>' + p.o[i] + '</button></li>';
+    }
+    html += '</ul>';
+    if (dada !== undefined) {
+      html += '<p class="respuesta"><b>' + (acerto(clave) ? 'Correcto.' : 'No es esa.')
+        + '</b> Queda registrado. No se puede cambiar.</p>';
+    }
+    caja.innerHTML = html;
+
+    if (dada === undefined) {
+      var bs = caja.querySelectorAll('button.opcion');
+      for (var b = 0; b < bs.length; b++) {
+        bs[b].addEventListener('click', function(){
+          estado.respuestas[clave] = parseInt(this.getAttribute('data-i'), 10);
+          if (!estado.inicio) estado.inicio = Date.now();
+          guardar(); pintarControl(caja); pintarAvance(); avisarSiCierraSeccion();
+        });
+      }
+    }
+  }
+
+  /* ---------- avance ---------- */
+  function minutos(){
+    if (!estado.inicio) return 0;
+    return Math.max(0, Math.round(((estado.ultima || Date.now()) - estado.inicio) / 60000));
+  }
+
+  function pintarAvance(){
+    var r = resumen();
+    var pct = TOTAL_AP ? Math.round(r.hechos * 100 / TOTAL_AP) : 0;
+    var barra = document.querySelector('.avance .barra i');
+    if (barra) barra.style.width = pct + '%';
+    var cifras = document.querySelector('.avance .cifras');
+    if (cifras) {
+      cifras.textContent = r.hechos + ' de ' + TOTAL_AP + ' apartados (' + pct + ' %)'
+        + '  ·  nota provisional ' + fmtNota(r.nota) + ' / ' + TOPE;
+    }
+    var lista = document.querySelector('.avance ol');
+    if (lista) {
+      var lis = lista.querySelectorAll('li');
+      for (var i = 0; i < r.por.length && i < lis.length; i++) {
+        var s = r.por[i];
+        lis[i].className = (s.hechos === s.total && s.total) ? 'completa' : '';
+        lis[i].textContent = s.pestana + ' — ' + s.hechos + '/' + s.total
+          + (s.hechos === s.total && s.total ? '  ·  ' + s.puntos.toFixed(2) + ' pt' : '');
+      }
+    }
+    bloquearIdentidad();
+    pintarConstancia(r);
+  }
+
+  /* ---------- constancia ---------- */
+  function codigo(r){
+    var cuerpo = [
+      BANCO.muestra ? 'MUESTRA' : BANCO.bloque,
+      soloDigitos(estado.cedula),
+      normNombre(estado.nombre),
+      r.hechos + '/' + TOTAL_AP,
+      r.aciertos + 'A',
+      r.nota.toFixed(2) + 'N',
+      minutos() + 'M',
+      new Date().toISOString().slice(0, 16).replace('T', ' ')
+    ].join('|');
+    return cuerpo + '|' + b36(djb2(SAL + cuerpo));
+  }
+
+  function pintarConstancia(r){
+    var caja = document.querySelector('.constancia');
+    if (!caja) return;
+    // El respaldo se ofrece SIEMPRE, completa la tarea o no: el riesgo de
+    // perder el avance no desaparece al terminar, y quien acaba de noche
+    // puede querer guardarlo antes de generar el PDF al día siguiente.
+    var respaldoHtml = '<div class="acciones"><button type="button" class="respaldo">'
+      + 'Copiar mi pase de avance</button></div>'
+      + '<p class="aun-no" id="pista-respaldo"></p>';
+    function engancharRespaldo(){
+      var br = caja.querySelector('.respaldo');
+      if (br) br.addEventListener('click', function(){ copiarRespaldo(this); });
+    }
+    if (!r.completo) {
+      var faltan = TOTAL_AP - r.hechos;
+      caja.innerHTML = '<p class="aun-no">Su avance queda guardado en este navegador; '
+        + 'puede continuar otro día. La constancia con su nota se emite cuando haya '
+        + 'respondido los ' + TOTAL_AP + ' apartados de las ' + BANCO.secciones.length
+        + ' secciones. <b>Faltan ' + faltan + '.</b></p>' + respaldoHtml;
+      engancharRespaldo();
+      return;
+    }
+    caja.innerHTML =
+        '<p class="instruccion">Ha completado la lectura. Pulse el botón para generar '
+      + 'su constancia y, en el diálogo de impresión, elija <b>«Guardar como PDF»</b>. '
+      + 'Ese archivo es el que debe subir a la tarea del aula virtual.</p>'
+      + '<div class="acciones">'
+      + '  <button type="button" class="imprimir">Generar mi constancia en PDF</button>'
+      + '  <button type="button" class="copiar">Copiar solo el código</button>'
+      + '</div>'
+      + '<textarea readonly aria-label="Código de validación"></textarea>'
+      + respaldoHtml;
+    engancharRespaldo();
+    var area = caja.querySelector('textarea');
+    area.value = codigo(r);
+    caja.querySelector('.copiar').addEventListener('click', function(){
+      area.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) {}
+      if (!ok && navigator.clipboard) navigator.clipboard.writeText(area.value);
+      var b = this; b.textContent = 'Copiado';
+      setTimeout(function(){ b.textContent = 'Copiar solo el código'; }, 2000);
+    });
+    caja.querySelector('.imprimir').addEventListener('click', function(){ imprimirConstancia(r); });
+  }
+
+  /* ---------- pase de avance ----------
+     El navegador guarda el avance por dominio, por navegador y por aparato.
+     Un estudiante que responde dos secciones en el laboratorio y sigue en su
+     telefono no encuentra nada, y lo mismo si limpia los datos de navegacion.
+     En una tarea que dura semanas eso no es un caso raro: es lo normal.
+
+     De ahi que el pase no sea una salida de emergencia sino el mecanismo de
+     continuidad. Se codifica compacto —una letra por respuesta— para que
+     quepa en un mensaje y se pueda pegar desde el movil sin pelearse con el
+     portapapeles. */
+  function ordenApartados(){
+    var lista = [];
+    for (var s = 0; s < BANCO.secciones.length; s++) {
+      var ap = BANCO.secciones[s].apartados;
+      for (var a = 0; a < ap.length; a++) lista.push(ap[a].id);
+    }
+    return lista;
+  }
+
+  function serializar(){
+    var orden = ordenApartados(), respuestas = '';
+    for (var i = 0; i < orden.length; i++) {
+      var v = estado.respuestas[orden[i]];
+      respuestas += (v === undefined) ? '-' : String(v);
+    }
+    var cuerpo = ['PASE', BANCO.bloque, soloDigitos(estado.cedula),
+                  normNombre(estado.nombre), respuestas,
+                  Math.round((estado.inicio || Date.now()) / 60000)].join('|');
+    return cuerpo + '|' + b36(djb2(SAL + cuerpo));
+  }
+
+  function deserializar(texto){
+    var p = String(texto || '').trim().split('|');
+    if (p.length !== 7 || p[0] !== 'PASE') return null;
+    if (p[1] !== BANCO.bloque) return null;          // pase de otro bloque
+    var cuerpo = p.slice(0, 6).join('|');
+    if (b36(djb2(SAL + cuerpo)) !== p[6]) return null; // copiado a medias o retocado
+    var orden = ordenApartados(), marcas = p[4];
+    if (marcas.length !== orden.length) return null;   // pase de otra version
+    var resp = {};
+    for (var i = 0; i < orden.length; i++) {
+      if (marcas[i] !== '-') resp[orden[i]] = parseInt(marcas[i], 10);
+    }
+    return { nombre: p[3], cedula: p[2], respuestas: resp,
+             inicio: parseInt(p[5], 10) * 60000, ultima: Date.now() };
+  }
+
+  function alPortapapeles(texto){
+    var ta = document.createElement('textarea');
+    ta.value = texto;
+    ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select(); ta.setSelectionRange(0, texto.length);
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) {}
+    if (!ok && navigator.clipboard) navigator.clipboard.writeText(texto);
+    document.body.removeChild(ta);
+  }
+
+  function copiarRespaldo(boton){
+    var texto = serializar();
+    alPortapapeles(texto);
+    boton.textContent = 'Pase copiado';
+    var pista = document.getElementById('pista-respaldo');
+    if (pista) {
+      pista.innerHTML = 'Péguelo donde pueda recuperarlo: un mensaje a usted mismo, '
+        + 'una nota del teléfono o el borrador de la tarea en el aula virtual. Si '
+        + 'continúa en otro equipo, péguelo en «Continuar en otro dispositivo», '
+        + 'al principio del documento.<br><code class="pase">' + texto + '</code>';
+    }
+    setTimeout(function(){ boton.textContent = 'Copiar mi pase de avance'; }, 2500);
+  }
+
+  /* ---------- empezar de nuevo ----------
+     Siempre tiene que haber una salida. Un estudiante que se equivoco de
+     cedula, o que hereda un avance de otra persona en un equipo compartido,
+     no puede quedarse sin manera de arrancar. */
+  var botonReinicio = document.getElementById('reiniciar-control');
+  if (botonReinicio) {
+    botonReinicio.addEventListener('click', function(){
+      var hay = Object.keys(estado.respuestas).length;
+      if (hay && !confirm('Se borrarán las ' + hay + ' respuestas registradas en este '
+          + 'navegador y volverá a empezar de cero. Esta acción no se puede deshacer. '
+          + '¿Continuar?')) return;
+      estado = vacio();
+      try { localStorage.removeItem(CLAVE); } catch (e) {}
+      if (campoN) campoN.value = '';
+      if (campoC) { campoC.value = ''; campoC.readOnly = false; }
+      if (avisoC) avisoC.textContent = '';
+      pintarTodo();
+    });
+  }
+
+  /* ---------- continuar en otro dispositivo ---------- */
+  var campoR = document.getElementById('restaurar-avance');
+  if (campoR) {
+    campoR.addEventListener('change', function(){
+      var v = campoR.value.trim();
+      var avisoR = document.getElementById('aviso-restaurar');
+      if (!v) return;
+      var st = deserializar(v);
+      if (!st) {
+        avisoR.textContent = 'Ese pase no se pudo leer. Cópielo entero, desde la '
+          + 'palabra PASE hasta el último carácter, sin espacios ni saltos de línea '
+          + 'en medio.';
+        return;
+      }
+      var tenia = Object.keys(estado.respuestas).length;
+      var trae = Object.keys(st.respuestas).length;
+      // Pegar un pase mas atrasado que lo ya registrado borraria trabajo hecho.
+      if (tenia > trae && !confirm('En este navegador ya hay ' + tenia + ' respuestas y '
+          + 'el pase trae ' + trae + '. Si continúa, se quedará con las del pase y '
+          + 'perderá las otras. ¿Continuar?')) { campoR.value = ''; return; }
+      estado = st; guardar();
+      if (campoN) campoN.value = estado.nombre || '';
+      if (campoC) campoC.value = estado.cedula || '';
+      revisarCedula(); pintarTodo();
+      avisoR.textContent = 'Avance recuperado: ' + trae + ' respuestas de '
+        + TOTAL_AP + '. Puede seguir donde lo dejó.';
+      campoR.value = '';
+    });
+  }
+
+  /* ---------- aviso al cerrar una seccion ----------
+     El momento natural para guardar el pase es al terminar una seccion, no
+     cuando ya se ha perdido el avance. Se avisa una sola vez por seccion. */
+  var seccionesAvisadas = {};
+  function avisarSiCierraSeccion(){
+    var r = resumen();
+    for (var i = 0; i < r.por.length; i++) {
+      var s = r.por[i];
+      var id = BANCO.secciones[i].pestana;
+      if (s.total && s.hechos === s.total && !seccionesAvisadas[id] && !r.completo) {
+        seccionesAvisadas[id] = true;
+        var caja = document.querySelector('.constancia');
+        if (caja) {
+          var aviso = document.createElement('p');
+          aviso.className = 'cierre-seccion';
+          aviso.innerHTML = 'Ha terminado <b>' + id + '</b>. Si va a continuar otro día '
+            + 'o en otro equipo, copie ahora su pase de avance.';
+          caja.insertBefore(aviso, caja.firstChild);
+          try { caja.scrollIntoView({ block: 'nearest' }); } catch (e) {}
+        }
+        return;
+      }
+    }
+  }
+
+  /* ---------- constancia imprimible ---------- */
+  function imprimirConstancia(r){
+    var hoja = document.getElementById('hoja-constancia');
+    if (!hoja) return;
+    var ahora = new Date();
+    var filas = '';
+    for (var i = 0; i < r.por.length; i++) {
+      var s = r.por[i];
+      filas += '<tr><td>' + (i + 1) + '</td><td>' + s.pestana + '</td>'
+        + '<td>' + s.aciertos + ' / ' + s.total + '</td>'
+        + '<td>' + s.puntos.toFixed(2) + '</td></tr>';
+    }
+    hoja.innerHTML =
+        '<div class="cons-carat">'
+      + '  <p class="cons-inst">' + BANCO.institucion + '</p>'
+      + '  <h1>Constancia de lectura</h1>'
+      + '  <p class="cons-sub">' + BANCO.titulo + ' · ' + BANCO.membrete + '</p>'
+      + '  <p class="cons-sub">Actividad autónoma — control de lectura del bloque</p>'
+      + '</div>'
+      + '<table class="cons-datos"><tbody>'
+      + '<tr><th>Estudiante</th><td>' + normNombre(estado.nombre) + '</td></tr>'
+      + '<tr><th>Cédula</th><td>' + soloDigitos(estado.cedula)
+      + ' <span class="cons-grupo">(cuestionario de cédulas ' + grupoDe(estado.cedula) + ')</span></td></tr>'
+      + '<tr><th>Emitida</th><td>' + ahora.toLocaleDateString('es-EC')
+      + ' a las ' + ahora.toLocaleTimeString('es-EC') + '</td></tr>'
+      + '<tr><th>Tiempo de trabajo</th><td>' + minutos() + ' minutos repartidos en una o varias sesiones</td></tr>'
+      + '</tbody></table>'
+      + '<table class="cons-tabla"><thead><tr><th>#</th><th>Sección</th>'
+      + '<th>Aciertos</th><th>Puntos</th></tr></thead><tbody>' + filas + '</tbody>'
+      + '<tfoot><tr><th colspan="2">Total</th><th>' + r.aciertos + ' / ' + TOTAL_AP + '</th>'
+      + '<th>' + r.bruto.toFixed(2) + '</th></tr></tfoot></table>'
+      + '<p class="cons-nota">Nota final <b>' + fmtNota(r.nota) + ' / ' + TOPE + '</b>'
+      + (r.bruto > TOPE ? ' <span class="cons-grupo">(' + r.bruto.toFixed(2)
+          + ' puntos brutos, topados en ' + TOPE + ')</span>' : '') + '</p>'
+      + '<p class="cons-cod">Código de validación<br><code>' + codigo(r) + '</code></p>'
+      + '<p class="cons-pie">Este documento lo genera el propio material de lectura. '
+      + 'El código de validación permite al docente comprobar que los datos no han sido '
+      + 'alterados.</p>';
+    document.body.classList.add('imprimiendo-constancia');
+    var limpiar = function(){
+      document.body.classList.remove('imprimiendo-constancia');
+      window.removeEventListener('afterprint', limpiar);
+    };
+    window.addEventListener('afterprint', limpiar);
+    setTimeout(function(){
+      try { window.print(); } catch (e) {}
+      setTimeout(limpiar, 1500);
+    }, 60);
+  }
+
+  function pintarTodo(){
+    var cajas = document.querySelectorAll('[data-control]');
+    for (var i = 0; i < cajas.length; i++) pintarControl(cajas[i]);
+    pintarAvance();
+  }
+
+  pintarTodo();
+})();
+
+</script>
+
+<script>
+/* Bloque 3: lectura formativa. Se retira toda mención a nota y constancia,
+   conservando el contador de avance para uso del propio estudiante. */
+(function () {
+  function limpiar() {
+    var c = document.querySelector('.avance p.cifras');
+    if (c && /nota provisional/i.test(c.textContent)) {
+      c.textContent = c.textContent.split('·')[0].trim() + '  ·  lectura no calificada';
+    }
+    var k = document.querySelector('.avance .constancia');
+    if (k && !k.dataset.avisado) {
+      k.dataset.avisado = '1';
+      k.innerHTML = '<p class="aun-no">Su avance queda guardado en este navegador. ' +
+        'Este bloque no emite constancia ni suma puntos: lo que aquí comprueba se le ' +
+        'preguntará en el informe final y en la sustentación.</p>';
+    }
+  }
+  limpiar();
+  var obs = new MutationObserver(limpiar);
+  var caja = document.querySelector('.avance');
+  if (caja) obs.observe(caja, { childList: true, subtree: true, characterData: true });
+})();
+</script>
+</body>
+</html>
