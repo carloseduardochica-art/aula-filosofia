@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Filosofía del Derecho · Bloque 1 · 1.2.3</title>
+<style>
+:root{
+  --papel:#fcf9f4;
+  --papel-alt:#f3ecdf;
+  --tinta:#1f1810;
+  --tinta-suave:#3f3323;
+  --sepia:#65441c;
+  --sepia-claro:#7d5c2e;
+  --linea:#cbbda3;
+  --nota:#5b4a34;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
+  --escala:1;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  padding:0 1.1rem 4rem;
+  background:var(--papel);
+  color:var(--tinta);
+  font-family:var(--serif);
+  font-size:calc(19.5px * var(--escala));
+  line-height:1.72;
+}
+.hoja{max-width:1180px;margin:0 auto}
+
+/* ---------- BARRA DE LECTURA (no se imprime) ---------- */
+.lectura{
+  position:sticky;top:0;z-index:20;
+  display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;justify-content:center;
+  background:var(--papel);border-bottom:1px solid var(--linea);
+  padding:.5rem;margin:0 -1.1rem 0;font-size:.8rem;
+}
+.lectura span{color:var(--nota);letter-spacing:.1em;text-transform:uppercase;font-size:.7rem}
+.lectura button{
+  font-family:var(--serif);font-size:.88rem;
+  background:var(--papel-alt);color:var(--tinta);
+  border:1px solid var(--linea);border-radius:2px;
+  padding:.34rem .72rem;cursor:pointer;min-height:34px;
+}
+.lectura button:hover{background:#e8dcc7}
+.lectura button:focus-visible{outline:2px solid var(--sepia);outline-offset:2px}
+
+/* alto contraste */
+body.contraste{--papel:#fffdf9;--papel-alt:#f2ece1;--tinta:#000;--tinta-suave:#1a1a1a;
+  --sepia:#4a3110;--sepia-claro:#4a3110;--linea:#8d7f68;--nota:#3a3025}
+
+/* ---------- CABECERA ---------- */
+.cabecera{padding:2.2rem 0 .4rem;text-align:center}
+.filete{border:0;border-top:2px solid var(--tinta);margin:0}
+.filete--fino{border-top:1px solid var(--linea);margin:.28rem 0 0}
+.rotulo{
+  font-size:clamp(1.5rem,4.8vw,2.7rem);
+  letter-spacing:.28em;text-transform:uppercase;
+  margin:.85rem 0 .6rem;font-weight:400;text-indent:.28em;
+}
+.membrete{
+  display:flex;flex-wrap:wrap;gap:.4rem 1.5rem;justify-content:center;
+  font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--nota);padding:.5rem 0 .7rem;
+}
+
+/* ---------- TITULARES ---------- */
+.antetitulo{
+  text-align:center;font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--sepia);margin:2.2rem 0 .7rem;
+}
+.titular{
+  font-size:clamp(1.9rem,5.6vw,3.2rem);
+  line-height:1.14;text-align:center;font-weight:400;
+  margin:0 auto .9rem;max-width:21ch;letter-spacing:-.01em;
+}
+.entradilla{
+  text-align:center;max-width:58ch;margin:0 auto 1.3rem;
+  font-size:1.06rem;font-style:italic;color:var(--tinta-suave);line-height:1.6;
+}
+.firma{
+  text-align:center;font-size:.82rem;color:var(--nota);
+  margin-bottom:1.9rem;line-height:1.7;
+}
+.firma b{color:var(--tinta);font-weight:400;letter-spacing:.04em}
+.firma .rol{
+  display:block;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+  margin-top:.3rem;
+}
+
+/* ---------- CUERPO A DOS COLUMNAS ---------- */
+.cuerpo{
+  column-count:2;column-gap:3rem;
+  column-rule:1px solid var(--linea);
+  text-align:justify;hyphens:auto;-webkit-hyphens:auto;
+  padding-top:1.6rem;border-top:1px solid var(--linea);
+}
+.cuerpo > *{break-inside:avoid-column}
+.cuerpo p{margin:0 0 1.05em;break-inside:auto}
+.cuerpo p + p{text-indent:1.25em}
+
+h2{
+  font-size:.86rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sepia);font-weight:400;
+  margin:2em 0 .75em;padding-bottom:.45em;border-bottom:1px solid var(--linea);
+  break-after:avoid;
+}
+h3{
+  font-size:1.04rem;font-weight:400;font-style:italic;
+  margin:1.55em 0 .4em;color:var(--tinta);break-after:avoid;
+}
+
+.capitular::first-letter{
+  float:left;font-size:4em;line-height:.8;
+  padding:.06em .1em 0 0;margin:.02em .05em 0 0;
+  color:var(--sepia);font-weight:400;
+}
+
+/* ---------- PIEZAS ---------- */
+.destacado{
+  margin:1.6em 0;padding:1.1em 0;
+  border-top:2px solid var(--tinta);border-bottom:1px solid var(--linea);
+  font-size:1.24rem;line-height:1.4;font-style:italic;text-align:left;
+  color:var(--sepia);text-indent:0;hyphens:none;
+}
+.destacado cite{display:block;margin-top:.6em;font-size:.7rem;font-style:normal;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--nota)}
+
+.caso{
+  background:var(--papel-alt);border-left:4px solid var(--sepia-claro);
+  padding:1em 1.1em;margin:1.35em 0;font-size:.97rem;text-indent:0;
+}
+.caso .etiqueta,.aviso .etiqueta{
+  display:block;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sepia);margin-bottom:.5em;
+}
+.aviso{
+  border:1px solid var(--sepia-claro);padding:1.05em 1.15em;margin:1.6em 0;
+  font-size:.96rem;text-indent:0;background:var(--papel-alt);
+}
+
+/* procedencia de cada apartado */
+.procede{
+  display:block;margin:.2em 0 1.4em;padding-left:.9em;
+  border-left:2px solid var(--linea);
+  font-size:.82rem;font-style:italic;color:var(--nota);
+  text-indent:0;text-align:left;hyphens:none;
+}
+
+/* hueco de ilustracion */
+.grabado{margin:1.6em 0;padding:0;text-indent:0;break-inside:avoid}
+.grabado .marco{
+  border:1px solid var(--linea);
+  background:repeating-linear-gradient(45deg,rgba(101,68,28,.06) 0 7px,transparent 7px 14px);
+  aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;
+  color:var(--nota);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+  text-align:center;padding:1rem;
+}
+.grabado figcaption{
+  font-size:.82rem;color:var(--nota);line-height:1.55;
+  padding-top:.55em;border-top:1px solid var(--linea);margin-top:.55em;
+  text-align:left;hyphens:none;
+}
+.grabado figcaption b{color:var(--sepia);font-weight:400}
+
+/* ---------- CIERRE ---------- */
+.cierre{
+  column-span:all;margin:2.8rem 0 0;padding:1.8rem 1.5rem;
+  border-top:2px solid var(--tinta);border-bottom:2px solid var(--tinta);
+  text-align:center;
+}
+.cierre .etiqueta{
+  display:block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--sepia);margin-bottom:.85em;
+}
+.cierre p{
+  font-size:1.2rem;font-style:italic;line-height:1.55;max-width:56ch;
+  margin:0 auto;text-indent:0;text-align:center;hyphens:none;
+}
+.cierre .apunte{font-size:.86rem;font-style:normal;color:var(--nota);margin-top:1.15em}
+
+.aporte{
+  column-span:all;margin:1.7rem 0 0;padding:1.3rem 1.4rem;
+  border:1px dashed var(--sepia-claro);background:var(--papel-alt);
+  font-size:.95rem;color:var(--tinta);text-align:left;hyphens:none;
+}
+.aporte .etiqueta{
+  display:block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sepia);margin-bottom:.9em;text-align:center;
+}
+.aporte p{margin:0 0 .85em;text-indent:0;line-height:1.65}
+.aporte b{color:var(--sepia);font-weight:400}
+.aporte u{
+  text-decoration:none;border-bottom:1px solid var(--sepia-claro);
+  background:rgba(101,68,28,.07);font-style:italic;color:var(--nota);
+}
+.aporte .cautela{
+  margin:1.1em 0 0;padding-top:.8em;border-top:1px solid var(--linea);
+  font-size:.83rem;font-style:italic;color:var(--nota);
+}
+.aporte .sugerida{
+  font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--nota);font-style:normal;
+}
+
+/* laminas grabadas */
+.grabado svg,.grabado img{display:block;width:100%;height:auto;border:1px solid var(--linea)}
+.grabado[hidden]{display:none}
+.pendiente{
+  column-span:all;margin:1.6rem 0;padding:1.1rem 1.2rem;
+  border:1px solid var(--sepia-claro);background:var(--papel-alt);
+  font-size:.9rem;text-indent:0;hyphens:none;
+}
+.pendiente .etiqueta{
+  display:block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sepia);margin-bottom:.6em;
+}
+.pendiente table{border-collapse:collapse;width:100%;margin:.7em 0;font-size:.86rem}
+.pendiente th,.pendiente td{
+  border-bottom:1px solid var(--linea);padding:.34em .5em;text-align:left;vertical-align:top;
+}
+.pendiente th{color:var(--sepia);font-weight:400;font-size:.74rem;
+  letter-spacing:.12em;text-transform:uppercase}
+.pendiente .mal{color:#8a2f14}
+.pendiente .bien{color:#3d5c2a}
+
+.pie{
+  column-span:all;margin-top:2.5rem;padding-top:1.1rem;
+  border-top:1px solid var(--linea);
+  font-size:.85rem;color:var(--nota);line-height:1.7;
+  text-align:left;hyphens:none;
+}
+.pie h4{
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sepia);margin:1.4em 0 .6em;font-weight:400;
+}
+.pie h4:first-child{margin-top:0}
+.pie ol,.pie ul{margin:0;padding-left:1.3em}
+.pie li{margin-bottom:.55em}
+.pie .refs{list-style:none;padding-left:0}
+.pie .refs li{padding-left:2.2em;text-indent:-2.2em;margin-bottom:.7em}
+
+/* ---------- MOVIL: una columna, texto igualmente justificado ---------- */
+@media (max-width:820px){
+  .cuerpo{column-count:1;column-rule:none}
+  .rotulo{letter-spacing:.16em}
+  .capitular::first-letter{font-size:3.2em}
+  .destacado{font-size:1.1rem}
+}
+
+/* ---------- IMPRESION ---------- */
+@media print{
+  @page{size:A4;margin:17mm 15mm}
+  body{background:#fff;color:#000;font-size:10.5pt;padding:0}
+  .lectura{display:none}
+  .hoja{max-width:none}
+  .cuerpo{column-gap:9mm}
+  .grabado .marco{aspect-ratio:16/9}
+  .destacado,.caso,.aviso,.grabado,.cierre,.pie{break-inside:avoid}
+  h2,h3{break-after:avoid}
+  .aporte{border-style:solid}
+}
+
+/* ---------- TABLA COMPARATIVA (ancho completo) ---------- */
+.comparativa{
+  column-span:all;margin:2rem 0;
+  border-top:2px solid var(--tinta);border-bottom:2px solid var(--tinta);
+  padding:1.2rem 0;
+}
+.comparativa .etiqueta{
+  display:block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--sepia);margin-bottom:.9em;text-align:center;
+}
+.tabla-envoltorio{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.comparativa table{
+  border-collapse:collapse;width:100%;min-width:640px;
+  font-size:.92rem;text-align:left;hyphens:none;
+}
+.comparativa th,.comparativa td{
+  border-bottom:1px solid var(--linea);padding:.75em .8em;vertical-align:top;
+  line-height:1.5;
+}
+.comparativa thead th{
+  border-bottom:2px solid var(--sepia);color:var(--sepia);font-weight:400;
+  font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;
+}
+.comparativa tbody th{
+  color:var(--tinta);font-weight:400;font-style:italic;width:20%;
+  background:var(--papel-alt);
+}
+.comparativa .gana{color:#2f5a1f}
+.comparativa .pierde{color:#8a2f14}
+@media (max-width:820px){
+  .comparativa table{font-size:.86rem}
+}
+@media print{
+  .comparativa table{min-width:0;font-size:8.5pt}
+  .comparativa{break-inside:avoid}
+}
+</style>
+</head>
+<body data-pestana="DERECHO Y MORAL">
+
+<nav class="lectura" aria-label="Ajustes de lectura">
+  <span>Lectura</span>
+  <button type="button" onclick="escala(-1)" aria-label="Reducir el tamaño del texto">A&minus;</button>
+  <button type="button" onclick="escala(0)" aria-label="Tamaño de texto normal">A</button>
+  <button type="button" onclick="escala(1)" aria-label="Aumentar el tamaño del texto">A+</button>
+  <button type="button" onclick="document.body.classList.toggle('contraste')">Alto contraste</button>
+  <button type="button" onclick="document.body.classList.toggle('unacol')">Una columna</button>
+</nav>
+
+<div class="hoja">
+
+<header class="cabecera">
+  <hr class="filete"><hr class="filete filete--fino">
+  <h1 class="rotulo">Filosofía del Derecho</h1>
+  <hr class="filete filete--fino"><hr class="filete">
+  <div class="membrete">
+    <span>Universidad Católica de Cuenca</span>
+    <span>Bloque 1 · Introducción</span>
+    <span>Primer año</span>
+    <span>Año 2026</span>
+  </div>
+  <hr class="filete filete--fino">
+</header>
+
+<p class="antetitulo">Subpunto 1.2.3 · Relaciones de Derecho y moral</p>
+
+<p class="titular">Una ley válida que nadie debería obedecer</p>
+
+<p class="entradilla">Es el debate más antiguo de la disciplina y el que más se discute mal. Casi siempre porque se confunden dos preguntas distintas: cómo reconocemos que algo es derecho, y si debemos obedecerlo. Separarlas es la condición para entender de qué se discute. Este apartado no cierra la disputa; muestra qué está en juego.</p>
+
+<p class="firma">
+  <b>Prof. Carlos Eduardo Chica-Villacís</b>
+  <span class="rol">Docente autor · Universidad Católica de Cuenca</span>
+</p>
+
+<div class="cuerpo">
+
+  <h2>a · De qué estamos hablando</h2>
+
+  <p class="capitular">La conducta humana no está regida por un solo orden de mandatos, sino por varios que se superponen. En el subpunto anterior quedaron distinguidos con los cuatro criterios de García Máynez: las normas jurídicas son las únicas <b>bilaterales, externas, heterónomas y coercibles</b> a la vez. Las morales son unilaterales, internas, autónomas e incoercibles.</p>
+
+  <p>Con esa distinción hecha, aparece el problema de fondo. Y no es empírico: no se pregunta si las leyes de un país reflejan los valores de su población.</p>
+
+  <p>Garzón Valdés lo sitúa donde corresponde: el debate empieza cuando se reflexiona sobre la <b>denotación</b> de la palabra «derecho», es decir, sobre qué sistemas normativos reales merecen ese nombre. Preguntar por la conexión entre derecho y moral es preguntar si la validez de una norma depende conceptualmente de su corrección moral.</p>
+
+  <p>Huerta Ochoa lo precisa con dos dimensiones. La <b>dimensión real o fáctica</b> es la expedición autoritativa de las normas y su eficacia social. La <b>dimensión ideal o crítica</b> es la legitimidad de sus contenidos. La pregunta es si basta con la primera, o si hace falta un mínimo de justicia material para que algo sea verdaderamente derecho.</p>
+
+  <span class="procede">Apartado elaborado a partir de Cárdenas Gracia (2010), Garzón Valdés (1990) y Huerta Ochoa (2024).</span>
+
+  <h2>b · Dos tesis que se confunden</h2>
+
+  <p>Aquí está la distinción que evita que la discusión se convierta en una pelea de palabras. Garzón Valdés separa dos tesis que suelen tratarse como una sola.</p>
+
+  <figure class="grabado">
+    <img src="Ilustraciones_123/B1_lamina11_dos_balanzas.jpeg"
+         alt="Grabado sepia: dos balanzas idénticas y niveladas sobre un mismo pedestal. La de la izquierda, rotulada la tesis de la neutralidad, pesa un documento sellado frente a otro sin sellar. La de la derecha, rotulada la tesis de la separación, pesa un documento sellado frente a una figura humana de pie.">
+    <figcaption><b>Lámina XI.</b> Dos balanzas idénticas y las dos en equilibrio. Una pesa qué cuenta como derecho; la otra, si ese derecho debe obedecerse. Que ninguna se incline es el punto: son preguntas distintas, no bandos enfrentados.</figcaption>
+  </figure>
+
+  <h3>La tesis de la neutralidad</h3>
+  <p>Es una posición <i>conceptual</i>: el concepto de derecho debe definirse de forma valorativamente neutra, sin incorporar elementos morales. Garzón Valdés, citando a Hoerster, explica que meter exigencias morales en la definición restringe de forma inadmisible lo que la palabra «derecho» puede denotar.</p>
+
+  <p>La razón es metodológica. Existen sistemas jurídicos que de hecho son injustos. Si reservamos la palabra «derecho» solo para lo justo, nos quedamos sin herramienta para describir y estudiar los regímenes despóticos.</p>
+
+  <h3>La tesis de la separación</h3>
+  <p>Es una posición <i>práctica</i>: que algo sea jurídicamente válido no resuelve la cuestión de si hay que obedecerlo. Todo mandato oficial debe someterse a un examen moral independiente.</p>
+
+  <div class="destacado">
+    Una responde cómo identificamos la ley. La otra, cómo juzgamos si debemos cumplirla. Son preguntas distintas y admiten respuestas distintas.
+    <cite>La distinción de Garzón Valdés</cite>
+  </div>
+
+  <p><b>Por qué confundirlas arruina el debate.</b> Los críticos del positivismo suelen acusar a los positivistas de indiferencia ética: dan por hecho que quien defiende la neutralidad conceptual está legitimando al tirano. Es un error, y grave.</p>
+
+  <p>Kelsen y Hart defienden la neutralidad precisamente para <b>preservar</b> la capacidad crítica del ciudadano. Si derecho y moral se funden conceptualmente, se corre el riesgo de dar al derecho positivo un halo moral que no le corresponde, y de inducir a creer que lo legalmente válido es por eso mismo moralmente obligatorio. Deslindar las dos tesis es lo que permite criticar al poder sin perder claridad.</p>
+
+  <span class="procede">Apartado elaborado a partir de Garzón Valdés (1990), que cita a Hoerster.</span>
+
+  <h2>c · Hart y la zona de penumbra</h2>
+
+  <p>Hart sostiene que distinguir el derecho que <i>es</i> del derecho que <i>debe ser</i> tiene un valor intelectual y moral que no conviene perder. Y para responder a quienes afirman que derecho y moral se funden inevitablemente en el trabajo del juez, introduce un análisis que se ha vuelto clásico.</p>
+
+  <h3>El núcleo de certeza</h3>
+  <p>Las normas se expresan en palabras comunes que tienen un núcleo de significado claro. En el ejemplo de la ordenanza que prohíbe introducir «vehículos» en un parque, el automóvil está dentro sin discusión. Ahí el juez solo subsume.</p>
+
+  <h3>La penumbra</h3>
+  <p>Después vienen los casos que el legislador no anticipó: bicicletas, patines, coches de juguete, un avión de exhibición. En esa franja gris las palabras ni se aplican obviamente ni están obviamente excluidas. El juez tiene que decidir valorando qué <i>debería</i> hacer la norma.</p>
+
+  <p>Los críticos iusnaturalistas concluían que ahí se produce una intersección necesaria entre derecho y moral. Hart lo refuta con una distinción fina: la palabra «debería» no remite necesariamente a un juicio moral, sino simplemente a la presencia de un estándar de crítica.</p>
+
+  <div class="caso">
+    <span class="etiqueta">El ejemplo incómodo de Hart</span>
+    Un envenenador que calcula mal la dosis puede decir con toda propiedad: <i>debería haberle dado una segunda</i>. La frase es perfectamente racional y no tiene nada de moral. Del mismo modo, un sistema dedicado a fines perversos puede tomar decisiones coherentes en la penumbra sobre cómo «debería» interpretarse una regla para cumplir mejor sus propósitos. Que haya un estándar no significa que sea un estándar moral.
+  </div>
+
+  <span class="procede">Apartado elaborado a partir de Hart (1958).</span>
+
+  <h2>d · El caso límite</h2>
+
+  <p>La discusión deja de ser académica cuando se enfrenta a las leyes del régimen nazi.</p>
+
+  <p>Radbruch, tras la experiencia de la tiranía, abandonó su escepticismo positivista anterior. Sostuvo que la sumisión de los juristas alemanes al lema <i>la ley es la ley</i> facilitó que el régimen usara el aparato judicial para cometer atrocidades. Propuso entonces que una norma formalmente válida, si contradice la justicia de manera insoportable, pierde su naturaleza jurídica.</p>
+
+  <p>Huerta Ochoa precisa que la fórmula tiene en realidad dos partes. La <b>fórmula de la insoportabilidad</b> libera al juez del deber de aplicar el derecho positivo cuando la injusticia alcanza un grado intolerable. La <b>fórmula de la negación</b> establece que las normas que deliberadamente no pretenden realizar la igualdad carecen por completo de naturaleza jurídica.</p>
+
+  <div class="aviso">
+    <span class="etiqueta">La objeción de Hart</span>
+    Hart responde apelando a la <b>candidez intelectual</b>. Declarar que una regla extremadamente injusta «no es derecho» le parece una argucia conceptual que disfraza la realidad. Es más honesto —y moralmente más vigoroso— admitir que aquellas leyes eran derecho válido y a la vez demasiado perversas para obedecerlas. Adoptar la fórmula de Radbruch, sostiene, debilita la crítica moral, porque pretende resolver un dilema ético terrible redefiniendo una palabra.
+    <br><br>
+    Huerta Ochoa matiza en sentido contrario: para Radbruch la justicia no es una pauta moral externa que se le impone al derecho desde fuera, sino un valor interno y fundacional suyo. La fórmula no apela a una moral subjetiva, sino a criterios de igualdad.
+  </div>
+
+  <span class="procede">Apartado elaborado a partir de Hart (1958) y Huerta Ochoa (2024), que exponen a Radbruch.</span>
+
+  <h2>e · Finnis y la razón práctica</h2>
+
+  <p>En el extremo opuesto del positivismo analítico está Finnis. Para él la filosofía del derecho no es un saber neutro: depende directamente de la ética y la filosofía política, y pertenece a la filosofía de la razón práctica — el uso de la inteligencia para dirigir razonablemente la conducta libre hacia el florecimiento humano.</p>
+
+  <p>El derecho positivo cumple para Finnis una función instrumental indispensable: dar respuestas determinadas y previsibles a la vida social, y proteger al débil de su debilidad.</p>
+
+  <p>Para explicar el derecho injusto sin contradecirse, recurre a una herramienta de la lógica clásica: una palabra puede tener varios significados que remiten todos a un caso central.</p>
+
+  <div class="caso">
+    <span class="etiqueta">Caso central y caso desviado</span>
+    <b>El caso central de «derecho»</b> es la ordenación de la razón orientada al bien común. Obliga jurídica y moralmente.
+    <br><br>
+    <b>Las leyes injustas son casos desviados.</b> Conservan validez técnica dentro del sistema, pero al transgredir los límites morales carecen de validez en sentido moral y no obligan en conciencia — salvo en la medida en que obedecerlas evite males mayores derivados del desorden.
+  </div>
+
+  <span class="procede">Apartado elaborado a partir de Finnis (2017).</span>
+
+  <h2>f · Dónde está hoy la discusión</h2>
+
+  <p>La disputa contemporánea ha dejado atrás las caricaturas. Huerta Ochoa señala que ya no se trata de elegir entre iusnaturalismo teológico y positivismo ideológico. El estado actual se refleja en el <b>no positivismo incluyente</b>, asociado a Alexy.</p>
+
+  <p>Esta posición sostiene que sí hay vinculación necesaria entre validez jurídica y corrección moral, pero se separa del iusnaturalismo clásico en un punto decisivo: no ancla la moral en la naturaleza humana, sino en una <b>pretensión de corrección</b> que toda autoridad formula al emitir una norma.</p>
+
+  <p>Su rasgo definitorio es una solución intermedia. Las deficiencias morales de una norma no le quitan automáticamente la validez: sigue siendo derecho válido, pero <b>derecho jurídicamente defectuoso</b>, que el sistema debe corregir. La invalidez absoluta queda reservada a la injusticia extrema, donde se aplica la cláusula de Radbruch.</p>
+
+  <span class="procede">Apartado elaborado a partir de Huerta Ochoa (2024), que expone a Alexy.</span>
+
+  <div class="comparativa">
+    <span class="etiqueta">g · Qué está realmente en juego</span>
+    <div class="tabla-envoltorio">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">&nbsp;</th>
+            <th scope="col">Seguridad jurídica</th>
+            <th scope="col">Justicia material</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Qué defiende</th>
+            <td>Que la validez se identifique por hechos sociales y fuentes autoritativas claras.</td>
+            <td>Que la validez última no puede desvincularse de las exigencias éticas.</td>
+          </tr>
+          <tr>
+            <th scope="row">Qué protege</th>
+            <td>La previsibilidad de las conductas, la estabilidad del orden y el límite a la discrecionalidad del juez, que en democracia no debe erigirse en legislador moral.</td>
+            <td>La dignidad de la persona, legitimando que los tribunales inapliquen el derecho extremadamente injusto para que el Estado no sea una maquinaria de opresión formal.</td>
+          </tr>
+          <tr>
+            <th scope="row">Qué arriesga</th>
+            <td>Que el aparato judicial acabe amparando atrocidades legalmente impecables.</td>
+            <td>Que cada juez decida según su propia moral y la ley deje de ser previsible.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <p>La disputa contemporánea no busca aniquilar uno de los dos extremos. Busca cómo un Estado democrático articula un equilibrio que preserve la lealtad a la ley escrita sin abdicar de la lealtad a la justicia.</p>
+
+  <div class="cierre">
+    <span class="etiqueta">La pregunta del juez</span>
+    <p>Si me llaman a resolver bajo una ley formalmente aprobada cuyo resultado vulnera de manera flagrante los derechos de un ciudadano, ¿aplico la norma para salvaguardar la certeza del derecho y la división de poderes? ¿O declaro su invalidez apelando a la dignidad humana, asumiendo que la validez material está condicionada por una pretensión de justicia?</p>
+  </div>
+
+  <div class="aporte">
+    <span class="etiqueta">Aporte del docente</span>
+    <p><b>Desde el aula</b><br>
+    «Este es el apartado donde más veces he visto discutir mal, y casi siempre por la misma razón: se mezclan las dos tesis que Garzón Valdés separa.
+    <br><br>
+    Cuando alguien diga en clase que los positivistas justificaron el nazismo, párenlo y pregúntenle a cuál de las dos tesis se refiere. Porque Hart —positivista— sostiene que aquellas leyes eran derecho válido <i>y</i> que eran demasiado inicuas para obedecerlas. No está justificando nada: está diciendo que llamar «no derecho» a una ley atroz no la vuelve menos atroz, y sí nos deja peor equipados para denunciarla.
+    <br><br>
+    Fíjense en lo que hay debajo de la discusión, que es lo que de verdad importa. Los dos bandos temen algo distinto. El positivista teme al juez que decide según su conciencia y hace impredecible la ley. El no positivista teme al juez que aplica la atrocidad y se escuda en que la ley era la ley. Los dos miedos están fundados, y los dos tienen ejemplos históricos a su favor.
+    <br><br>
+    Por eso no hay respuesta de manual. Lo que sí pueden exigirse es saber, cuando defiendan una posición, cuál de los dos riesgos están aceptando correr.»</p>
+  </div>
+
+  <div class="pie">
+    <h4>Referencias</h4>
+    <ul class="refs">
+      <li>Cárdenas Gracia, J. (2010). La norma jurídica. En <i>Introducción al estudio del derecho</i> (cap. IV, §II). Instituto de Investigaciones Jurídicas, UNAM.</li>
+      <li>Finnis, J. (2017). <i>¿Qué es la filosofía del derecho?</i> Instituto de Investigaciones Jurídicas, UNAM.</li>
+      <li>Garzón Valdés, E. (1990). Algo más acerca de la relación entre derecho y moral. <i>Doxa. Cuadernos de Filosofía del Derecho</i>, (8), 111&ndash;130.</li>
+      <li>Hart, H. L. A. (1958). Positivism and the Separation of Law and Morals. <i>Harvard Law Review</i>, 71(4), 593&ndash;629.</li>
+      <li>Huerta Ochoa, C. (2024). Sobre el análisis del concepto de derecho. <i>Isonomía</i>, (60), 5&ndash;26.</li>
+    </ul>
+  </div>
+
+</div>
+</div>
+
+<script>
+var nivel = 0;
+function escala(d){
+  nivel = d === 0 ? 0 : Math.max(-1, Math.min(4, nivel + d));
+  document.documentElement.style.setProperty('--escala', (1 + nivel * 0.12).toFixed(2));
+}
+var css = document.createElement('style');
+css.textContent = '.unacol .cuerpo{column-count:1;column-rule:none}';
+document.head.appendChild(css);
+</script>
+</body>
+</html>

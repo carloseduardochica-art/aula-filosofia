@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Filosofía del Derecho · Bloque 1 · 1.2.4 – 1.2.5</title>
+<style>
+:root{
+  --papel:#fcf9f4;
+  --papel-alt:#f3ecdf;
+  --tinta:#1f1810;
+  --tinta-suave:#3f3323;
+  --sepia:#65441c;
+  --sepia-claro:#7d5c2e;
+  --linea:#cbbda3;
+  --nota:#5b4a34;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
+  --escala:1;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  padding:0 1.1rem 4rem;
+  background:var(--papel);
+  color:var(--tinta);
+  font-family:var(--serif);
+  font-size:calc(19.5px * var(--escala));
+  line-height:1.72;
+}
+.hoja{max-width:1180px;margin:0 auto}
+
+/* ---------- BARRA DE LECTURA (no se imprime) ---------- */
+.lectura{
+  position:sticky;top:0;z-index:20;
+  display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;justify-content:center;
+  background:var(--papel);border-bottom:1px solid var(--linea);
+  padding:.5rem;margin:0 -1.1rem 0;font-size:.8rem;
+}
+.lectura span{color:var(--nota);letter-spacing:.1em;text-transform:uppercase;font-size:.7rem}
+.lectura button{
+  font-family:var(--serif);font-size:.88rem;
+  background:var(--papel-alt);color:var(--tinta);
+  border:1px solid var(--linea);border-radius:2px;
+  padding:.34rem .72rem;cursor:pointer;min-height:34px;
+}
+.lectura button:hover{background:#e8dcc7}
+.lectura button:focus-visible{outline:2px solid var(--sepia);outline-offset:2px}
+
+/* alto contraste */
+body.contraste{--papel:#fffdf9;--papel-alt:#f2ece1;--tinta:#000;--tinta-suave:#1a1a1a;
+  --sepia:#4a3110;--sepia-claro:#4a3110;--linea:#8d7f68;--nota:#3a3025}
+
+/* ---------- CABECERA ---------- */
+.cabecera{padding:2.2rem 0 .4rem;text-align:center}
+.filete{border:0;border-top:2px solid var(--tinta);margin:0}
+.filete--fino{border-top:1px solid var(--linea);margin:.28rem 0 0}
+.rotulo{
+  font-size:clamp(1.5rem,4.8vw,2.7rem);
+  letter-spacing:.28em;text-transform:uppercase;
+  margin:.85rem 0 .6rem;font-weight:400;text-indent:.28em;
+}
+.membrete{
+  display:flex;flex-wrap:wrap;gap:.4rem 1.5rem;justify-content:center;
+  font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--nota);padding:.5rem 0 .7rem;
+}
+
+/* ---------- TITULARES ---------- */
+.antetitulo{
+  text-align:center;font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--sepia);margin:2.2rem 0 .7rem;
+}
+.titular{
+  font-size:clamp(1.9rem,5.6vw,3.2rem);
+  line-height:1.14;text-align:center;font-weight:400;
+  margin:0 auto .9rem;max-width:21ch;letter-spacing:-.01em;
+}
+.entradilla{
+  text-align:center;max-width:58ch;margin:0 auto 1.3rem;
+  font-size:1.06rem;font-style:italic;color:var(--tinta-suave);line-height:1.6;
+}
+.firma{
+  text-align:center;font-size:.82rem;color:var(--nota);
+  margin-bottom:1.9rem;line-height:1.7;
+}
+.firma b{color:var(--tinta);font-weight:400;letter-spacing:.04em}
+.firma .rol{
+  display:block;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+  margin-top:.3rem;
+}
+
+/* ---------- CUERPO A DOS COLUMNAS ---------- */
+.cuerpo{
+  column-count:2;column-gap:3rem;
+  column-rule:1px solid var(--linea);
+  text-align:justify;hyphens:auto;-webkit-hyphens:auto;
+  padding-top:1.6rem;border-top:1px solid var(--linea);
+}
+.cuerpo > *{break-inside:avoid-column}
+.cuerpo p{margin:0 0 1.05em;break-inside:auto}
+.cuerpo p + p{text-indent:1.25em}
+
+h2{
+  font-size:.86rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sepia);font-weight:400;
+  margin:2em 0 .75em;padding-bottom:.45em;border-bottom:1px solid var(--linea);
+  break-after:avoid;
+}
+h3{
+  font-size:1.04rem;font-weight:400;font-style:italic;
+  margin:1.55em 0 .4em;color:var(--tinta);break-after:avoid;
+}
+
+.capitular::first-letter{
+  float:left;font-size:4em;line-height:.8;
+  padding:.06em .1em 0 0;margin:.02em .05em 0 0;
+  color:var(--sepia);font-weight:400;
+}
+
+/* ---------- PIEZAS ---------- */
+.destacado{
+  margin:1.6em 0;padding:1.1em 0;
+  border-top:2px solid var(--tinta);border-bottom:1px solid var(--linea);
+  font-size:1.24rem;line-height:1.4;font-style:italic;text-align:left;
+  color:var(--sepia);text-indent:0;hyphens:none;
+}
+.destacado cite{display:block;margin-top:.6em;font-size:.7rem;font-style:normal;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--nota)}
+
+.caso{
+  background:var(--papel-alt);border-left:4px solid var(--sepia-claro);
+  padding:1em 1.1em;margin:1.35em 0;font-size:.97rem;text-indent:0;
+}
+.caso .etiqueta,.aviso .etiqueta{
+  display:block;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sepia);margin-bottom:.5em;
+}
+.aviso{
+  border:1px solid var(--sepia-claro);padding:1.05em 1.15em;margin:1.6em 0;
+  font-size:.96rem;text-indent:0;background:var(--papel-alt);
+}
+
+/* procedencia de cada apartado */
+.procede{
+  display:block;margin:.2em 0 1.4em;padding-left:.9em;
+  border-left:2px solid var(--linea);
+  font-size:.82rem;font-style:italic;color:var(--nota);
+  text-indent:0;text-align:left;hyphens:none;
+}
+
+/* hueco de ilustracion */
+.grabado{margin:1.6em 0;padding:0;text-indent:0;break-inside:avoid}
+.grabado .marco{
+  border:1px solid var(--linea);
+  background:repeating-linear-gradient(45deg,rgba(101,68,28,.06) 0 7px,transparent 7px 14px);
+  aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;
+  color:var(--nota);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+  text-align:center;padding:1rem;
+}
+.grabado figcaption{
+  font-size:.82rem;color:var(--nota);line-height:1.55;
+  padding-top:.55em;border-top:1px solid var(--linea);margin-top:.55em;
+  text-align:left;hyphens:none;
+}
+.grabado figcaption b{color:var(--sepia);font-weight:400}
+
+/* ---------- CIERRE ---------- */
+.cierre{
+  column-span:all;margin:2.8rem 0 0;padding:1.8rem 1.5rem;
+  border-top:2px solid var(--tinta);border-bottom:2px solid var(--tinta);
+  text-align:center;
+}
+.cierre .etiqueta{
+  display:block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--sepia);margin-bottom:.85em;
+}
+.cierre p{
+  font-size:1.2rem;font-style:italic;line-height:1.55;max-width:56ch;
+  margin:0 auto;text-indent:0;text-align:center;hyphens:none;
+}
+.cierre .apunte{font-size:.86rem;font-style:normal;color:var(--nota);margin-top:1.15em}
+
+.aporte{
+  column-span:all;margin:1.7rem 0 0;padding:1.3rem 1.4rem;
+  border:1px dashed var(--sepia-claro);background:var(--papel-alt);
+  font-size:.95rem;color:var(--tinta);text-align:left;hyphens:none;
+}
+.aporte .etiqueta{
+  display:block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sepia);margin-bottom:.9em;text-align:center;
+}
+.aporte p{margin:0 0 .85em;text-indent:0;line-height:1.65}
+.aporte b{color:var(--sepia);font-weight:400}
+.aporte u{
+  text-decoration:none;border-bottom:1px solid var(--sepia-claro);
+  background:rgba(101,68,28,.07);font-style:italic;color:var(--nota);
+}
+.aporte .cautela{
+  margin:1.1em 0 0;padding-top:.8em;border-top:1px solid var(--linea);
+  font-size:.83rem;font-style:italic;color:var(--nota);
+}
+.aporte .sugerida{
+  font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--nota);font-style:normal;
+}
+
+/* laminas grabadas */
+.grabado svg,.grabado img{display:block;width:100%;height:auto;border:1px solid var(--linea)}
+.grabado[hidden]{display:none}
+.pendiente{
+  column-span:all;margin:1.6rem 0;padding:1.1rem 1.2rem;
+  border:1px solid var(--sepia-claro);background:var(--papel-alt);
+  font-size:.9rem;text-indent:0;hyphens:none;
+}
+.pendiente .etiqueta{
+  display:block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sepia);margin-bottom:.6em;
+}
+.pendiente table{border-collapse:collapse;width:100%;margin:.7em 0;font-size:.86rem}
+.pendiente th,.pendiente td{
+  border-bottom:1px solid var(--linea);padding:.34em .5em;text-align:left;vertical-align:top;
+}
+.pendiente th{color:var(--sepia);font-weight:400;font-size:.74rem;
+  letter-spacing:.12em;text-transform:uppercase}
+.pendiente .mal{color:#8a2f14}
+.pendiente .bien{color:#3d5c2a}
+
+.pie{
+  column-span:all;margin-top:2.5rem;padding-top:1.1rem;
+  border-top:1px solid var(--linea);
+  font-size:.85rem;color:var(--nota);line-height:1.7;
+  text-align:left;hyphens:none;
+}
+.pie h4{
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sepia);margin:1.4em 0 .6em;font-weight:400;
+}
+.pie h4:first-child{margin-top:0}
+.pie ol,.pie ul{margin:0;padding-left:1.3em}
+.pie li{margin-bottom:.55em}
+.pie .refs{list-style:none;padding-left:0}
+.pie .refs li{padding-left:2.2em;text-indent:-2.2em;margin-bottom:.7em}
+
+/* ---------- MOVIL: una columna, texto igualmente justificado ---------- */
+@media (max-width:820px){
+  .cuerpo{column-count:1;column-rule:none}
+  .rotulo{letter-spacing:.16em}
+  .capitular::first-letter{font-size:3.2em}
+  .destacado{font-size:1.1rem}
+}
+
+/* ---------- IMPRESION ---------- */
+@media print{
+  @page{size:A4;margin:17mm 15mm}
+  body{background:#fff;color:#000;font-size:10.5pt;padding:0}
+  .lectura{display:none}
+  .hoja{max-width:none}
+  .cuerpo{column-gap:9mm}
+  .grabado .marco{aspect-ratio:16/9}
+  .destacado,.caso,.aviso,.grabado,.cierre,.pie{break-inside:avoid}
+  h2,h3{break-after:avoid}
+  .aporte{border-style:solid}
+}
+
+/* ---------- TABLA COMPARATIVA (ancho completo) ---------- */
+.comparativa{
+  column-span:all;margin:2rem 0;
+  border-top:2px solid var(--tinta);border-bottom:2px solid var(--tinta);
+  padding:1.2rem 0;
+}
+.comparativa .etiqueta{
+  display:block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--sepia);margin-bottom:.9em;text-align:center;
+}
+.tabla-envoltorio{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.comparativa table{
+  border-collapse:collapse;width:100%;min-width:640px;
+  font-size:.92rem;text-align:left;hyphens:none;
+}
+.comparativa th,.comparativa td{
+  border-bottom:1px solid var(--linea);padding:.75em .8em;vertical-align:top;
+  line-height:1.5;
+}
+.comparativa thead th{
+  border-bottom:2px solid var(--sepia);color:var(--sepia);font-weight:400;
+  font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;
+}
+.comparativa tbody th{
+  color:var(--tinta);font-weight:400;font-style:italic;width:20%;
+  background:var(--papel-alt);
+}
+.comparativa .gana{color:#2f5a1f}
+.comparativa .pierde{color:#8a2f14}
+@media (max-width:820px){
+  .comparativa table{font-size:.86rem}
+}
+@media print{
+  .comparativa table{min-width:0;font-size:8.5pt}
+  .comparativa{break-inside:avoid}
+}
+</style>
+</head>
+<body data-pestana="OBJETO Y MÉTODO">
+
+<nav class="lectura" aria-label="Ajustes de lectura">
+  <span>Lectura</span>
+  <button type="button" onclick="escala(-1)" aria-label="Reducir el tamaño del texto">A&minus;</button>
+  <button type="button" onclick="escala(0)" aria-label="Tamaño de texto normal">A</button>
+  <button type="button" onclick="escala(1)" aria-label="Aumentar el tamaño del texto">A+</button>
+  <button type="button" onclick="document.body.classList.toggle('contraste')">Alto contraste</button>
+  <button type="button" onclick="document.body.classList.toggle('unacol')">Una columna</button>
+</nav>
+
+<div class="hoja">
+
+<header class="cabecera">
+  <hr class="filete"><hr class="filete filete--fino">
+  <h1 class="rotulo">Filosofía del Derecho</h1>
+  <hr class="filete filete--fino"><hr class="filete">
+  <div class="membrete">
+    <span>Universidad Católica de Cuenca</span>
+    <span>Bloque 1 · Introducción</span>
+    <span>Primer año</span>
+    <span>Año 2026</span>
+  </div>
+  <hr class="filete filete--fino">
+</header>
+
+<p class="antetitulo">Subpuntos 1.2.4 y 1.2.5 · Teoría del Derecho y Filosofía · Concepto de Derecho y su objeto</p>
+
+<p class="titular">Veinticinco siglos sin ponerse de acuerdo</p>
+
+<p class="entradilla">La pregunta por qué es el derecho lleva abierta desde los griegos, y eso no es un fracaso de la disciplina: es información sobre su objeto. Lo que se decida que el derecho <i>es</i> determina cómo hay que estudiarlo. Elegir mal el objeto no lleva a una respuesta equivocada, lleva a usar el método que no sirve.</p>
+
+<p class="firma">
+  <b>Prof. Carlos Eduardo Chica-Villacís</b>
+  <span class="rol">Docente autor · Universidad Católica de Cuenca</span>
+</p>
+
+<div class="cuerpo">
+
+  <h2>a · Qué hace el método analítico</h2>
+
+  <p class="capitular">Conviene deshacer un malentendido de entrada: la filosofía analítica no es una doctrina metafísica cerrada, sino una actitud y una herramienta. Huerta Ochoa, analizando la obra de Jorge Rodríguez, la describe como un estilo intelectual que prioriza la claridad en el uso del lenguaje y el rigor en la argumentación, se apoya en el análisis lingüístico y desconfía de las concepciones metafísicas.</p>
+
+  <p>Aplicado al concepto de derecho, el método analítico no busca descubrir una esencia oculta e inmutable. Hace una <b>reconstrucción racional</b> de los términos que ya usamos, y procede en tres movimientos.</p>
+
+  <h3>Parte de intuiciones básicas</h3>
+  <p>No empieza de cero. Toma nociones que la comunidad jurídica acepta sin discutir: que el derecho tiene <b>carácter social</b>, porque regula la conducta de personas en comunidad, y <b>carácter normativo</b>, porque es prescriptivo, un deber ser.</p>
+
+  <h3>Depura el lenguaje</h3>
+  <p>Investiga los criterios de uso de los términos para eliminar dos vicios del lenguaje ordinario: la <b>ambigüedad</b>, cuando una palabra tiene varios significados, y la <b>vaguedad</b>, cuando el campo de aplicación no está bien delimitado.</p>
+
+  <h3>Analiza funciones, no esencias</h3>
+  <p>En lugar de imponer una definición dogmática, determina cómo funciona el derecho en la realidad: qué entidades lo constituyen —normas, permisos, competencias— y qué relaciones lógicas guardan entre sí.</p>
+
+  <div class="caso">
+    <span class="etiqueta">Cómo se ve esto en la práctica</span>
+    En vez de definir «justicia» en abstracto, el método analítico examina cómo funciona la expresión «injusticia extrema» en las sentencias de los tribunales constitucionales, para delimitar con precisión cuándo una norma deja de ser aplicable dentro del sistema. La pregunta abstracta se convierte en una pregunta sobre el uso.
+  </div>
+
+  <span class="procede">Apartado elaborado a partir de Huerta Ochoa (2024), que analiza a Jorge Rodríguez.</span>
+
+  <h2>b · Cuatro maneras de definir el derecho</h2>
+
+  <p>Cárdenas Gracia advierte que definir el derecho es difícil por tres razones que se acumulan: la historia del término, la pluralidad de perspectivas y la carga emotiva de sus fines. Y ordena el campo distinguiendo cuatro tipos de definición.</p>
+
+  <figure class="grabado">
+    <img src="Ilustraciones_124125/B1_lamina12_cuatro_definiciones.jpeg"
+         alt="Grabado sepia: una vitrina de gabinete con cuatro nichos. En el primero, una mano señala un libro, rotulado ostensivas. En el segundo, una esfera de cristal, rotulado reales o esencialistas. En el tercero, una etiqueta de papel en blanco, rotulado nominales. En el cuarto, un mortero con dos sustancias mezclándose, rotulado explicativas.">
+    <figcaption><b>Lámina XII.</b> Cuatro instrumentos distintos para la misma tarea: señalar, contemplar, etiquetar, componer. Ninguno es más correcto que otro; cada uno sirve para un tipo de concepto distinto.</figcaption>
+  </figure>
+
+  <h3>Ostensivas</h3>
+  <p>Definen mostrando. Ante la pregunta de qué es el derecho, se señala un volumen del código civil o las instalaciones de un juzgado. Su límite es evidente: carecen de generalidad y presuponen el concepto que pretenden explicar. El alumno ve el papel del código, no el vínculo normativo invisible que ese papel genera.</p>
+
+  <h3>Reales o esencialistas</h3>
+  <p>Vienen de la filosofía clásica y asumen que las palabras reflejan la sustancia inmutable de las cosas. Cárdenas Gracia, exponiendo a Kantorowicz, las llama <b>realismo verbal</b> o, más duramente, <b>magia verbal</b>: un seudoproblema heredado del mito de la caverna. En el derecho no hay esencias eternas, sino construcciones culturales y acuerdos que los seres humanos pueden modificar.</p>
+
+  <h3>Nominales</h3>
+  <p>Se ocupan solo del nombre, sin esencias. Se dividen en <b>lexicales</b>, que describen cómo se usa de hecho una palabra en una sociedad, y <b>estipulativas</b>, que proponen un significado nuevo o restringen uno existente por precisión técnica.</p>
+
+  <h3>Explicativas</h3>
+  <p>Están en medio de las dos anteriores y son las idóneas para conceptos que ocupan un lugar central en una cultura. No registran todos los usos ni imponen uno arbitrario: condensan y reelaboran los significados usuales para fijar el núcleo más operativo. Pueden formularse en <b>sentido histórico</b>, buscando elasticidad para cubrir la complejidad temporal, o en <b>sentido crítico</b>, buscando nitidez lógica al comparar los modelos previos.</p>
+
+  <span class="procede">Apartado elaborado a partir de Cárdenas Gracia (2010), que expone a Kantorowicz.</span>
+
+  <h2>c · Tres candidatos a objeto</h2>
+
+  <p>Aquí está la pregunta que ordena todo lo demás. ¿De qué se ocupa exactamente la filosofía del derecho? Hay tres respuestas en disputa.</p>
+
+  <h3>La norma</h3>
+  <p>Para el normativismo, cuyo paradigma es Kelsen, el objeto son las <b>normas coactivas</b> dictadas por el Estado y el análisis de su validez formal. El derecho se aísla deliberadamente de los hechos empíricos y de las valoraciones morales.</p>
+
+  <h3>El hecho social</h3>
+  <p>Para el realismo escandinavo —Olivecrona, Ross— y la sociología jurídica, el objeto es el <b>comportamiento real de los operadores</b>: el derecho en acción y los fenómenos de poder que de hecho determinan lo que deciden los jueces.</p>
+
+  <h3>La práctica argumentativa</h3>
+  <p>Cárdenas Gracia sostiene una tercera vía: el derecho no es solo un conjunto estático de reglas escritas ni meros hechos de poder. Es una <b>práctica social dinámica</b> que integra a la vez reglas, principios constitucionales de textura abierta, valores, procedimientos y —sobre todo— las conductas de quienes deliberan y justifican decisiones bajo una pretensión de justicia.</p>
+
+  <div class="destacado">
+    Elegir el objeto no es un preámbulo del estudio: es ya la decisión que determina cómo se puede estudiar.
+    <cite>Síntesis del apartado</cite>
+  </div>
+
+  <span class="procede">Apartado elaborado a partir de Cárdenas Gracia (2010) y Huerta Ochoa (2024).</span>
+
+  <h2>d · Por qué el objeto decide el método</h2>
+
+  <p>En epistemología jurídica funciona como una regla: el método depende del estatus que se atribuya al objeto. Y las consecuencias son concretas.</p>
+
+  <p>Si el derecho es una <b>entidad ideal de significados normativos</b>, el método será el análisis lógico-conceptual y deductivo: se estudia el lenguaje prescriptivo y las relaciones de inferencia entre normas.</p>
+
+  <p>Si es un <b>hecho social e institucional</b>, el método hay que tomarlo de las ciencias sociales empíricas — sociología, psicología — y buscará explicar de forma causal y predictiva las conductas de los jueces y la eficacia de las leyes.</p>
+
+  <p>Y si es una <b>práctica argumentativa</b>, el método deductivo tradicional se queda corto. Hace falta un método hermenéutico y valorativo, centrado en la ponderación y en la justificación de principios, donde las proposiciones no se constatan empíricamente sino que se validan mediante deliberación racional.</p>
+
+  <div class="comparativa">
+    <span class="etiqueta">La tensión que sigue abierta</span>
+    <div class="tabla-envoltorio">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">&nbsp;</th>
+            <th scope="col">El camino de la ciencia · Alexy</th>
+            <th scope="col">El camino de la práctica · Chazal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Qué sostiene</th>
+            <td>El derecho aspira a la corrección mediante una pretensión discursiva racionalmente comprobable.</td>
+            <td>La neutralidad axiológica es una ilusión cientificista que desnaturaliza el objeto.</td>
+          </tr>
+          <tr>
+            <th scope="row">Qué método propone</th>
+            <td>Integrar norma, hecho y valor en un sistema racional coherente.</td>
+            <td>Tratarlo como ciencia práctica y prudencial, orientada a la acción.</td>
+          </tr>
+          <tr>
+            <th scope="row">Cómo se valida</th>
+            <td>Mediante reglas de argumentación y del discurso práctico.</td>
+            <td>En la discusión controversial: la verdad se decide dialécticamente.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <p>Conviene no cerrar esta tensión en falso. Alexy hace un esfuerzo formidable por reconstruir la disciplina como saber sistemático; Chazal responde que toda interpretación es un acto valorativo y que pretender lo contrario es engañarse. Ninguno de los dos es ingenuo, y el desacuerdo no se resuelve eligiendo el que suene mejor.</p>
+
+  <span class="procede">Apartado elaborado a partir de Alexy (2003) y Chazal (2012).</span>
+
+  <div class="cierre">
+    <span class="etiqueta">Por qué sigue abierta</span>
+    <p>Si reuniéramos a los cuatro autores para preguntarles por qué, después de veinticinco siglos, seguimos sin acordar qué es el derecho, cada uno daría una razón distinta.</p>
+  </div>
+
+  <div class="caso">
+    <span class="etiqueta">Cuatro respuestas a la misma pregunta</span>
+    <b>Cárdenas Gracia.</b> Porque el derecho no es un objeto inerte sino una expresión de la cultura y la historia, que cambia al ritmo de los conflictos sociales y de la exigencia de garantizar derechos.
+    <br><br>
+    <b>Huerta Ochoa.</b> Porque la precomprensión de quien investiga determina el objeto. Al elegir qué propiedades son relevantes ya se está decidiendo filosóficamente, así que es inevitable que coexistan varias concepciones en lugar de una neutral.
+    <br><br>
+    <b>Alexy.</b> Por la circularidad hermenéutica y por la doble naturaleza del derecho, que obliga a buscar una teoría capaz de unificar legalidad, eficacia y corrección moral — una meta que siempre queda en el horizonte.
+    <br><br>
+    <b>Chazal.</b> Porque la sustancia del derecho es controversial. No pertenece al saber teórico de verdades inmutables sino a la deliberación práctica sobre lo justo en situaciones cambiantes; toda solución es provisional y está destinada a reabrirse.
+  </div>
+
+  <div class="aporte">
+    <span class="etiqueta">Aporte del docente</span>
+    <p><b>Desde el aula</b><br>
+    «Hay una manera de leer este apartado que lo vuelve desalentador: veinticinco siglos y no hay respuesta. Quiero proponerles la contraria.
+    <br><br>
+    Fíjense en lo que dice Huerta Ochoa, que es lo más útil que van a llevarse de aquí. Cuando alguien elige qué propiedades del derecho son las relevantes, ya está decidiendo filosóficamente, aunque crea que solo está describiendo. No hay un punto de vista neutro desde el cual mirar.
+    <br><br>
+    Eso tiene una consecuencia práctica inmediata. Cuando lean una sentencia, un artículo de doctrina o el alegato del abogado contrario, pregúntense qué está tratando el autor como objeto: ¿la norma escrita?, ¿lo que de hecho hacen los tribunales?, ¿la práctica de argumentar? Casi nunca lo dirá. Pero de esa elección tácita dependen sus conclusiones, y detectarla les va a servir más que cualquier definición que puedan memorizar.
+    <br><br>
+    Que la pregunta siga abierta no significa que dé igual la respuesta. Significa que cada quien responde con lo que hace, no con lo que dice.»</p>
+  </div>
+
+  <div class="pie">
+    <h4>Referencias</h4>
+    <ul class="refs">
+      <li>Alexy, R. (2003). La naturaleza de la filosofía del derecho. <i>Doxa. Cuadernos de Filosofía del Derecho</i>, (26).</li>
+      <li>Cárdenas Gracia, J. (2010). Definición de derecho. En <i>Introducción al estudio del derecho</i> (cap. III). Instituto de Investigaciones Jurídicas, UNAM.</li>
+      <li>Chazal, J.-P. (2012). Filosofía del derecho y teoría del derecho, o la ilusión científica. <i>Revista de la Facultad de Derecho</i>, (32), 57&ndash;88.</li>
+      <li>Huerta Ochoa, C. (2024). Sobre el análisis del concepto de derecho. <i>Isonomía</i>, (60), 5&ndash;26.</li>
+    </ul>
+  </div>
+
+</div>
+</div>
+
+<script>
+var nivel = 0;
+function escala(d){
+  nivel = d === 0 ? 0 : Math.max(-1, Math.min(4, nivel + d));
+  document.documentElement.style.setProperty('--escala', (1 + nivel * 0.12).toFixed(2));
+}
+var css = document.createElement('style');
+css.textContent = '.unacol .cuerpo{column-count:1;column-rule:none}';
+document.head.appendChild(css);
+</script>
+</body>
+</html>

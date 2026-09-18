@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Filosofía del Derecho · Bloque 1 · 1.2.1</title>
+<style>
+:root{
+  --papel:#fcf9f4;
+  --papel-alt:#f3ecdf;
+  --tinta:#1f1810;
+  --tinta-suave:#3f3323;
+  --sepia:#65441c;
+  --sepia-claro:#7d5c2e;
+  --linea:#cbbda3;
+  --nota:#5b4a34;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
+  --escala:1;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  padding:0 1.1rem 4rem;
+  background:var(--papel);
+  color:var(--tinta);
+  font-family:var(--serif);
+  font-size:calc(19.5px * var(--escala));
+  line-height:1.72;
+}
+.hoja{max-width:1180px;margin:0 auto}
+
+/* ---------- BARRA DE LECTURA (no se imprime) ---------- */
+.lectura{
+  position:sticky;top:0;z-index:20;
+  display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;justify-content:center;
+  background:var(--papel);border-bottom:1px solid var(--linea);
+  padding:.5rem;margin:0 -1.1rem 0;font-size:.8rem;
+}
+.lectura span{color:var(--nota);letter-spacing:.1em;text-transform:uppercase;font-size:.7rem}
+.lectura button{
+  font-family:var(--serif);font-size:.88rem;
+  background:var(--papel-alt);color:var(--tinta);
+  border:1px solid var(--linea);border-radius:2px;
+  padding:.34rem .72rem;cursor:pointer;min-height:34px;
+}
+.lectura button:hover{background:#e8dcc7}
+.lectura button:focus-visible{outline:2px solid var(--sepia);outline-offset:2px}
+
+/* alto contraste */
+body.contraste{--papel:#fffdf9;--papel-alt:#f2ece1;--tinta:#000;--tinta-suave:#1a1a1a;
+  --sepia:#4a3110;--sepia-claro:#4a3110;--linea:#8d7f68;--nota:#3a3025}
+
+/* ---------- CABECERA ---------- */
+.cabecera{padding:2.2rem 0 .4rem;text-align:center}
+.filete{border:0;border-top:2px solid var(--tinta);margin:0}
+.filete--fino{border-top:1px solid var(--linea);margin:.28rem 0 0}
+.rotulo{
+  font-size:clamp(1.5rem,4.8vw,2.7rem);
+  letter-spacing:.28em;text-transform:uppercase;
+  margin:.85rem 0 .6rem;font-weight:400;text-indent:.28em;
+}
+.membrete{
+  display:flex;flex-wrap:wrap;gap:.4rem 1.5rem;justify-content:center;
+  font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--nota);padding:.5rem 0 .7rem;
+}
+
+/* ---------- TITULARES ---------- */
+.antetitulo{
+  text-align:center;font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--sepia);margin:2.2rem 0 .7rem;
+}
+.titular{
+  font-size:clamp(1.9rem,5.6vw,3.2rem);
+  line-height:1.14;text-align:center;font-weight:400;
+  margin:0 auto .9rem;max-width:21ch;letter-spacing:-.01em;
+}
+.entradilla{
+  text-align:center;max-width:58ch;margin:0 auto 1.3rem;
+  font-size:1.06rem;font-style:italic;color:var(--tinta-suave);line-height:1.6;
+}
+.firma{
+  text-align:center;font-size:.82rem;color:var(--nota);
+  margin-bottom:1.9rem;line-height:1.7;
+}
+.firma b{color:var(--tinta);font-weight:400;letter-spacing:.04em}
+.firma .rol{
+  display:block;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+  margin-top:.3rem;
+}
+
+/* ---------- CUERPO A DOS COLUMNAS ---------- */
+.cuerpo{
+  column-count:2;column-gap:3rem;
+  column-rule:1px solid var(--linea);
+  text-align:justify;hyphens:auto;-webkit-hyphens:auto;
+  padding-top:1.6rem;border-top:1px solid var(--linea);
+}
+.cuerpo > *{break-inside:avoid-column}
+.cuerpo p{margin:0 0 1.05em;break-inside:auto}
+.cuerpo p + p{text-indent:1.25em}
+
+h2{
+  font-size:.86rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sepia);font-weight:400;
+  margin:2em 0 .75em;padding-bottom:.45em;border-bottom:1px solid var(--linea);
+  break-after:avoid;
+}
+h3{
+  font-size:1.04rem;font-weight:400;font-style:italic;
+  margin:1.55em 0 .4em;color:var(--tinta);break-after:avoid;
+}
+
+.capitular::first-letter{
+  float:left;font-size:4em;line-height:.8;
+  padding:.06em .1em 0 0;margin:.02em .05em 0 0;
+  color:var(--sepia);font-weight:400;
+}
+
+/* ---------- PIEZAS ---------- */
+.destacado{
+  margin:1.6em 0;padding:1.1em 0;
+  border-top:2px solid var(--tinta);border-bottom:1px solid var(--linea);
+  font-size:1.24rem;line-height:1.4;font-style:italic;text-align:left;
+  color:var(--sepia);text-indent:0;hyphens:none;
+}
+.destacado cite{display:block;margin-top:.6em;font-size:.7rem;font-style:normal;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--nota)}
+
+.caso{
+  background:var(--papel-alt);border-left:4px solid var(--sepia-claro);
+  padding:1em 1.1em;margin:1.35em 0;font-size:.97rem;text-indent:0;
+}
+.caso .etiqueta,.aviso .etiqueta{
+  display:block;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sepia);margin-bottom:.5em;
+}
+.aviso{
+  border:1px solid var(--sepia-claro);padding:1.05em 1.15em;margin:1.6em 0;
+  font-size:.96rem;text-indent:0;background:var(--papel-alt);
+}
+
+/* procedencia de cada apartado */
+.procede{
+  display:block;margin:.2em 0 1.4em;padding-left:.9em;
+  border-left:2px solid var(--linea);
+  font-size:.82rem;font-style:italic;color:var(--nota);
+  text-indent:0;text-align:left;hyphens:none;
+}
+
+/* hueco de ilustracion */
+.grabado{margin:1.6em 0;padding:0;text-indent:0;break-inside:avoid}
+.grabado .marco{
+  border:1px solid var(--linea);
+  background:repeating-linear-gradient(45deg,rgba(101,68,28,.06) 0 7px,transparent 7px 14px);
+  aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;
+  color:var(--nota);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+  text-align:center;padding:1rem;
+}
+.grabado figcaption{
+  font-size:.82rem;color:var(--nota);line-height:1.55;
+  padding-top:.55em;border-top:1px solid var(--linea);margin-top:.55em;
+  text-align:left;hyphens:none;
+}
+.grabado figcaption b{color:var(--sepia);font-weight:400}
+
+/* ---------- CIERRE ---------- */
+.cierre{
+  column-span:all;margin:2.8rem 0 0;padding:1.8rem 1.5rem;
+  border-top:2px solid var(--tinta);border-bottom:2px solid var(--tinta);
+  text-align:center;
+}
+.cierre .etiqueta{
+  display:block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--sepia);margin-bottom:.85em;
+}
+.cierre p{
+  font-size:1.2rem;font-style:italic;line-height:1.55;max-width:56ch;
+  margin:0 auto;text-indent:0;text-align:center;hyphens:none;
+}
+.cierre .apunte{font-size:.86rem;font-style:normal;color:var(--nota);margin-top:1.15em}
+
+.aporte{
+  column-span:all;margin:1.7rem 0 0;padding:1.3rem 1.4rem;
+  border:1px dashed var(--sepia-claro);background:var(--papel-alt);
+  font-size:.95rem;color:var(--tinta);text-align:left;hyphens:none;
+}
+.aporte .etiqueta{
+  display:block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sepia);margin-bottom:.9em;text-align:center;
+}
+.aporte p{margin:0 0 .85em;text-indent:0;line-height:1.65}
+.aporte b{color:var(--sepia);font-weight:400}
+.aporte u{
+  text-decoration:none;border-bottom:1px solid var(--sepia-claro);
+  background:rgba(101,68,28,.07);font-style:italic;color:var(--nota);
+}
+.aporte .cautela{
+  margin:1.1em 0 0;padding-top:.8em;border-top:1px solid var(--linea);
+  font-size:.83rem;font-style:italic;color:var(--nota);
+}
+.aporte .sugerida{
+  font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--nota);font-style:normal;
+}
+
+/* laminas grabadas */
+.grabado svg,.grabado img{display:block;width:100%;height:auto;border:1px solid var(--linea)}
+.grabado[hidden]{display:none}
+.pendiente{
+  column-span:all;margin:1.6rem 0;padding:1.1rem 1.2rem;
+  border:1px solid var(--sepia-claro);background:var(--papel-alt);
+  font-size:.9rem;text-indent:0;hyphens:none;
+}
+.pendiente .etiqueta{
+  display:block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sepia);margin-bottom:.6em;
+}
+.pendiente table{border-collapse:collapse;width:100%;margin:.7em 0;font-size:.86rem}
+.pendiente th,.pendiente td{
+  border-bottom:1px solid var(--linea);padding:.34em .5em;text-align:left;vertical-align:top;
+}
+.pendiente th{color:var(--sepia);font-weight:400;font-size:.74rem;
+  letter-spacing:.12em;text-transform:uppercase}
+.pendiente .mal{color:#8a2f14}
+.pendiente .bien{color:#3d5c2a}
+
+.pie{
+  column-span:all;margin-top:2.5rem;padding-top:1.1rem;
+  border-top:1px solid var(--linea);
+  font-size:.85rem;color:var(--nota);line-height:1.7;
+  text-align:left;hyphens:none;
+}
+.pie h4{
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sepia);margin:1.4em 0 .6em;font-weight:400;
+}
+.pie h4:first-child{margin-top:0}
+.pie ol,.pie ul{margin:0;padding-left:1.3em}
+.pie li{margin-bottom:.55em}
+.pie .refs{list-style:none;padding-left:0}
+.pie .refs li{padding-left:2.2em;text-indent:-2.2em;margin-bottom:.7em}
+
+/* ---------- MOVIL: una columna, texto igualmente justificado ---------- */
+@media (max-width:820px){
+  .cuerpo{column-count:1;column-rule:none}
+  .rotulo{letter-spacing:.16em}
+  .capitular::first-letter{font-size:3.2em}
+  .destacado{font-size:1.1rem}
+}
+
+/* ---------- IMPRESION ---------- */
+@media print{
+  @page{size:A4;margin:17mm 15mm}
+  body{background:#fff;color:#000;font-size:10.5pt;padding:0}
+  .lectura{display:none}
+  .hoja{max-width:none}
+  .cuerpo{column-gap:9mm}
+  .grabado .marco{aspect-ratio:16/9}
+  .destacado,.caso,.aviso,.grabado,.cierre,.pie{break-inside:avoid}
+  h2,h3{break-after:avoid}
+  .aporte{border-style:solid}
+}
+
+/* ---------- TABLA COMPARATIVA (ancho completo) ---------- */
+.comparativa{
+  column-span:all;margin:2rem 0;
+  border-top:2px solid var(--tinta);border-bottom:2px solid var(--tinta);
+  padding:1.2rem 0;
+}
+.comparativa .etiqueta{
+  display:block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--sepia);margin-bottom:.9em;text-align:center;
+}
+.tabla-envoltorio{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.comparativa table{
+  border-collapse:collapse;width:100%;min-width:640px;
+  font-size:.92rem;text-align:left;hyphens:none;
+}
+.comparativa th,.comparativa td{
+  border-bottom:1px solid var(--linea);padding:.75em .8em;vertical-align:top;
+  line-height:1.5;
+}
+.comparativa thead th{
+  border-bottom:2px solid var(--sepia);color:var(--sepia);font-weight:400;
+  font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;
+}
+.comparativa tbody th{
+  color:var(--tinta);font-weight:400;font-style:italic;width:20%;
+  background:var(--papel-alt);
+}
+.comparativa .gana{color:#2f5a1f}
+.comparativa .pierde{color:#8a2f14}
+@media (max-width:820px){
+  .comparativa table{font-size:.86rem}
+}
+@media print{
+  .comparativa table{min-width:0;font-size:8.5pt}
+  .comparativa{break-inside:avoid}
+}
+</style>
+</head>
+<body data-pestana="RELACIÓN JURÍDICA">
+
+<nav class="lectura" aria-label="Ajustes de lectura">
+  <span>Lectura</span>
+  <button type="button" onclick="escala(-1)" aria-label="Reducir el tamaño del texto">A&minus;</button>
+  <button type="button" onclick="escala(0)" aria-label="Tamaño de texto normal">A</button>
+  <button type="button" onclick="escala(1)" aria-label="Aumentar el tamaño del texto">A+</button>
+  <button type="button" onclick="document.body.classList.toggle('contraste')">Alto contraste</button>
+  <button type="button" onclick="document.body.classList.toggle('unacol')">Una columna</button>
+</nav>
+
+<div class="hoja">
+
+<header class="cabecera">
+  <hr class="filete"><hr class="filete filete--fino">
+  <h1 class="rotulo">Filosofía del Derecho</h1>
+  <hr class="filete filete--fino"><hr class="filete">
+  <div class="membrete">
+    <span>Universidad Católica de Cuenca</span>
+    <span>Bloque 1 · Introducción</span>
+    <span>Primer año</span>
+    <span>Año 2026</span>
+  </div>
+  <hr class="filete filete--fino">
+</header>
+
+<p class="antetitulo">Subpunto 1.2.1 · La perspectiva de las relaciones jurídicas</p>
+
+<p class="titular">Nunca hay solo dos partes</p>
+
+<p class="entradilla">Los manuales presentan la relación jurídica como un vínculo entre dos: acreedor y deudor, actor y demandado. Sánchez de la Torre sostiene que esa imagen es demasiado pobre para describir lo que realmente ocurre, y propone contar cinco posiciones distintas. Quien solo ve dos, pierde de vista a los que deciden el resultado.</p>
+
+<p class="firma">
+  <b>Prof. Carlos Eduardo Chica-Villacís</b>
+  <span class="rol">Docente autor · Universidad Católica de Cuenca</span>
+</p>
+
+<div class="cuerpo">
+
+  <h2>a · Por qué es un concepto filosófico</h2>
+
+  <p class="capitular">La relación jurídica suele presentarse como una definición de manual: un vínculo regulado por normas que conecta a dos sujetos de derecho. Cárdenas Gracia, exponiendo la definición clásica de Legaz Lacambra, la precisa como un vínculo creado por normas entre sujetos de derecho, nacido de un hecho determinado, que origina situaciones correlativas de facultades y deberes cuyo objeto son prestaciones garantizadas por una sanción.</p>
+
+  <p>Hasta ahí, técnica. Lo filosófico aparece cuando se pregunta de dónde salió esa estructura y para qué se construyó.</p>
+
+  <p>Sánchez de la Torre explica que consolidar la relación jurídica como concepto formal invariable no fue un ejercicio académico: nació de la necesidad de <b>proteger a los ciudadanos frente al arbitrio de los gobernantes</b>. Al definir constantes invariables de la experiencia jurídica, los juristas del siglo XIX levantaron un escudo conceptual contra el absolutismo. Un concepto abstracto haciendo trabajo político.</p>
+
+  <p>Además, hereda la noción lógica medieval de <i>relatio</i>, analizada por Isidoro de Sevilla y Tomás de Aquino, con una propiedad que sigue vigente: la <b>simultaneidad de sus términos</b>. No se puede ser padre sin que exista un hijo. Y conecta con Kant, para quien la relación jurídica es siempre externa y práctica, y se da entre dos voluntades libres — nunca entre una persona y una cosa.</p>
+
+  <span class="procede">Apartado elaborado a partir de Cárdenas Gracia (2010), que expone a Legaz Lacambra, y de Sánchez de la Torre (2010).</span>
+
+  <h2>b · La relación como conexión intersubjetiva</h2>
+
+  <p>La aportación de Sánchez de la Torre consiste en sacar la relación jurídica del esquema mecánico que la reducía a una conexión entre la norma y el sujeto, o entre el sujeto y la cosa, y situarla en el plano de la <b>intersubjetividad</b>.</p>
+
+  <p>Se apoya en dos formulaciones previas. Del Vecchio definía el derecho como conducta en interferencia subjetiva; Cossio lo precisó como conducta en interferencia <i>intersubjetiva</i>. Bajo ese enfoque, «relación jurídica» resulta ser una abreviatura de algo más exacto: <b>relación entre sujetos jurídicos</b>.</p>
+
+  <div class="destacado">
+    <i>Relatio</i> significa traer y llevar. Y, sobre todo, devolver.
+    <cite>La etimología que ordena el concepto</cite>
+  </div>
+
+  <p>La etimología no es adorno. Si <i>relatio</i> es traer, llevar y devolver, entonces el derecho no es un mandato estático sino un proceso de reciprocidad: el consenso de las voluntades hace circular prestaciones, promesas y bienes, y exige restitución cuando el equilibrio se rompe.</p>
+
+  <span class="procede">Apartado elaborado a partir de Sánchez de la Torre (2010), que expone a Del Vecchio y a Cossio.</span>
+
+  <h2>c · Los cinco roles</h2>
+
+  <p>Frente a la polaridad dual de los manuales, que solo distinguen acreedor y deudor, Sánchez de la Torre describe cinco posiciones.</p>
+
+  <figure class="grabado">
+    <img src="Ilustraciones_121/B1_lamina9_cinco_roles.jpeg"
+         alt="Grabado sepia visto desde arriba: cinco zonas concéntricas rotuladas de dentro afuera protagonistas, interesados, afectados, verificadores y garantes. En el núcleo, dos figuras se estrechan la mano; en los anillos sucesivos, figuras con rollos, sellos, balanzas y báculos.">
+    <figcaption><b>Lámina IX.</b> Los cinco roles no forman una lista plana sino anillos de distancia al conflicto. Los protagonistas ocupan el centro; los garantes, el borde. Cuanto más lejos del núcleo, menos se decide y más se controla.</figcaption>
+  </figure>
+
+  <h3>Protagonistas</h3>
+  <p>Los titulares de los bienes o intereses sobre los que se establece la relación. Con su declaración de voluntad, o con un hecho relevante, dan sentido y dirección jurídica a sus libertades.</p>
+
+  <h3>Interesados</h3>
+  <p>Quienes tienen una conexión previa o colateral con algún protagonista —familiares, socios, herederos, fiadores—. Su patrimonio o su libertad puede verse comprometido por lo que hagan los protagonistas.</p>
+
+  <h3>Afectados</h3>
+  <p>Terceros sobre los que recaen indirectamente las consecuencias, sin haber participado ni consentido: los vecinos de un predio, los miembros de una comunidad respecto del ambiente.</p>
+
+  <h3>Verificadores</h3>
+  <p>Quienes constatan y dotan de fe pública la existencia y validez de la relación, sea de forma ocasional —testigos presenciales— o profesional: notarios, registradores.</p>
+
+  <h3>Garantes</h3>
+  <p>Los encargados de velar por el cumplimiento y de activar la sanción si se incumple. Pueden ser personas —árbitros, mediadores— o instituciones: jueces, policías, funcionarios.</p>
+
+  <p>Los cuatro últimos se engloban bajo la categoría de <b>terceros</b>, que rodean la polaridad central de los protagonistas.</p>
+
+  <span class="procede">Apartado elaborado a partir de Sánchez de la Torre (2010).</span>
+
+  <h2>d · La tipología aplicada</h2>
+
+  <div class="caso">
+    <span class="etiqueta">Un contrato de arrendamiento</span>
+    <b>Protagonistas:</b> arrendador y arrendatario, que disponen voluntariamente de sus intereses patrimoniales. <b>Interesados:</b> el fiador, cuyo patrimonio queda comprometido si el inquilino incumple. <b>Afectados:</b> los vecinos del edificio, que soportan el ruido o las actividades del inquilino sin haber intervenido. <b>Verificadores:</b> el notario que da fe de las firmas, o el corredor que atestigua la entrega. <b>Garantes:</b> el juez civil ante quien se demanda la rescisión o el desalojo.
+  </div>
+
+  <div class="caso">
+    <span class="etiqueta">Un proceso penal por daños</span>
+    <b>Protagonistas:</b> el autor del daño y el propietario del bien dañado. <b>Interesados:</b> los socios de la empresa afectada, o los padres que asumen la responsabilidad civil de un infractor menor. <b>Afectados:</b> los miembros de la comunidad privados de un bien de utilidad social. <b>Verificadores:</b> los testigos presenciales y la policía que resguarda los indicios. <b>Garantes:</b> el juez de instrucción y el sentenciador.
+  </div>
+
+  <p>Los dos casos son ejemplos didácticos construidos para aplicar la tipología, no resoluciones reales.</p>
+
+  <span class="procede">Apartado elaborado a partir de la tipología de Sánchez de la Torre (2010) y el ejemplo de arrendamiento de Cárdenas Gracia (2010).</span>
+
+  <h2>e · Estática y dinámica</h2>
+
+  <p>El método exige mirar la relación desde dos perspectivas que se complementan.</p>
+
+  <div class="aviso">
+    <span class="etiqueta">Las dos miradas</span>
+    <b>Dimensión estática.</b> Describe la posición fija que ocupa cada sujeto en un momento determinado. Permite identificar quién es protagonista, quién tercero interesado, quién afectado y qué autoridad actúa como garante.
+    <br><br>
+    <b>Dimensión dinámica.</b> Describe el flujo de conductas a lo largo del tiempo. Las posiciones no están congeladas: se transmiten y se modifican según se cumplen o incumplen los actos sucesivos. En una compraventa, el vendedor que era protagonista puede pasar a ser garante cuando debe responder por evicción frente a su comprador.
+  </div>
+
+  <span class="procede">Apartado elaborado a partir de Sánchez de la Torre (2010).</span>
+
+  <div class="cierre">
+    <span class="etiqueta">Para llevarse a la próxima clase</span>
+    <p>Si las posiciones cambian con el tiempo, ¿en qué momento exacto conviene fotografiar una relación jurídica para analizarla? ¿Y qué se pierde al elegir ese momento y no otro?</p>
+  </div>
+
+  <div class="aporte">
+    <span class="etiqueta">Aporte del docente</span>
+    <p><b>Desde el aula</b><br>
+    «Quiero que prueben algo con el próximo caso que estudien, sea de la materia que sea. Antes de analizar el fondo, hagan la lista de los cinco roles y rellénenla.
+    <br><br>
+    Van a descubrir dos cosas. La primera es que casi nunca hay solo dos partes, y que los manuales nos acostumbran a una simplificación que en la práctica no se sostiene. La segunda, más útil: que los casos se pierden con frecuencia por no haber identificado a tiempo a un tercero. Un fiador que nadie citó. Un verificador cuyo testimonio no se pidió. Un afectado que aparece después con un interés legítimo que obliga a rehacerlo todo.
+    <br><br>
+    La tipología de Sánchez de la Torre parece un ejercicio de clasificación abstracta. Úsenla como lista de comprobación y verán que no lo es.»</p>
+  </div>
+
+  <div class="pie">
+    <h4>Referencias</h4>
+    <ul class="refs">
+      <li>Cárdenas Gracia, J. (2010). Conceptos jurídicos fundamentales y división tradicional de la dogmática jurídica. En <i>Introducción al estudio del derecho</i> (cap. VII). Instituto de Investigaciones Jurídicas, UNAM.</li>
+      <li>Sánchez de la Torre, Á. (2010). La relación jurídica como concepto metodológico. <i>Foro. Nueva Época</i>, (11-12), 31&ndash;53.</li>
+    </ul>
+  </div>
+
+</div>
+</div>
+
+<script>
+var nivel = 0;
+function escala(d){
+  nivel = d === 0 ? 0 : Math.max(-1, Math.min(4, nivel + d));
+  document.documentElement.style.setProperty('--escala', (1 + nivel * 0.12).toFixed(2));
+}
+var css = document.createElement('style');
+css.textContent = '.unacol .cuerpo{column-count:1;column-rule:none}';
+document.head.appendChild(css);
+</script>
+</body>
+</html>
