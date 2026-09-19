@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hoja 1 del expediente · Filosofía del Derecho · UCACUE</title>
+<style>
+:root{
+  --papel:#f4f2ee; --blanco:#fff; --tinta:#16181c; --tinta2:#33363c; --nota:#5f625f;
+  --carmesi:#8a111a; --carmesi-osc:#6d0d14; --carmesi-ten:#f6e6e8; --carmesi-bor:#d9b3b7;
+  --verde:#2f5c3f; --verde-ten:#e8f0ea;
+  --linea:#c9c5bd; --linea2:#e2ded6;
+  --serif:Charter,Georgia,"Times New Roman",serif;
+  --sans:"Segoe UI",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--papel);color:var(--tinta);font-family:var(--sans);font-size:15px;line-height:1.55}
+
+/* ---------- cabecera ---------- */
+.top{background:var(--blanco);border-bottom:4px solid var(--carmesi);padding:14px 20px;
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;position:sticky;top:0;z-index:30}
+.top .marca{font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--carmesi)}
+.top h1{font-family:var(--serif);font-size:19px;font-weight:600;margin:2px 0 0;line-height:1.2}
+.top .der{margin-left:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pill{font-size:12px;font-weight:700;padding:5px 12px;border-radius:20px;background:var(--carmesi-ten);
+  color:var(--carmesi);border:1px solid var(--carmesi-bor)}
+.pill.ok{background:var(--verde-ten);color:var(--verde);border-color:#a8c4b2}
+button{font-family:var(--sans);cursor:pointer;border:0}
+.btn{background:var(--carmesi);color:#fff;font-size:14px;font-weight:600;padding:11px 22px;
+  border-radius:4px;box-shadow:0 2px 6px rgba(138,17,26,.28)}
+.btn:hover{background:var(--carmesi-osc)}
+.btn.sec{background:#fff;color:var(--carmesi);border:1.5px solid var(--carmesi);box-shadow:none}
+.btn:disabled{background:#b9b6b0;box-shadow:none;cursor:not-allowed}
+
+/* ---------- dos paneles ---------- */
+.tabs{display:none;background:var(--blanco);border-bottom:1px solid var(--linea)}
+.tabs button{flex:1;padding:13px;background:none;font-size:14px;font-weight:700;color:var(--nota);
+  border-bottom:3px solid transparent}
+.tabs button.on{color:var(--carmesi);border-bottom-color:var(--carmesi)}
+.paneles{display:flex;height:calc(100vh - 68px)}
+.pan{overflow-y:auto}
+.izq{flex:0 0 46%;border-right:1px solid var(--linea);background:#3a3a3a;position:relative}
+.izq iframe{width:100%;height:100%;border:0;display:block}
+.izq .aviso{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;color:#fff;text-align:center;padding:30px;gap:14px}
+.der{flex:1;padding:22px 26px 90px}
+
+/* ---------- formulario ---------- */
+h2{font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--carmesi);
+  margin:30px 0 4px;padding-bottom:7px;border-bottom:2px solid var(--carmesi-bor)}
+h2:first-child{margin-top:0}
+.sub{font-size:13.5px;color:var(--tinta2);margin:0 0 14px;line-height:1.6}
+.campo{background:var(--blanco);border:1px solid var(--linea2);border-left:4px solid var(--linea);
+  border-radius:6px;padding:13px 15px;margin-bottom:11px}
+.campo.lleno{border-left-color:var(--verde)}
+.etq{font-size:13.5px;font-weight:700;color:var(--tinta);margin-bottom:3px;display:block}
+.etq .n{display:inline-block;min-width:22px;color:var(--carmesi);font-weight:800}
+.ayuda{font-size:12.5px;color:var(--nota);margin:0 0 8px}
+input[type=text],textarea{width:100%;font-family:var(--sans);font-size:14px;color:var(--tinta);
+  background:#fcfbf9;border:1px solid var(--linea);border-radius:4px;padding:9px 11px;line-height:1.5}
+input[type=text]:focus,textarea:focus{outline:0;border-color:var(--carmesi);background:#fff;
+  box-shadow:0 0 0 3px rgba(138,17,26,.10)}
+textarea{resize:vertical;min-height:62px}
+.dupla{display:grid;grid-template-columns:1fr 200px;gap:9px}
+.dupla .donde{background:#fff8f8}
+.mini{font-size:11.5px;color:var(--nota);margin-top:4px}
+.aviso-caja{background:var(--carmesi-ten);border:1px solid var(--carmesi-bor);border-left:5px solid var(--carmesi);
+  border-radius:6px;padding:14px 16px;margin:0 0 18px;font-size:13.5px;line-height:1.6;color:var(--tinta2)}
+.aviso-caja b{color:var(--carmesi)}
+.grupo-box{background:var(--verde-ten);border:1px solid #a8c4b2;border-left:5px solid var(--verde);
+  border-radius:6px;padding:14px 16px;margin:0 0 16px;font-size:13.5px;line-height:1.6}
+.grupo-box b{color:var(--verde)}
+.oculto{display:none}
+
+/* ---------- barra inferior ---------- */
+.barra{position:fixed;bottom:0;left:0;right:0;background:var(--blanco);border-top:2px solid var(--carmesi);
+  padding:11px 20px;display:flex;align-items:center;gap:14px;z-index:40;flex-wrap:wrap}
+.prog{flex:1;min-width:140px;height:9px;background:var(--linea2);border-radius:5px;overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:var(--carmesi);transition:width .3s}
+.cuenta{font-size:12.5px;color:var(--nota);font-weight:700;white-space:nowrap}
+
+/* ---------- impresión ---------- */
+@media print{
+  .top,.tabs,.izq,.barra,.no-print{display:none!important}
+  .paneles{display:block;height:auto}
+  .der{padding:0}
+  body{background:#fff;font-size:11pt}
+  .campo{break-inside:avoid;border:1px solid #999;border-left:3px solid #8a111a;margin-bottom:7px;padding:8px 10px}
+  h2{margin:16px 0 6px;page-break-after:avoid}
+  #caratula{display:block!important}
+  textarea,input[type=text]{border:0;background:none;padding:2px 0;font-size:11pt}
+  .ayuda,.mini,.sub{color:#555}
+}
+#caratula{display:none;border:2px solid var(--carmesi);padding:18px;margin-bottom:18px}
+#caratula .ct{font-family:var(--serif);font-size:17pt;font-weight:600;margin:6px 0}
+#caratula .cl{font-size:10pt;color:#444;line-height:1.7}
+
+@media(max-width:900px){
+  .paneles{display:block;height:auto}
+  .tabs{display:flex}
+  .izq{flex:none;height:70vh;display:none}
+  .izq.on{display:block}
+  .der{display:none;padding:18px 16px 96px}
+  .der.on{display:block}
+  .dupla{grid-template-columns:1fr}
+  .top h1{font-size:16px}
+}
+</style>
+</head>
+<body>
+
+<header class="top no-print">
+  <div>
+    <div class="marca">Filosofía del Derecho · Bloque 1 · Guía práctica n.º 1</div>
+    <h1>Hoja 1 del expediente</h1>
+  </div>
+  <div class="der">
+    <span class="pill" id="pGrupo">Sin grupo</span>
+    <button class="btn sec" id="bGuardar">Guardar</button>
+    <button class="btn" id="bPdf" disabled>Descargar PDF</button>
+  </div>
+</header>
+
+<div class="tabs no-print">
+  <button id="tIzq">📖 Expediente</button>
+  <button id="tDer" class="on">✍️ Mi hoja</button>
+</div>
+
+<div class="paneles">
+  <div class="pan izq" id="panIzq">
+    <iframe id="visor" src="../docs/cuadernillo-1.pdf#view=FitH" title="Cuadernillo 1"></iframe>
+    <div class="aviso" id="avisoPdf" style="display:none">
+      <div style="font-size:15px;line-height:1.6;max-width:320px">
+        Su navegador no muestra el PDF aquí dentro.<br>Ábralo en una pestaña aparte y vuelva.
+      </div>
+      <a class="btn" href="../docs/cuadernillo-1.pdf" target="_blank" rel="noopener">Abrir el expediente</a>
+    </div>
+  </div>
+
+  <div class="pan der on" id="panDer">
+
+    <div id="caratula">
+      <div class="cl">UNIVERSIDAD CATÓLICA DE CUENCA · CARRERA DE DERECHO</div>
+      <div class="cl">FILOSOFÍA DEL DERECHO · Primer ciclo · Septiembre 2026 – Febrero 2027</div>
+      <div class="ct">Hoja 1 del expediente</div>
+      <div class="cl">Pieza n.º 1 del dossier · Guía práctica n.º 1 · Bloque 1</div>
+      <div class="cl">Caso: «¿Puede un bosque tener derechos?» · Sentencia N.º 1149-19-JP/21</div>
+      <div class="cl" style="margin-top:10px"><b>Estudiante:</b> <span id="cNombre">—</span></div>
+      <div class="cl"><b>Cédula:</b> <span id="cCedula">—</span> &nbsp;·&nbsp; <b>Grupo:</b> <span id="cGrupo">—</span></div>
+      <div class="cl"><b>Fecha:</b> <span id="cFecha">—</span></div>
+    </div>
+
+    <div class="aviso-caja no-print">
+      <b>Antes de empezar.</b> Esta hoja se llena <b>leyendo el expediente</b> que tiene al lado, no
+      resúmenes ajenos. <b>No se puede pegar texto</b>: se escribe. Su avance se guarda solo en este
+      navegador, así que puede cerrar y volver — pero termínela en el mismo equipo.
+    </div>
+
+    <h2>Identificación</h2>
+    <div id="ident"></div>
+
+    <h2>Parte A · Ficha técnica de la causa</h2>
+    <p class="sub">Para los dos grupos. En la casilla de la derecha indique <b>la página o el párrafo</b>
+    donde consta el dato. Esa columna es obligatoria y vale puntos.</p>
+    <div id="parteA"></div>
+
+    <h2>Parte B · Verificación de lectura</h2>
+    <div class="grupo-box" id="cajaGrupo">
+      Escriba su primer apellido arriba y aparecerá <b>únicamente la tabla de su grupo</b>.
+    </div>
+    <div id="parteB"></div>
+
+    <h2>Parte C · Las tres preguntas abiertas</h2>
+    <p class="sub">Escriba tres preguntas que la lectura le dejó y que <b>todavía no puede responder</b>.
+    No las responda: formúlelas con precisión y diga en dos líneas por qué le resultan difíciles.</p>
+    <div id="parteC"></div>
+
+    <h2>Declaración de uso de inteligencia artificial</h2>
+    <div class="aviso-caja no-print">
+      <b>Obligatoria, aunque no la haya usado.</b> Una entrega sin declaración se devuelve sin calificar.
+      Y un aviso concreto: en la <b>Parte B</b> los modelos generativos fallan mucho — inventan códigos
+      catastrales, cambian fechas y atribuyen votos a jueces que no los firmaron. Todo dato de esa parte
+      se contrasta contra el PDF: uno inventado vale cero aunque el resto esté impecable.
+    </div>
+    <div id="parteD"></div>
+
+    <div style="height:30px"></div>
+  </div>
+</div>
+
+<div class="barra no-print">
+  <div class="cuenta" id="txtProg">0 de 0</div>
+  <div class="prog"><i id="barra"></i></div>
+  <span class="cuenta" id="guardado"></span>
+</div>
+
+<script>
+(function(){
+"use strict";
+var CLAVE = "hoja1-filosofia-v1";
+
+var IDENT = [
+  {id:"nombre", t:"Nombres y apellidos completos", h:"Como constan en su cédula."},
+  {id:"apellido", t:"Su primer apellido", h:"De aquí sale su grupo. Escríbalo solo, sin el segundo."},
+  {id:"cedula", t:"Cédula", h:"Solo números."}
+];
+
+var A = [
+ "Número de sentencia, fecha y juez ponente",
+ "Tipo de causa y competencia con la que actúa la Corte",
+ "Partes: quién acciona y contra quién",
+ "Recorrido procesal: primera instancia, Corte Provincial (con fecha) y entrada de la Corte Constitucional",
+ "Objeto: qué acto administrativo concreto se impugna",
+ "Normas constitucionales invocadas",
+ "Decisión: qué declaró la Corte, punto por punto",
+ "Medidas de reparación ordenadas",
+ "Composición del voto: a favor, concurrentes, salvados, con nombres"
+];
+
+var B = {
+ A:["Códigos catastrales de las dos concesiones mineras",
+    "Fecha de la sentencia de la Corte Provincial de Justicia de Imbabura",
+    "Nombre de la empresa pública minera que interviene",
+    "Artículo de la Constitución que se transcribe en el párrafo 42",
+    "Nombre del principio ecológico que la Corte explica en el párrafo 44",
+    "Cantón y provincia donde está el bosque",
+    "Nombre de las dos juezas que formularon voto salvado",
+    "Quién debe costear la reforestación, según las medidas de reparación"],
+ B:["Institución que presentó la acción de protección",
+    "Número del proceso seguido ante la justicia ordinaria",
+    "Los dos artículos constitucionales sobre consulta cuya vulneración se declara",
+    "Artículo de la Constitución que se cita en el párrafo 53",
+    "Qué ocurre, según el párrafo 47, cuando un ecosistema es diverso",
+    "Parque nacional al que el bosque sirve de zona de amortiguamiento",
+    "Nombre de los cuatro jueces que firmaron voto concurrente",
+    "Qué se ordena hacer con la infraestructura construida dentro del bosque"]
+};
+
+var D = [
+ {id:"ia1", t:"¿Usó alguna herramienta de inteligencia artificial en esta tarea?", h:"Responda «No», o «Sí» indicando cuál."},
+ {id:"ia2", t:"Si la usó: ¿qué le preguntó exactamente?", h:"Transcriba la pregunta, no la resuma."},
+ {id:"ia3", t:"¿Qué le respondió la herramienta?", h:"En dos o tres líneas."},
+ {id:"ia4", t:"¿Qué tuvo que corregir contra el expediente, y por qué?", h:"Si no tuvo que corregir nada, dígalo y explique cómo lo comprobó."}
+];
+
+var datos = {};
+try { datos = JSON.parse(localStorage.getItem(CLAVE) || "{}"); } catch(e){ datos = {}; }
+
+function $(s){ return document.querySelector(s); }
+function el(tag, cls, html){ var n=document.createElement(tag); if(cls) n.className=cls;
+  if(html!=null) n.innerHTML=html; return n; }
+
+function antiPegado(campo){
+  campo.addEventListener("paste", function(ev){
+    ev.preventDefault();
+    campo.style.borderColor = "#8a111a";
+    var m = campo.parentNode.querySelector(".pegado");
+    if(!m){ m = el("div","mini pegado","<b style='color:#8a111a'>Aquí no se puede pegar.</b> Esta hoja se llena escribiendo: es la mitad del ejercicio.");
+      campo.parentNode.appendChild(m); }
+    setTimeout(function(){ campo.style.borderColor=""; }, 1200);
+  });
+  campo.addEventListener("drop", function(ev){ ev.preventDefault(); });
+}
+
+function caja(id, etiqueta, ayuda, conDonde, numero){
+  var c = el("div","campo");
+  c.dataset.k = id;
+  var lab = el("label","etq", (numero!=null? '<span class="n">'+numero+'</span>':'') + etiqueta);
+  c.appendChild(lab);
+  if(ayuda) c.appendChild(el("p","ayuda",ayuda));
+  var zona = el("div", conDonde ? "dupla" : "");
+  var t = el("textarea"); t.rows = conDonde ? 2 : 3; t.id = "f_"+id;
+  t.value = datos[id] || "";
+  antiPegado(t); zona.appendChild(t);
+  if(conDonde){
+    var d = el("input"); d.type="text"; d.className="donde"; d.id="f_"+id+"_d";
+    d.placeholder="¿Dónde consta? (pág. o ¶)"; d.value = datos[id+"_d"] || "";
+    antiPegado(d); zona.appendChild(d);
+  }
+  c.appendChild(zona);
+  return c;
+}
+
+function pinta(){
+  var cI = $("#ident"); cI.innerHTML="";
+  IDENT.forEach(function(f){
+    var c = el("div","campo"); c.dataset.k=f.id;
+    c.appendChild(el("label","etq",f.t));
+    c.appendChild(el("p","ayuda",f.h));
+    var i = el("input"); i.type="text"; i.id="f_"+f.id; i.value = datos[f.id]||"";
+    antiPegado(i); c.appendChild(i); cI.appendChild(c);
+  });
+
+  var cA = $("#parteA"); cA.innerHTML="";
+  A.forEach(function(t,i){ cA.appendChild(caja("a"+(i+1), t, null, true, i+1)); });
+
+  var cC = $("#parteC"); cC.innerHTML="";
+  for(var i=1;i<=3;i++){
+    cC.appendChild(caja("c"+i+"p","Pregunta "+i,null,false,i));
+    cC.appendChild(caja("c"+i+"r","Por qué me resulta difícil","Dos líneas.",false,null));
+  }
+
+  var cD = $("#parteD"); cD.innerHTML="";
+  D.forEach(function(f){ cD.appendChild(caja(f.id, f.t, f.h, false, null)); });
+
+  pintaB();
+  document.querySelectorAll("input,textarea").forEach(function(n){
+    n.addEventListener("input", function(){ datos[n.id.slice(2)] = n.value; marca(); });
+  });
+  marca();
+}
+
+function grupoDe(ap){
+  ap = (ap||"").trim().toUpperCase();
+  if(!ap) return null;
+  var c = ap.charAt(0);
+  if(c==="Ñ") return "B";
+  return (c>="A" && c<="L") ? "A" : ((c>="M" && c<="Z") ? "B" : null);
+}
+
+function pintaB(){
+  var g = grupoDe(datos.apellido);
+  var cB = $("#parteB"); cB.innerHTML="";
+  var caj = $("#cajaGrupo");
+  if(!g){
+    caj.innerHTML = "Escriba su primer apellido arriba y aparecerá <b>únicamente la tabla de su grupo</b>.";
+    $("#pGrupo").textContent = "Sin grupo"; $("#pGrupo").className="pill";
+    return;
+  }
+  caj.innerHTML = "Le corresponde el <b>GRUPO "+g+"</b> — primer apellido de la "+
+     (g==="A" ? "<b>A a la L</b>" : "<b>M en adelante</b>") +
+     ". Llene <b>solo</b> estos ocho datos: los del otro grupo no se piden y no se califican.";
+  $("#pGrupo").textContent = "Grupo "+g; $("#pGrupo").className="pill ok";
+  B[g].forEach(function(t,i){ cB.appendChild(caja("b"+(i+1), t, null, true, i+1)); });
+  document.querySelectorAll("#parteB input,#parteB textarea").forEach(function(n){
+    n.addEventListener("input", function(){ datos[n.id.slice(2)] = n.value; marca(); });
+  });
+}
+
+function marca(){
+  var total=0, hechos=0;
+  document.querySelectorAll(".campo").forEach(function(c){
+    var t = c.querySelector("textarea,input[type=text]");
+    if(!t) return;
+    total++;
+    var ok = t.value.trim().length >= 3;
+    if(ok) hechos++;
+    c.classList.toggle("lleno", ok);
+  });
+  $("#txtProg").textContent = hechos+" de "+total;
+  $("#barra").style.width = total ? Math.round(hechos*100/total)+"%" : "0%";
+  $("#bPdf").disabled = !(datos.nombre && datos.cedula && grupoDe(datos.apellido) && hechos>=total*0.9);
+  $("#cNombre").textContent = datos.nombre || "—";
+  $("#cCedula").textContent = datos.cedula || "—";
+  $("#cGrupo").textContent = grupoDe(datos.apellido) || "—";
+  $("#cFecha").textContent = new Date().toLocaleDateString("es-EC",{day:"numeric",month:"long",year:"numeric"});
+}
+
+function guarda(silencio){
+  try{ localStorage.setItem(CLAVE, JSON.stringify(datos));
+    if(!silencio){ $("#guardado").textContent="Guardado ✓";
+      setTimeout(function(){ $("#guardado").textContent=""; }, 2200); }
+  }catch(e){ $("#guardado").textContent="No se pudo guardar"; }
+}
+
+$("#bGuardar").addEventListener("click", function(){ guarda(false); });
+$("#bPdf").addEventListener("click", function(){ guarda(true); window.print(); });
+document.addEventListener("input", function(){ clearTimeout(window._t);
+  window._t = setTimeout(function(){ guarda(true); }, 900); });
+
+// el apellido repinta la parte B
+document.addEventListener("input", function(ev){
+  if(ev.target && ev.target.id === "f_apellido"){ pintaB(); marca(); }
+});
+
+// pestañas en móvil
+$("#tIzq").addEventListener("click", function(){
+  $("#panIzq").classList.add("on"); $("#panDer").classList.remove("on");
+  $("#tIzq").classList.add("on"); $("#tDer").classList.remove("on"); });
+$("#tDer").addEventListener("click", function(){
+  $("#panDer").classList.add("on"); $("#panIzq").classList.remove("on");
+  $("#tDer").classList.add("on"); $("#tIzq").classList.remove("on"); });
+
+// si el visor no carga, ofrecer el enlace
+setTimeout(function(){
+  var f = $("#visor");
+  try{ if(!f || f.clientHeight < 40){ f.style.display="none"; $("#avisoPdf").style.display="flex"; } }
+  catch(e){ $("#avisoPdf").style.display="flex"; }
+}, 2500);
+
+pinta();
+})();
+</script>
+</body>
+</html>
