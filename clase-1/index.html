@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clase Magistral n.º 1 · Filosofía del Derecho · UCACUE</title>
+<style>
+:root {
+  --papel: #f7f6f3;
+  --papel-alt: #edebe6;
+  --blanco: #ffffff;
+  --tinta: #1a1a1c;
+  --tinta-suave: #3a3a3d;
+  --nota: #6b6b68;
+  --carmesi: #8a111a;
+  --carmesi-claro: #b02230;
+  --carmesi-tenue: #f4e9ea;
+  --guinda: #960606;
+  --linea: #d6d3cc;
+  --sombra: rgba(0, 0, 0, 0.08);
+  --serif: Charter, Georgia, "Segoe UI", system-ui, serif;
+  --sans: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--serif);
+  line-height: 1.6;
+  padding-bottom: 80px;
+}
+header {
+  background: var(--blanco);
+  border-bottom: 3px solid var(--carmesi);
+  padding: 24px 5%;
+}
+.wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.nav-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  font-family: var(--sans);
+  font-size: 13px;
+}
+.nav-top a {
+  color: var(--carmesi);
+  text-decoration: none;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-top a:hover { text-decoration: underline; }
+.nav-tabs {
+  display: flex;
+  gap: 8px;
+}
+.nav-tab {
+  padding: 5px 12px;
+  border-radius: 6px;
+  background: var(--papel-alt);
+  color: var(--tinta-suave);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  transition: .15s;
+}
+.nav-tab:hover { background: var(--carmesi-tenue); color: var(--carmesi); }
+.nav-tab.active { background: var(--carmesi); color: #fff; }
+
+.kicker {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--carmesi);
+  margin-bottom: 6px;
+}
+h1 {
+  font-size: 28px;
+  line-height: 1.25;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.meta-sub {
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--nota);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.meta-sub span { display: inline-flex; align-items: center; gap: 4px; }
+
+main {
+  padding: 30px 5%;
+}
+.grid-stage {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+@media (min-width: 900px) {
+  .grid-stage {
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+}
+
+/* CINEMATIC THEATER */
+.theater-box {
+  background: #111;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  border: 1px solid #333;
+}
+.screen-frame {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 */
+  background: #000;
+}
+.screen-frame img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: opacity .35s ease;
+}
+.screen-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+  padding: 16px 20px;
+  color: #fff;
+  font-family: var(--sans);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.plano-badge {
+  background: var(--carmesi);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+  display: inline-block;
+}
+.plano-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #f1f1f1;
+}
+.theater-controls {
+  background: #1a1a1c;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-top: 1px solid #2a2a2d;
+}
+.audio-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-play {
+  background: var(--carmesi);
+  color: #fff;
+  border: none;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: .15s;
+  flex-shrink: 0;
+}
+.btn-play:hover { background: var(--carmesi-claro); transform: scale(1.05); }
+.timeline-slider {
+  flex: 1;
+  cursor: pointer;
+  accent-color: var(--carmesi);
+}
+.time-display {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: #aaa;
+  width: 75px;
+  text-align: right;
+}
+.nav-planos-strip {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.nav-planos-strip::-webkit-scrollbar { height: 4px; }
+.nav-planos-strip::-webkit-scrollbar-thumb { background: #444; border-radius: 2px; }
+.btn-plano-step {
+  padding: 6px 10px;
+  background: #2a2a2e;
+  border: 1px solid #3d3d42;
+  color: #ccc;
+  border-radius: 6px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: .15s;
+}
+.btn-plano-step:hover { background: #3a3a40; color: #fff; }
+.btn-plano-step.active { background: var(--carmesi); border-color: var(--carmesi-claro); color: #fff; }
+
+/* SCRIPT & PEDAGOGICAL COLUMN */
+.sidebar-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.card-box {
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+  border-radius: 10px;
+  padding: 22px;
+  box-shadow: 0 2px 8px var(--sombra);
+}
+.card-box h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--tinta);
+  border-bottom: 2px solid var(--carmesi-tenue);
+  padding-bottom: 8px;
+}
+.dialogue-stream {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 480px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+.dialogue-stream::-webkit-scrollbar { width: 5px; }
+.dialogue-stream::-webkit-scrollbar-thumb { background: var(--linea); border-radius: 4px; }
+.speech-bubble {
+  border-left: 3px solid var(--linea);
+  padding-left: 14px;
+  transition: .2s;
+  cursor: pointer;
+}
+.speech-bubble:hover { border-left-color: var(--carmesi-claro); }
+.speech-bubble.active {
+  border-left-color: var(--carmesi);
+  background: var(--carmesi-tenue);
+  padding: 10px 14px;
+  border-radius: 0 8px 8px 0;
+}
+.speaker-tag {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+  color: var(--carmesi);
+}
+.speaker-tag.narrador { color: var(--nota); }
+.speaker-tag.aquino { color: #854d0e; }
+.speaker-tag.bobbio { color: #1e40af; }
+.speaker-tag.rawls { color: #047857; }
+.speaker-tag.ehrlich { color: #854d0e; }
+.speaker-tag.kelsen { color: #1e40af; }
+.speaker-tag.reale { color: #047857; }
+.speaker-text {
+  font-size: 14.5px;
+  color: var(--tinta-suave);
+  line-height: 1.55;
+}
+
+.pedagogy-alert {
+  background: #fff8f8;
+  border: 1px solid #f2d2d5;
+  border-left: 4px solid var(--carmesi);
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-size: 13.5px;
+  color: var(--tinta-suave);
+}
+.pedagogy-alert strong { color: var(--carmesi); }
+
+.reparto-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 8px;
+}
+.reparto-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px;
+  background: var(--papel);
+  border-radius: 8px;
+  border: 1px solid var(--linea);
+}
+.reparto-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--carmesi-tenue);
+  color: var(--carmesi);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-family: var(--sans);
+  font-size: 13px;
+  flex-shrink: 0;
+}
+.reparto-info h4 {
+  font-size: 14px;
+  font-weight: 700;
+  font-family: var(--sans);
+  margin-bottom: 2px;
+}
+.reparto-info p {
+  font-size: 12.5px;
+  color: var(--nota);
+  line-height: 1.4;
+}
+
+footer {
+  margin-top: 50px;
+  border-top: 1px solid var(--linea);
+  padding: 24px 5%;
+  text-align: center;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--nota);
+}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="nav-top">
+    <a href="../">← Volver al Aula Principal</a>
+    <div class="nav-tabs">
+      <a href="../clase-1/" class="nav-tab active">Clase 1 (B1)</a>
+      <a href="../clase-2/" class="nav-tab">Clase 2 (B2)</a>
+      <a href="../clase-3/" class="nav-tab">Clase 3 (B3)</a>
+    </div>
+  </div>
+  <div class="kicker">Bloque 1 · Clase Magistral Cinematográfica</div>
+  <h1>«Una ley válida que nadie debería obedecer»</h1>
+  <div class="meta-sub">
+    <span>⏱️ 6:42 min</span>
+    <span>🎞️ 12 planos cinematográficos</span>
+    <span>🎙️ Kelsen, Radbruch, García Máynez y Narradora</span>
+    <span>📖 Subpuntos 1.1.1 y 1.2.3</span>
+  </div>
+</div></header>
+
+<main><div class="wrap">
+  <div class="grid-stage">
+    <!-- TEATRO -->
+    <div class="theater-box">
+      <div class="screen-frame">
+        <img id="currentImage" src="../img/clase-1/plano_1_bosque_arriba_1789758823337.jpg" alt="Plano Clase 1">
+        <div class="screen-overlay">
+          <div>
+            <span class="plano-badge" id="planoBadge">PLANO 1 · 0:00 - 0:35</span>
+            <div class="plano-title" id="planoTitle">El bosque Los Cedros desde arriba</div>
+          </div>
+        </div>
+      </div>
+      <div class="theater-controls">
+        <div class="audio-bar">
+          <button class="btn-play" id="btnPlay" title="Reproducir / Pausar">▶</button>
+          <input type="range" class="timeline-slider" id="audioSlider" min="0" max="402" value="0">
+          <span class="time-display" id="timeDisplay">0:00 / 6:42</span>
+        </div>
+        <div class="nav-planos-strip" id="planosStrip"></div>
+      </div>
+    </div>
+
+    <!-- PANEL LATERAL -->
+    <div class="sidebar-panel">
+      <div class="pedagogy-alert">
+        <strong>Advertencia de honestidad intelectual:</strong> Las voces están interpretadas por actores y modeladas según la obra de los autores. Esta conversación nunca ocurrió en la vida real. Lo fiel es la posición filosófica de cada uno. Para citar formalmente en sus tareas, acuda al material escrito del bloque.
+      </div>
+
+      <div class="card-box">
+        <h3>Guion Sincronizado</h3>
+        <div class="dialogue-stream" id="dialogueStream"></div>
+      </div>
+
+      <div class="card-box">
+        <h3>Reparto de Voces</h3>
+        <div class="reparto-list">
+          <div class="reparto-item">
+            <div class="reparto-avatar">K</div>
+            <div class="reparto-info">
+              <h4>Hans Kelsen (Praga, 1881)</h4>
+              <p>Teoría Pura del Derecho: validez formal por competencia y procedimiento.</p>
+            </div>
+          </div>
+          <div class="reparto-item">
+            <div class="reparto-avatar">R</div>
+            <div class="reparto-info">
+              <h4>Gustav Radbruch (Lübeck, 1878)</h4>
+              <p>Fórmula de Radbruch: la extrema injusticia no es Derecho.</p>
+            </div>
+          </div>
+          <div class="reparto-item">
+            <div class="reparto-avatar">M</div>
+            <div class="reparto-info">
+              <h4>Eduardo García Máynez (México, 1908)</h4>
+              <p>Los cuatro criterios de la norma: bilateral, externa, heterónoma y coercible.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></main>
+
+<audio id="audioMaster" src="../audio/clase_1_master.mp3" preload="metadata"></audio>
+
+<footer>Sr. Carlos Eduardo Chica-Villacís, Abg. Mgs. · Filosofía del Derecho · Universidad Católica de Cuenca</footer>
+
+<script>
+const PLANOS = [
+  { id: 1, start: 0, end: 35, title: "El bosque Los Cedros desde arriba", img: "../img/clase-1/plano_1_bosque_arriba_1789758823337.jpg" },
+  { id: 2, start: 35, end: 55, title: "La frase del párrafo 42 en documento legal", img: "../img/clase-1/plano_2_la_frase_sola_1789758873431.jpg" },
+  { id: 3, start: 55, end: 100, title: "Hans Kelsen junto a la ventana", img: "../img/clase-1/plano_3_kelsen_ventana_1789758884744.jpg" },
+  { id: 4, start: 100, end: 155, title: "Gustav Radbruch en la mesa con papeles", img: "../img/clase-1/plano_4_radbruch_mesa_1789758895878.jpg" },
+  { id: 5, start: 155, end: 180, title: "Kelsen y Radbruch frente a frente en tensión", img: "../img/clase-1/plano_5_kelsen_radbruch_tension_1789758908372.jpg" },
+  { id: 6, start: 180, end: 220, title: "Eduardo García Máynez entra al encuadre", img: "../img/clase-1/plano_6_garcia_maynez_entra_1789758922561.jpg" },
+  { id: 7, start: 220, end: 270, title: "Los cuatro criterios de la norma jurídica", img: "../img/clase-1/plano_7_cuatro_criterios_1789758935735.jpg" },
+  { id: 8, start: 270, end: 320, title: "El Art. 71 pasando por los cuatro filtros", img: "../img/clase-1/plano_8_articulo_filtros_1789758948101.jpg" },
+  { id: 9, start: 320, end: 350, title: "Radbruch pregunta por el párrafo 42", img: "../img/clase-1/plano_9_radbruch_levanta_vista_1789758961810.jpg" },
+  { id: 10, start: 350, end: 375, title: "Tríptico: Kelsen, Radbruch y García Máynez", img: "../img/clase-1/plano_10_triptico_juristas_1789758976758.jpg" },
+  { id: 11, start: 375, end: 410, title: "Las tres afirmaciones y la pregunta abierta", img: "../img/clase-1/plano_11_tres_afirmaciones_1789758995348.jpg" },
+  { id: 12, start: 410, end: 430, title: "El bosque desde el suelo (luz filtrada)", img: "../img/clase-1/plano_12_bosque_suelo_1789759017654.jpg" }
+];
+
+const DIALOGUES = [
+  { plano: 1, speaker: "narrador", name: "Narradora", text: "Esto es el Bosque Protector Los Cedros, en el cantón Cotacachi. Seis mil cuatrocientas hectáreas de bosque nublado, en una de las regiones con más vida por metro cuadrado del planeta. En dos mil diecisiete, el Estado ecuatoriano concesionó buena parte de su superficie para minería. En dos mil veintiuno, la Corte Constitucional anuló esas concesiones. Y para hacerlo escribió una frase que va a ocuparnos los próximos minutos." },
+  { plano: 2, speaker: "narrador", name: "Narradora", text: "«La naturaleza tiene valor por sí misma, independientemente de la utilidad que la naturaleza pueda tener para el ser humano.» Párrafo cuarenta y dos." },
+  { plano: 3, speaker: "kelsen", name: "Hans Kelsen", text: "Esa frase no debería estar ahí. No digo que sea falsa. Digo que no es jurídica. ¿Quiere saber si el artículo setenta y uno es Derecho ecuatoriano? Pregunte una sola cosa: ¿lo puso quien tenía competencia para ponerlo, por el procedimiento debido? Si la respuesta es sí, es Derecho." },
+  { plano: 4, speaker: "radbruch", name: "Gustav Radbruch", text: "Profesor, yo vi a jueces alemanes aplicar leyes atroces diciendo exactamente eso. Imagine que el constituyente hubiera escrito que la naturaleza es cosa y puede destruirse sin límite. Puesto por quien tenía competencia. ¿Habría que obedecerlo?" },
+  { plano: 5, speaker: "narrador", name: "Narradora", text: "Aquí es donde esta discusión suele descarrilar. Dos siglos de manuales han puesto a estos dos hombres como enemigos y a los estudiantes a elegir bando el primer día de clase. Pero miren otra vez lo que acaba de pasar." },
+  { plano: 6, speaker: "maynez", name: "García Máynez", text: "No están en desacuerdo. Están contestando preguntas distintas. Usted, profesor Kelsen, contesta cómo reconocemos que algo es Derecho. Usted, profesor Radbruch, contesta si debemos obedecerlo. Son dos preguntas, no una." },
+  { plano: 7, speaker: "maynez", name: "García Máynez", text: "Tomemos un instrumento. Una norma jurídica es bilateral: impone un deber a alguien y da a otro la facultad de exigirlo. Es externa, heterónoma y coercible." },
+  { plano: 8, speaker: "maynez", name: "García Máynez", text: "El artículo setenta y uno pasa los cuatro criterios: obliga al Estado, da facultad de exigir, rige aunque no lo acepte y tiene coacción. Es Derecho pleno." },
+  { plano: 9, speaker: "radbruch", name: "Gustav Radbruch", text: "De acuerdo con el artículo setenta y uno, profesor. Pero dígame ahora: ¿y el párrafo cuarenta y dos? Porque ese párrafo no impone ningún deber ni faculta a nadie. Dice por qué." },
+  { plano: 10, speaker: "narrador", name: "Narradora", text: "Kelsen responde desde el rigor de la forma; Radbruch desde la herida de la injusticia; García Máynez desde la precisión de los conceptos." },
+  { plano: 11, speaker: "narrador", name: "Narradora", text: "Tres cosas dichas: distinguir validez de obediencia; el artículo setenta y uno es Derecho; el párrafo cuarenta y dos desborda los cuatro filtros. Sin decir: qué hace ese párrafo en una sentencia judicial." },
+  { plano: 12, speaker: "narrador", name: "Narradora", text: "Los Cedros sigue en pie. Los tres juristas llevan décadas muertos. La pregunta, no." }
+];
+
+const audio = document.getElementById('audioMaster');
+const btnPlay = document.getElementById('btnPlay');
+const slider = document.getElementById('audioSlider');
+const timeDisplay = document.getElementById('timeDisplay');
+const currentImg = document.getElementById('currentImage');
+const planoBadge = document.getElementById('planoBadge');
+const planoTitle = document.getElementById('planoTitle');
+const strip = document.getElementById('planosStrip');
+const dialogueStream = document.getElementById('dialogueStream');
+
+let currentPlanoIdx = 0;
+
+function formatTime(s) {
+  const m = Math.floor(s / 60);
+  const sec = Math.floor(s % 60);
+  return `${m}:${sec < 10 ? '0' : ''}${sec}`;
+}
+
+// Build UI
+PLANOS.forEach((p, idx) => {
+  const b = document.createElement('button');
+  b.className = `btn-plano-step ${idx === 0 ? 'active' : ''}`;
+  b.innerText = `P${p.id}`;
+  b.title = p.title;
+  b.onclick = () => {
+    audio.currentTime = p.start;
+    setPlano(idx);
+  };
+  strip.appendChild(b);
+});
+
+DIALOGUES.forEach((d) => {
+  const item = document.createElement('div');
+  item.className = 'speech-bubble';
+  item.id = `dlg-${d.plano}`;
+  item.onclick = () => {
+    const p = PLANOS.find(x => x.id === d.plano);
+    if(p) { audio.currentTime = p.start; setPlano(PLANOS.indexOf(p)); }
+  };
+  item.innerHTML = `<div class="speaker-tag ${d.speaker}">${d.name}</div><div class="speaker-text">${d.text}</div>`;
+  dialogueStream.appendChild(item);
+});
+
+function setPlano(idx) {
+  currentPlanoIdx = idx;
+  const p = PLANOS[idx];
+  currentImg.src = p.img;
+  planoBadge.innerText = `PLANO ${p.id} · ${formatTime(p.start)} - ${formatTime(p.end)}`;
+  planoTitle.innerText = p.title;
+
+  document.querySelectorAll('.btn-plano-step').forEach((btn, i) => {
+    btn.classList.toggle('active', i === idx);
+  });
+  document.querySelectorAll('.speech-bubble').forEach(sb => {
+    sb.classList.toggle('active', sb.id === `dlg-${p.id}`);
+  });
+}
+
+btnPlay.onclick = () => {
+  if(audio.paused) { audio.play(); btnPlay.innerText = '⏸'; }
+  else { audio.pause(); btnPlay.innerText = '▶'; }
+};
+
+audio.ontimeupdate = () => {
+  slider.value = audio.currentTime;
+  timeDisplay.innerText = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration || 402)}`;
+  
+  const current = audio.currentTime;
+  const foundIdx = PLANOS.findIndex(p => current >= p.start && current < p.end);
+  if(foundIdx !== -1 && foundIdx !== currentPlanoIdx) {
+    setPlano(foundIdx);
+  }
+};
+
+audio.onloadedmetadata = () => {
+  slider.max = audio.duration;
+  timeDisplay.innerText = `0:00 / ${formatTime(audio.duration)}`;
+};
+
+slider.oninput = () => {
+  audio.currentTime = slider.value;
+};
+</script>
+</body>
+</html>
