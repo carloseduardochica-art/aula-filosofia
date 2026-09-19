@@ -149,6 +149,8 @@ textarea{resize:vertical;min-height:62px}
       <div class="cl" style="margin-top:10px"><b>Estudiante:</b> <span id="cNombre">—</span></div>
       <div class="cl"><b>Cédula:</b> <span id="cCedula">—</span> &nbsp;·&nbsp; <b>Grupo:</b> <span id="cGrupo">—</span></div>
       <div class="cl"><b>Fecha:</b> <span id="cFecha">—</span></div>
+      <div class="cl" style="margin-top:10px;padding-top:8px;border-top:1px solid #c9c5bd"><b>Código de constancia:</b><br><span id="cCodigo" style="font-family:ui-monospace,Consolas,monospace;font-size:8.5pt;word-break:break-all">—</span></div>
+      <div class="cl" style="font-size:8pt;color:#666;margin-top:4px">Este código certifica que la hoja se trabajó dentro de la aplicación. No califica las respuestas: eso lo hace el docente con la rúbrica.</div>
     </div>
 
     <div class="aviso-caja no-print">
@@ -243,6 +245,14 @@ var D = [
  {id:"ia3", t:"¿Qué le respondió la herramienta?", h:"En dos o tres líneas."},
  {id:"ia4", t:"¿Qué tuvo que corregir contra el expediente, y por qué?", h:"Si no tuvo que corregir nada, dígalo y explique cómo lo comprobó."}
 ];
+
+var SAL = "FD-H1-hoja-v1";
+var T0 = Date.now();
+function djb2(x){ var h=5381,i; for(i=0;i<x.length;i++){ h=((h<<5)+h)+x.charCodeAt(i); h=h>>>0; } return h; }
+function b36(n){ return n.toString(36).toUpperCase(); }
+function soloDig(x){ return (x||"").replace(/\D/g,""); }
+function normNom(x){ return (x||"").toUpperCase().replace(/[^A-ZÁÉÍÓÚÑ ]/g,"").trim().replace(/\s+/g," "); }
+function minutos(){ return Math.max(1, Math.round((Date.now()-T0)/60000)); }
 
 var datos = {};
 try { datos = JSON.parse(localStorage.getItem(CLAVE) || "{}"); } catch(e){ datos = {}; }
@@ -355,6 +365,15 @@ function marca(){
   $("#cCedula").textContent = datos.cedula || "—";
   $("#cGrupo").textContent = grupoDe(datos.apellido) || "—";
   $("#cFecha").textContent = new Date().toLocaleDateString("es-EC",{day:"numeric",month:"long",year:"numeric"});
+  var g = grupoDe(datos.apellido);
+  if(datos.nombre && datos.cedula && g){
+    var cuerpo = ["H1", soloDig(datos.cedula), normNom(datos.nombre), "G"+g,
+                  hechos+"/"+total, minutos()+"M",
+                  new Date().toISOString().slice(0,16).replace("T"," ")].join("|");
+    $("#cCodigo").textContent = cuerpo + "|" + b36(djb2(SAL + cuerpo));
+  } else {
+    $("#cCodigo").textContent = "— se genera al completar nombre, cédula y apellido —";
+  }
 }
 
 function guarda(silencio){
