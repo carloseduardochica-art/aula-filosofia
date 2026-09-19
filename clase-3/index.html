@@ -197,7 +197,7 @@ main {
   font-family: var(--sans);
   font-size: 12px;
   color: #aaa;
-  width: 75px;
+  width: 80px;
   text-align: right;
 }
 .nav-planos-strip {
@@ -365,7 +365,7 @@ footer {
   <div class="kicker">Bloque 3 · Clase Magistral Cinematográfica</div>
   <h1>«El río y el estanque»</h1>
   <div class="meta-sub">
-    <span>⏱️ 7:10 min</span>
+    <span>⏱️ 6:20 min</span>
     <span>🎞️ 12 planos cinematográficos</span>
     <span>🎙️ Eugen Ehrlich, Hans Kelsen, Miguel Reale y Narrador</span>
     <span>📖 Subpuntos 3.2.1, 3.2.2 y 3.2.3</span>
@@ -380,7 +380,7 @@ footer {
         <img id="currentImage" src="../img/clase-3/plano_1_rio_estanque_cenital.jpg" alt="Plano Clase 3">
         <div class="screen-overlay">
           <div>
-            <span class="plano-badge" id="planoBadge">PLANO 1 · 0:00 - 0:30</span>
+            <span class="plano-badge" id="planoBadge">PLANO 1 · 0:00 - 0:20</span>
             <div class="plano-title" id="planoTitle">El río y el estanque desde arriba</div>
           </div>
         </div>
@@ -388,8 +388,8 @@ footer {
       <div class="theater-controls">
         <div class="audio-bar">
           <button class="btn-play" id="btnPlay" title="Reproducir / Pausar">▶</button>
-          <input type="range" class="timeline-slider" id="audioSlider" min="0" max="430" value="0">
-          <span class="time-display" id="timeDisplay">0:00 / 7:10</span>
+          <input type="range" class="timeline-slider" id="audioSlider" min="0" max="381" value="0">
+          <span class="time-display" id="timeDisplay">0:00 / 6:20</span>
         </div>
         <div class="nav-planos-strip" id="planosStrip"></div>
       </div>
@@ -420,7 +420,7 @@ footer {
             <div class="reparto-avatar" style="background:#dbeafe; color:#1e40af;">K</div>
             <div class="reparto-info">
               <h4>Hans Kelsen (Praga, 1881)</h4>
-              <p>Reaparece para conceder: la eficacia general es presupuesto del orden, pero no define la validez norma por norma.</p>
+              <p>Reaparece para conceder: la eficacia general es presupuesto del sistema, pero defiende que una norma no aplicada es Derecho incumplido que permite demandar.</p>
             </div>
           </div>
           <div class="reparto-item">
@@ -442,18 +442,18 @@ footer {
 
 <script>
 const PLANOS = [
-  { id: 1, start: 0, end: 30, title: "Vista cenital: el río y el estanque", img: "../img/clase-3/plano_1_rio_estanque_cenital.jpg" },
-  { id: 2, start: 30, end: 60, title: "Dos fechas: 2008 (norma) y 2017 (concesión)", img: "../img/clase-3/plano_2_dos_fechas_contraste.jpg" },
-  { id: 3, start: 60, end: 110, title: "Eugen Ehrlich al aire libre en Bucovina", img: "../img/clase-3/plano_3_ehrlich_aire_libre.jpg" },
-  { id: 4, start: 110, end: 155, title: "Hans Kelsen: la validez formal no es papel mojado", img: "../img/clase-3/plano_4_kelsen_ventana.jpg" },
-  { id: 5, start: 155, end: 195, title: "Kelsen concede: la eficacia como presupuesto general", img: "../img/clase-3/plano_5_kelsen_concede.jpg" },
-  { id: 6, start: 195, end: 230, title: "Miguel Reale entra con calidez", img: "../img/clase-3/plano_6_entra_reale.jpg" },
-  { id: 7, start: 230, end: 280, title: "Hecho, valor y norma: Reale habla al estudiante", img: "../img/clase-3/plano_7_tres_dimensiones_reale.jpg" },
-  { id: 8, start: 280, end: 320, title: "La silla vacía: Jürgen Habermas y Facticidad y Validez", img: "../img/clase-3/plano_8_habermas_voz_ausente.jpg" },
-  { id: 9, start: 320, end: 345, title: "Tríptico: Ehrlich, Kelsen y Reale", img: "../img/clase-3/plano_9_triptico_ehrlich_kelsen_reale.jpg" },
-  { id: 10, start: 345, end: 375, title: "Advertencia de Ehrlich: miren las actas del caso", img: "../img/clase-3/plano_10_advertencia_expediente.jpg" },
-  { id: 11, start: 375, end: 410, title: "Tres afirmaciones para el informe final", img: "../img/clase-3/plano_11_tres_afirmaciones_informe.jpg" },
-  { id: 12, start: 410, end: 430, title: "El río y el estanque al nivel del agua", img: "../img/clase-3/plano_12_rio_estanque_agua.jpg" }
+  { id: 1, start: 0, end: 19.8, title: "Vista cenital: el río y el estanque", img: "../img/clase-3/plano_1_rio_estanque_cenital.jpg" },
+  { id: 2, start: 19.8, end: 50.8, title: "Dos fechas: 2008 (norma) y 2017 (concesión)", img: "../img/clase-3/plano_2_dos_fechas_contraste.jpg" },
+  { id: 3, start: 50.8, end: 95.3, title: "Eugen Ehrlich al aire libre en Bucovina", img: "../img/clase-3/plano_3_ehrlich_aire_libre.jpg" },
+  { id: 4, start: 95.3, end: 128.9, title: "Hans Kelsen: la validez formal no es papel mojado", img: "../img/clase-3/plano_4_kelsen_ventana.jpg" },
+  { id: 5, start: 128.9, end: 175.3, title: "Kelsen concede: la eficacia como presupuesto general", img: "../img/clase-3/plano_5_kelsen_concede.jpg" },
+  { id: 6, start: 175.3, end: 201.0, title: "Miguel Reale entra con calidez", img: "../img/clase-3/plano_6_entra_reale.jpg" },
+  { id: 7, start: 201.0, end: 253.3, title: "Hecho, valor y norma: Reale habla al estudiante", img: "../img/clase-3/plano_7_tres_dimensiones_reale.jpg" },
+  { id: 8, start: 253.3, end: 296.8, title: "La silla vacía: Jürgen Habermas y Facticidad y Validez", img: "../img/clase-3/plano_8_habermas_voz_ausente.jpg" },
+  { id: 9, start: 296.8, end: 306.0, title: "Tríptico: Ehrlich, Kelsen y Reale", img: "../img/clase-3/plano_9_triptico_ehrlich_kelsen_reale.jpg" },
+  { id: 10, start: 306.0, end: 329.1, title: "Advertencia de Ehrlich: miren las actas del caso", img: "../img/clase-3/plano_10_advertencia_expediente.jpg" },
+  { id: 11, start: 329.1, end: 357.6, title: "Tres afirmaciones para el informe final", img: "../img/clase-3/plano_11_tres_afirmaciones_informe.jpg" },
+  { id: 12, start: 357.6, end: 380.4, title: "El río y el estanque al nivel del agua", img: "../img/clase-3/plano_12_rio_estanque_agua.jpg" }
 ];
 
 const DIALOGUES = [
@@ -535,7 +535,7 @@ btnPlay.onclick = () => {
 
 audio.ontimeupdate = () => {
   slider.value = audio.currentTime;
-  timeDisplay.innerText = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration || 430)}`;
+  timeDisplay.innerText = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration || 380)}`;
   
   const current = audio.currentTime;
   const foundIdx = PLANOS.findIndex(p => current >= p.start && current < p.end);

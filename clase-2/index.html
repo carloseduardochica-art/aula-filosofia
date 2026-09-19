@@ -197,7 +197,7 @@ main {
   font-family: var(--sans);
   font-size: 12px;
   color: #aaa;
-  width: 75px;
+  width: 80px;
   text-align: right;
 }
 .nav-planos-strip {
@@ -365,7 +365,7 @@ footer {
   <div class="kicker">Bloque 2 · Clase Magistral Cinematográfica</div>
   <h1>«Dos columnas y un mismo dintel»</h1>
   <div class="meta-sub">
-    <span>⏱️ 7:10 min</span>
+    <span>⏱️ 5:59 min</span>
     <span>🎞️ 12 planos cinematográficos</span>
     <span>🎙️ Tomás de Aquino, Norberto Bobbio, John Rawls y Narrador</span>
     <span>📖 Subpuntos 2.1.1, 2.2.1 y 2.4.3</span>
@@ -380,7 +380,7 @@ footer {
         <img id="currentImage" src="../img/clase-2/plano_1_dos_columnas_niebla.jpg" alt="Plano Clase 2">
         <div class="screen-overlay">
           <div>
-            <span class="plano-badge" id="planoBadge">PLANO 1 · 0:00 - 0:30</span>
+            <span class="plano-badge" id="planoBadge">PLANO 1 · 0:00 - 0:15</span>
             <div class="plano-title" id="planoTitle">Las dos columnas en la niebla</div>
           </div>
         </div>
@@ -388,8 +388,8 @@ footer {
       <div class="theater-controls">
         <div class="audio-bar">
           <button class="btn-play" id="btnPlay" title="Reproducir / Pausar">▶</button>
-          <input type="range" class="timeline-slider" id="audioSlider" min="0" max="430" value="0">
-          <span class="time-display" id="timeDisplay">0:00 / 7:10</span>
+          <input type="range" class="timeline-slider" id="audioSlider" min="0" max="360" value="0">
+          <span class="time-display" id="timeDisplay">0:00 / 5:59</span>
         </div>
         <div class="nav-planos-strip" id="planosStrip"></div>
       </div>
@@ -442,18 +442,18 @@ footer {
 
 <script>
 const PLANOS = [
-  { id: 1, start: 0, end: 30, title: "Las dos columnas en la niebla", img: "../img/clase-2/plano_1_dos_columnas_niebla.jpg" },
-  { id: 2, start: 30, end: 55, title: "Dos frases del expediente enfrentadas", img: "../img/clase-2/plano_2_dos_frases_enfrentadas.jpg" },
-  { id: 3, start: 55, end: 105, title: "Tomás de Aquino en su celda", img: "../img/clase-2/plano_3_tomas_de_aquino.jpg" },
-  { id: 4, start: 105, end: 150, title: "Norberto Bobbio con el libro en el regazo", img: "../img/clase-2/plano_4_bobbio_con_libro.jpg" },
-  { id: 5, start: 150, end: 195, title: "Bobbio: las tres caras del positivismo", img: "../img/clase-2/plano_5_bobbio_se_incorpora.jpg" },
-  { id: 6, start: 195, end: 230, title: "Aquino responde: el punto de conciencia", img: "../img/clase-2/plano_6_aquino_responde.jpg" },
-  { id: 7, start: 230, end: 265, title: "John Rawls entra al encuadre", img: "../img/clase-2/plano_7_entra_rawls.jpg" },
-  { id: 8, start: 265, end: 320, title: "El velo de ignorancia aplicado a Los Cedros", img: "../img/clase-2/plano_8_velo_ignorancia.jpg" },
-  { id: 9, start: 320, end: 345, title: "Tríptico: Aquino, Bobbio y Rawls", img: "../img/clase-2/plano_9_triptico_tres_juristas.jpg" },
-  { id: 10, start: 345, end: 375, title: "El atril vacío: advertencia para el alegato", img: "../img/clase-2/plano_10_ultimo_aviso.jpg" },
-  { id: 11, start: 375, end: 410, title: "Tres afirmaciones sobre el Derecho", img: "../img/clase-2/plano_11_tres_afirmaciones.jpg" },
-  { id: 12, start: 410, end: 430, title: "Las dos columnas desde el suelo", img: "../img/clase-2/plano_12_columnas_suelo.jpg" }
+  { id: 1, start: 0, end: 14.5, title: "Las dos columnas en la niebla", img: "../img/clase-2/plano_1_dos_columnas_niebla.jpg" },
+  { id: 2, start: 14.5, end: 40.1, title: "Dos frases del expediente enfrentadas", img: "../img/clase-2/plano_2_dos_frases_enfrentadas.jpg" },
+  { id: 3, start: 40.1, end: 81.6, title: "Tomás de Aquino en su celda", img: "../img/clase-2/plano_3_tomas_de_aquino.jpg" },
+  { id: 4, start: 81.6, end: 124.0, title: "Norberto Bobbio con el libro en el regazo", img: "../img/clase-2/plano_4_bobbio_con_libro.jpg" },
+  { id: 5, start: 124.0, end: 179.5, title: "Bobbio: las tres caras del positivismo", img: "../img/clase-2/plano_5_bobbio_se_incorpora.jpg" },
+  { id: 6, start: 179.5, end: 200.9, title: "Aquino responde: el punto de conciencia", img: "../img/clase-2/plano_6_aquino_responde.jpg" },
+  { id: 7, start: 200.9, end: 228.4, title: "John Rawls entra al encuadre", img: "../img/clase-2/plano_7_entra_rawls.jpg" },
+  { id: 8, start: 228.4, end: 275.3, title: "El velo de ignorancia aplicado a Los Cedros", img: "../img/clase-2/plano_8_velo_ignorancia.jpg" },
+  { id: 9, start: 275.3, end: 289.2, title: "Tríptico: Aquino, Bobbio y Rawls", img: "../img/clase-2/plano_9_triptico_tres_juristas.jpg" },
+  { id: 10, start: 289.2, end: 311.1, title: "El atril vacío: advertencia para el alegato", img: "../img/clase-2/plano_10_ultimo_aviso.jpg" },
+  { id: 11, start: 311.1, end: 340.7, title: "Tres afirmaciones sobre el Derecho", img: "../img/clase-2/plano_11_tres_afirmaciones.jpg" },
+  { id: 12, start: 340.7, end: 359.3, title: "Las dos columnas desde el suelo", img: "../img/clase-2/plano_12_columnas_suelo.jpg" }
 ];
 
 const DIALOGUES = [
@@ -535,7 +535,7 @@ btnPlay.onclick = () => {
 
 audio.ontimeupdate = () => {
   slider.value = audio.currentTime;
-  timeDisplay.innerText = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration || 430)}`;
+  timeDisplay.innerText = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration || 359)}`;
   
   const current = audio.currentTime;
   const foundIdx = PLANOS.findIndex(p => current >= p.start && current < p.end);
