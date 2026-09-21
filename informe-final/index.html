@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Informe final &middot; La resoluci&oacute;n del caso &middot; Filosof&iacute;a del Derecho</title>
+<style>
+:root{
+  --papel:#f4f2ee;--blanco:#fff;--tinta:#16181c;--tinta2:#33363c;--nota:#5f625f;
+  --carmesi:#8a111a;--carmesi-osc:#6d0d14;--carmesi-ten:#f6e6e8;--carmesi-bor:#d9b3b7;
+  --verde:#2f5c3f;--verde-ten:#e8f0ea;--verde-bor:#a8c4b2;
+  --gris:#5f625f;--gris-ten:#eeedea;--gris-bor:#c9c5bd;
+  --linea:#c9c5bd;--linea2:#e2ded6;
+  --serif:Charter,Georgia,"Times New Roman",serif;
+  --sans:"Segoe UI",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--papel);color:var(--tinta);font-family:var(--sans);font-size:15px;line-height:1.55}
+.top{background:var(--blanco);border-bottom:4px solid var(--carmesi);padding:14px 20px;
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;position:sticky;top:0;z-index:30}
+.top .marca{font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--carmesi)}
+.top h1{font-family:var(--serif);font-size:19px;font-weight:600;margin:2px 0 0;line-height:1.2}
+.top .der{margin-left:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pill{font-size:12px;font-weight:700;padding:5px 12px;border-radius:20px;background:var(--carmesi-ten);
+  color:var(--carmesi);border:1px solid var(--carmesi-bor)}
+.pill.ok{background:var(--verde-ten);color:var(--verde);border-color:var(--verde-bor)}
+button{font-family:var(--sans);cursor:pointer;border:0}
+.btn{background:var(--carmesi);color:#fff;font-size:14px;font-weight:600;padding:11px 22px;border-radius:4px;
+  box-shadow:0 2px 6px rgba(138,17,26,.28)}
+.btn:hover{background:var(--carmesi-osc)}
+.btn.sec{background:#fff;color:var(--carmesi);border:1.5px solid var(--carmesi);box-shadow:none}
+.btn:disabled{background:#b9b6b0;box-shadow:none;cursor:not-allowed}
+.tabs{display:none;background:var(--blanco);border-bottom:1px solid var(--linea)}
+.tabs button{flex:1;padding:13px;background:none;font-size:14px;font-weight:700;color:var(--nota);
+  border-bottom:3px solid transparent}
+.tabs button.on{color:var(--carmesi);border-bottom-color:var(--carmesi)}
+.paneles{display:flex;height:calc(100vh - 68px)}
+.pan{overflow-y:auto}
+.izq{flex:0 0 42%;border-right:1px solid var(--linea);background:#3a3a3a;position:relative;display:flex;flex-direction:column}
+.izq .sw{display:flex;background:#2b2b2b}
+.izq .sw button{flex:1;padding:11px 6px;background:none;color:#cfcfcf;font-size:12.5px;font-weight:700;
+  border-bottom:3px solid transparent}
+.izq .sw button.on{color:#fff;border-bottom-color:var(--carmesi);background:#3a3a3a}
+.izq .cuerpo{flex:1;position:relative;background:#000}
+.izq iframe{width:100%;height:100%;border:0;display:block}
+.capa{display:none;position:absolute;inset:0}
+.capa.on{display:block}
+.der{flex:1;padding:22px 26px 96px}
+h2{font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--carmesi);
+  margin:32px 0 4px;padding-bottom:7px;border-bottom:2px solid var(--carmesi-bor)}
+h2:first-child{margin-top:0}
+h2 .paso{display:inline-block;background:var(--carmesi);color:#fff;border-radius:3px;padding:2px 8px;
+  margin-right:8px;font-size:11px;letter-spacing:.8px}
+.sub{font-size:13.5px;color:var(--tinta2);margin:0 0 14px;line-height:1.6}
+.campo{background:var(--blanco);border:1px solid var(--linea2);border-left:4px solid var(--linea);
+  border-radius:6px;padding:13px 15px;margin-bottom:11px}
+.campo.lleno{border-left-color:var(--verde)}
+.campo.ius{border-left-color:var(--verde-bor)} .campo.ius.lleno{border-left-color:var(--verde)}
+.campo.pos{border-left-color:var(--gris-bor)} .campo.pos.lleno{border-left-color:var(--gris)}
+.etq{font-size:13.5px;font-weight:700;color:var(--tinta);margin-bottom:3px;display:block}
+.etq .n{display:inline-block;min-width:22px;color:var(--carmesi);font-weight:800}
+.ayuda{font-size:12.5px;color:var(--nota);margin:0 0 8px;line-height:1.5}
+input[type=text],textarea{width:100%;font-family:var(--sans);font-size:14px;color:var(--tinta);
+  background:#fcfbf9;border:1px solid var(--linea);border-radius:4px;padding:9px 11px;line-height:1.5}
+input[type=text]:focus,textarea:focus{outline:0;border-color:var(--carmesi);background:#fff;
+  box-shadow:0 0 0 3px rgba(138,17,26,.10)}
+textarea{resize:vertical;min-height:58px}
+.cuenta-c{font-size:11.5px;color:var(--nota);margin-top:4px;text-align:right}
+.cuenta-c.corto{color:var(--carmesi);font-weight:700}
+.mini{font-size:11.5px;color:var(--nota);margin-top:4px}
+.aviso-caja{background:var(--carmesi-ten);border:1px solid var(--carmesi-bor);border-left:5px solid var(--carmesi);
+  border-radius:6px;padding:14px 16px;margin:0 0 18px;font-size:13.5px;line-height:1.6;color:var(--tinta2)}
+.aviso-caja b{color:var(--carmesi)}
+.grupo-box{background:var(--verde-ten);border:1px solid var(--verde-bor);border-left:5px solid var(--verde);
+  border-radius:6px;padding:14px 16px;margin:0 0 16px;font-size:13.5px;line-height:1.6}
+.grupo-box b{color:var(--verde)}
+.bandera{border-radius:6px;padding:13px 16px;margin:0 0 14px;font-size:13.5px;line-height:1.6}
+.bandera.ius{background:var(--verde-ten);border:1px solid var(--verde-bor);border-left:5px solid var(--verde)}
+.bandera.pos{background:var(--gris-ten);border:1px solid var(--gris-bor);border-left:5px solid var(--gris)}
+.bandera b.t{display:block;font-size:14.5px;margin-bottom:5px}
+.bandera.ius b.t{color:var(--verde)} .bandera.pos b.t{color:var(--gris)}
+.barra{position:fixed;bottom:0;left:0;right:0;background:var(--blanco);border-top:2px solid var(--carmesi);
+  padding:11px 20px;display:flex;align-items:center;gap:14px;z-index:40;flex-wrap:wrap}
+.prog{flex:1;min-width:140px;height:9px;background:var(--linea2);border-radius:5px;overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:var(--carmesi);transition:width .3s}
+.cuenta{font-size:12.5px;color:var(--nota);font-weight:700;white-space:nowrap}
+@media print{
+  .top,.tabs,.izq,.barra,.no-print{display:none!important}
+  .paneles{display:block;height:auto}.der{padding:0}
+  body{background:#fff;font-size:11pt}
+  .campo{break-inside:avoid;border:1px solid #999;margin-bottom:6px}
+  h2{margin:16px 0 6px;page-break-after:avoid}
+  #caratula{display:block!important}
+  textarea,input[type=text]{border:0;background:none;padding:2px 0;font-size:11pt}
+  .ayuda,.mini,.sub,.cuenta-c{color:#555}
+}
+#caratula{display:none;border:2px solid var(--carmesi);padding:18px;margin-bottom:18px}
+#caratula .ct{font-family:var(--serif);font-size:17pt;font-weight:600;margin:6px 0}
+#caratula .cl{font-size:10pt;color:#444;line-height:1.7}
+@media(max-width:980px){
+  .paneles{display:block;height:auto}.tabs{display:flex}
+  .izq{flex:none;height:64vh;display:none}.izq.on{display:flex}
+  .der{display:none;padding:18px 16px 100px}.der.on{display:block}
+  .top h1{font-size:15.5px}
+}
+
+/* --- piezas del dossier --- */
+.pieza{display:flex;align-items:flex-start;gap:11px;background:var(--blanco);border:1px solid var(--linea2);
+  border-left:4px solid var(--linea);border-radius:6px;padding:11px 14px;margin-bottom:8px}
+.pieza.ok{border-left-color:var(--verde);background:#fbfdfb}
+.pieza input[type=checkbox]{width:19px;height:19px;margin-top:2px;accent-color:var(--verde);flex:0 0 auto;cursor:pointer}
+.pieza .tx{flex:1}
+.pieza .tt{font-size:13.5px;font-weight:700;display:block}
+.pieza .nn{font-size:12px;color:var(--nota);font-family:ui-monospace,Consolas,monospace}
+/* --- tabla de instrumentos --- */
+.instr{background:var(--blanco);border:1px solid var(--linea2);border-left:4px solid var(--linea);
+  border-radius:6px;padding:13px 15px;margin-bottom:11px}
+.instr.lleno{border-left-color:var(--verde)}
+.instr .cab{font-size:13.5px;font-weight:700;margin-bottom:2px}
+.instr .cab .au{color:var(--carmesi)}
+.instr .fuente{font-size:12px;color:var(--nota);margin-bottom:9px}
+.instr .par{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.instr label.mn{display:block;font-size:11.5px;font-weight:700;color:var(--nota);
+  text-transform:uppercase;letter-spacing:.7px;margin-bottom:3px}
+@media(max-width:620px){.instr .par{grid-template-columns:1fr}}
+/* --- rubrica de autoevaluacion --- */
+.rub{background:var(--blanco);border:1px solid var(--linea2);border-radius:6px;padding:12px 14px;margin-bottom:9px}
+.rub .rt{font-size:13.5px;font-weight:700;margin-bottom:7px}
+.rub .rt .pt{float:right;font-size:12px;color:var(--nota);font-weight:600}
+.niv{display:flex;gap:7px;flex-wrap:wrap}
+.niv button{flex:1;min-width:112px;text-align:left;padding:8px 10px;border-radius:5px;font-size:12px;
+  line-height:1.4;background:#faf9f7;border:1.5px solid var(--linea2);color:var(--tinta2)}
+.niv button b{display:block;font-size:12.5px;margin-bottom:2px}
+.niv button.on.e{background:var(--verde-ten);border-color:var(--verde);color:var(--verde)}
+.niv button.on.m{background:#fdf6e6;border-color:#c79a2e;color:#8a6a15}
+.niv button.on.d{background:var(--carmesi-ten);border-color:var(--carmesi);color:var(--carmesi)}
+.total-auto{background:var(--verde-ten);border:1px solid var(--verde-bor);border-left:5px solid var(--verde);
+  border-radius:6px;padding:14px 16px;margin:4px 0 18px;font-size:14px;line-height:1.6}
+.total-auto .num{font-family:var(--serif);font-size:30px;font-weight:600;color:var(--verde);display:block}
+@media print{.niv button{border:1px solid #999;background:none!important;color:#000!important}
+  .niv button:not(.on){display:none}}
+</style>
+</head>
+<body>
+
+<header class="top no-print">
+  <div>
+    <div class="marca">Filosof&iacute;a del Derecho &middot; Bloque 3 &middot; Gu&iacute;a pr&aacute;ctica n.&ordm; 3 &middot; Tarea n.&ordm; 3 del caso</div>
+    <h1>Informe final &mdash; La resoluci&oacute;n del caso</h1>
+  </div>
+  <div class="der">
+    <span class="pill" id="pGrupo">Sin grupo</span>
+    <button class="btn sec" id="bGuardar">Guardar</button>
+    <button class="btn" id="bPdf" disabled>Descargar PDF</button>
+  </div>
+</header>
+
+<div class="tabs no-print">
+  <button id="tIzq">&#128196; Expediente y material</button>
+  <button id="tDer" class="on">&#9997;&#65039; Mi resoluci&oacute;n</button>
+</div>
+
+<div class="paneles">
+  <div class="pan izq" id="panIzq">
+    <div class="sw">
+      <button id="swCua" class="on">&#128196; Cuadernillo 3</button>
+      <button id="swMat">&#128218; Material bloque 3</button>
+    </div>
+    <div class="cuerpo">
+      <div class="capa on" id="capaCua">
+        <iframe src="../docs/cuadernillo-3.pdf#view=FitH" title="Cuadernillo 3"></iframe>
+      </div>
+      <div class="capa" id="capaMat">
+        <iframe src="../contenido-b3/" title="Material de lectura bloque 3"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="pan der on" id="panDer">
+
+    <div id="caratula">
+      <div class="cl">UNIVERSIDAD CAT&Oacute;LICA DE CUENCA &middot; CARRERA DE DERECHO</div>
+      <div class="cl">FILOSOF&Iacute;A DEL DERECHO &middot; Primer ciclo &middot; Septiembre 2026 &ndash; Febrero 2027</div>
+      <div class="ct">Informe final &mdash; La resoluci&oacute;n del caso</div>
+      <div class="cl">Pieza n.&ordm; 5 y &uacute;ltima del dossier &middot; Partes V, VI y VII &middot; Bloque 3</div>
+      <div class="cl" style="margin-top:10px"><b>Estudiante:</b> <span id="cNombre">&mdash;</span></div>
+      <div class="cl"><b>C&eacute;dula:</b> <span id="cCedula">&mdash;</span> &nbsp;&middot;&nbsp; <b>Grupo:</b> <span id="cGrupo">&mdash;</span>
+        &nbsp;&middot;&nbsp; <b>Objeci&oacute;n asignada:</b> <span id="cVoto">&mdash;</span></div>
+      <div class="cl"><b>Autoevaluaci&oacute;n declarada:</b> <span id="cAuto">&mdash;</span> / 8</div>
+      <div class="cl"><b>Fecha:</b> <span id="cFecha">&mdash;</span></div>
+      <div class="cl" style="margin-top:10px;padding-top:8px;border-top:1px solid #c9c5bd"><b>C&oacute;digo de constancia:</b><br>
+        <span id="cCodigo" style="font-family:ui-monospace,Consolas,monospace;font-size:8.5pt;word-break:break-all">&mdash;</span></div>
+    </div>
+
+    <div class="aviso-caja no-print">
+      <b>Durante siete semanas usted reconstruy&oacute; lo que otros argumentaron. Se acab&oacute;.</b>
+      Ahora le toca decidir. Este informe <b>no se escribe desde cero: se arma</b> &mdash; las Partes I a IV
+      salen de sus cuatro piezas, revisadas, no copiadas.
+      <br><br><b>Esta aplicaci&oacute;n cubre lo nuevo:</b> la Parte V, que es su resoluci&oacute;n y donde vive la nota;
+      la Parte VI, el &iacute;ndice de instrumentos; y la Parte VII, el cierre. Descargue el PDF que genera y
+      <b>&uacute;nalo delante de sus cuatro piezas</b> para formar el informe &uacute;nico.
+      <br><br><b>No se puede pegar texto:</b> se escribe.
+    </div>
+
+    <h2>Identificaci&oacute;n</h2>
+    <div id="ident"></div>
+
+    <h2><span class="paso">PASO 0</span> Las cuatro piezas, antes de escribir nada</h2>
+    <p class="sub">Confirme que las tiene. <b>Sin ellas este informe no se puede armar</b>, y quien no las
+    guard&oacute; tendr&aacute; que rehacerlas. Si en el camino descubri&oacute; que un dato estaba mal, corr&iacute;jalo en el informe
+    y d&iacute;galo en nota al pie: un informe que corrige un error ya advertido vale m&aacute;s que uno que lo arrastra.</p>
+    <div id="p0"></div>
+    <div id="p0b"></div>
+
+    <h2><span class="paso">V.1</span> Su tesis, en una sola oraci&oacute;n</h2>
+    <p class="sub">C&oacute;mo resolver&iacute;a usted el caso. <b>Sin subordinadas de escape.</b>
+    Todo lo que sigue es la defensa de esa oraci&oacute;n.</p>
+    <div id="p1"></div>
+
+    <h2><span class="paso">V.2</span> El r&iacute;o y el estanque: trece a&ntilde;os de distancia</h2>
+    <div class="bandera ius">
+      <b class="t">El art&iacute;culo 71 existe desde 2008</b>
+      Estaba vigente y era v&aacute;lido cuando, en 2017, el Ministerio de Miner&iacute;a concesion&oacute; dentro de un bosque
+      protector. Explique esa distancia con <b>Ehrlich</b> y con <b>Habermas</b>. Despu&eacute;s responda lo que
+      de verdad importa.
+    </div>
+    <div id="p2"></div>
+
+    <h2><span class="paso">V.3</span> Vuelva a su propia tabla</h2>
+    <p class="sub">En septiembre usted separ&oacute; los enunciados en <b>norma, valor y hecho</b> sin saber que
+    hac&iacute;a una operaci&oacute;n con nombre propio. Reale la llam&oacute; <b>teor&iacute;a tridimensional</b>, y le a&ntilde;ade algo que
+    usted no tuvo en cuenta: que las tres no se separan del todo, sino que est&aacute;n en <b>implicaci&oacute;n y
+    polaridad</b>, y que la norma que nace de esa tensi&oacute;n, al aplicarse, transforma el hecho del que sali&oacute;.
+    <br><br><b>Este apartado se eval&uacute;a por la honestidad de la revisi&oacute;n, no por defender lo que escribi&oacute;.</b></p>
+    <div id="p3"></div>
+
+    <h2><span class="paso">V.4</span> Mida, no opine</h2>
+    <div class="bandera pos">
+      <b class="t">Dos operaciones, y ninguna admite adjetivos</b>
+      Las <b>siete condiciones de Guastini</b> se miden <b>en grados</b>, no como requisitos que se cumplen
+      o no. Y las <b>tres clases de Comanducci</b> obligan a nombrar cu&aacute;l practica la mayor&iacute;a y cu&aacute;l rechaza
+      su voto salvado.
+    </div>
+    <div id="p4"></div>
+
+    <h2><span class="paso">V.5</span> Derrote la objeci&oacute;n que le toc&oacute;</h2>
+    <div class="grupo-box" id="cajaGrupo">Escriba su primer apellido arriba y le dir&eacute; qu&eacute; objeci&oacute;n le toca.</div>
+    <p class="sub">V&eacute;nzala, o reconozca que no puede. <b>Con argumentos, no con indignaci&oacute;n.</b>
+    Si concluye que la objeci&oacute;n es correcta y su tesis no la resiste, d&iacute;galo: eso vale m&aacute;s que forzar
+    una victoria.</p>
+    <div id="p5"></div>
+
+    <h2><span class="paso">VI</span> El &iacute;ndice de instrumentos</h2>
+    <div class="aviso-caja no-print">
+      <b>En este bloque no hay autocontrol de lectura. Esta tabla ocupa su lugar.</b>
+      Es donde se ve si el material se ley&oacute; o se sobrevol&oacute;. La tercera columna &mdash;qu&eacute; cambi&oacute; en su resoluci&oacute;n
+      al usarlo&mdash; <b>no se puede llenar sin haber usado el instrumento de verdad</b>.
+      <br><br>Se admite &laquo;no lo us&eacute; porque no aporta a este caso, y esta es la raz&oacute;n&raquo;.
+      <b>No se admite parafrasear el material.</b>
+    </div>
+    <div id="p6"></div>
+
+    <h2><span class="paso">VII</span> El cierre</h2>
+    <p class="sub">Tres cosas, y la primera es la que cierra el arco de todo el per&iacute;odo.</p>
+    <div id="p7"></div>
+
+    <h2>Autoevaluaci&oacute;n con la r&uacute;brica</h2>
+    <p class="sub">La misma r&uacute;brica con la que se le va a calificar. Marque, criterio por criterio, d&oacute;nde
+    cree que est&aacute;. <b>No es una nota:</b> es una declaraci&oacute;n, y el docente la lee junto a la suya.</p>
+    <div id="p8"></div>
+    <div class="total-auto">
+      <span class="num" id="autoNum">&mdash;</span>
+      <b id="autoTxt">Marque los seis criterios para ver su autoevaluaci&oacute;n.</b>
+    </div>
+
+    <h2>Declaraci&oacute;n de uso de inteligencia artificial</h2>
+    <div class="aviso-caja no-print">
+      <b>Obligatoria.</b> Dos avisos concretos para este informe. Primero: pedirle a un modelo
+      &laquo;la resoluci&oacute;n del caso Los Cedros&raquo; devuelve un texto correcto en apariencia y <b>vac&iacute;o de postura</b>,
+      que adem&aacute;s suele confundir los votos. Segundo: si le pide que aplique las siete condiciones de
+      Guastini, devolver&aacute; <b>siete p&aacute;rrafos plausibles que no son los del material de este bloque</b>,
+      porque esa lista var&iacute;a entre autores. <b>La suya es la recogida por Carbonell. Compru&eacute;belo.</b>
+    </div>
+    <div id="p9"></div>
+
+    <div class="aviso-caja no-print" style="background:#eef2f6;border-color:#b9c6d4;border-left-color:#3f5f7f">
+      <b style="color:#3f5f7f">Entrega.</b> Archivo &uacute;nico en PDF, nomenclatura
+      <b>INFORME_Apellido_Nombre.pdf</b>, hasta el <b>15 de noviembre de 2026</b>. La fecha es anterior a su
+      sustentaci&oacute;n, y eso es deliberado: <b>usted defiende lo que ya entreg&oacute;</b>, y el docente llega a la
+      sesi&oacute;n habi&eacute;ndolo le&iacute;do.
+    </div>
+    <div style="height:30px"></div>
+  </div>
+</div>
+
+<div class="barra no-print">
+  <div class="cuenta" id="txtProg">0 de 0</div>
+  <div class="prog"><i id="barra"></i></div>
+  <span class="cuenta" id="guardado"></span>
+</div>
+
+<script>
+(function(){
+"use strict";
+var CLAVE="informe-final-filosofia-v1", SAL="FD-IF-informe-v1", T0=Date.now();
+function djb2(x){var h=5381,i;for(i=0;i<x.length;i++){h=((h<<5)+h)+x.charCodeAt(i);h=h>>>0;}return h;}
+function b36(n){return n.toString(36).toUpperCase();}
+function soloDig(x){return (x||"").replace(/\D/g,"");}
+function normNom(x){return (x||"").toUpperCase().replace(/[^A-Z\u00C1\u00C9\u00CD\u00D3\u00DA\u00D1 ]/g,"").trim().replace(/\s+/g," ");}
+function minutos(){return Math.max(1,Math.round((Date.now()-T0)/60000));}
+
+var datos={};
+try{datos=JSON.parse(localStorage.getItem(CLAVE)||"{}");}catch(e){datos={};}
+if(!datos.piezas) datos.piezas={};
+if(!datos.rub) datos.rub={};
+function $(s){return document.querySelector(s);}
+function el(t,c,h){var n=document.createElement(t);if(c)n.className=c;if(h!=null)n.innerHTML=h;return n;}
+
+function antiPegado(c){
+  c.addEventListener("paste",function(ev){
+    ev.preventDefault(); c.style.borderColor="#8a111a";
+    var p=c.closest(".campo")||c.closest(".instr");
+    if(p && !p.querySelector(".pegado")) p.appendChild(el("div","mini pegado",
+      "<b style='color:#8a111a'>Aqu\u00ed no se puede pegar.</b> Se escribe."));
+    setTimeout(function(){c.style.borderColor="";},1200);
+  });
+  c.addEventListener("drop",function(ev){ev.preventDefault();});
+}
+
+function caja(id,etq,ayuda,filas,num,clase,minCar){
+  var c=el("div","campo"+(clase?" "+clase:"")); c.dataset.k=id;
+  if(minCar) c.dataset.min=minCar;
+  c.appendChild(el("label","etq",(num!=null?'<span class="n">'+num+'</span>':'')+etq));
+  if(ayuda) c.appendChild(el("p","ayuda",ayuda));
+  var t=el("textarea"); t.rows=filas||3; t.id="f_"+id; t.value=datos[id]||"";
+  antiPegado(t); c.appendChild(t);
+  if(minCar){ var m=el("div","cuenta-c"); m.dataset.para=id; c.appendChild(m); }
+  return c;
+}
+
+var IDENT=[{id:"nombre",t:"Nombres y apellidos completos",h:"Como constan en su c\u00e9dula."},
+ {id:"apellido",t:"Su primer apellido",h:"De aqu\u00ed sale la objeci\u00f3n que debe derrotar."},
+ {id:"cedula",t:"C\u00e9dula",h:"Solo n\u00fameros."}];
+
+var OBJ={
+ A:{j:"Teresa Nuques Mart\u00ednez", pp:"102 a 111 del Cuadernillo 2",
+    q:"que <b>no cabe extender una norma constitucional en desmedro de su texto y de la voluntad del constituyente</b>, y que las medidas deben apoyarse en normas <b>previas, p\u00fablicas y claras</b> (art. 82)."},
+ B:{j:"Carmen Corral Ponce", pp:"112 a 119 del Cuadernillo 2",
+    q:"que la Corte <b>desbord\u00f3 sus competencias t\u00e9cnicas</b>, <b>invirti\u00f3 indebidamente la carga de la prueba</b> y <b>desconoci\u00f3 situaciones jur\u00eddicas ya consolidadas</b>."}};
+
+var PIEZAS=[
+ ["pz1","Hoja 1 \u2014 El expediente fichado","HOJA1_Apellido_Nombre.pdf \u00b7 Bloque 1 \u00b7 pieza n.\u00ba 1"],
+ ["pz2","Avance 1 \u2014 El problema y los tres planos","AVANCE1_Apellido_Nombre.pdf \u00b7 Bloque 1 \u00b7 pieza n.\u00ba 2"],
+ ["pz3","Anexo internacional \u2014 La mirada comparada","ANEXO_Apellido_Nombre.pdf \u00b7 Bloque 2 \u00b7 pieza n.\u00ba 3"],
+ ["pz4","Hoja 2 \u2014 El alegato y el contraalegato","HOJA2_Apellido_Nombre.pdf \u00b7 Bloque 2 \u00b7 pieza n.\u00ba 4"]];
+
+var INSTR=[
+ ["in1","Guastini","las siete condiciones de la constitucionalizaci\u00f3n","3.1, apartado b \u2014 la lista es la recogida por Carbonell"],
+ ["in2","Comanducci","las tres clases de neoconstitucionalismo","3.1, apartado e \u2014 te\u00f3rico, ideol\u00f3gico y metodol\u00f3gico"],
+ ["in3","Ehrlich","el derecho vivo: el r\u00edo y el estanque","3.2, apartado c \u2014 los trece a\u00f1os del art\u00edculo 71"],
+ ["in4","Reale","la teor\u00eda tridimensional: hecho, valor y norma","3.2, apartado e \u2014 implicaci\u00f3n y polaridad"],
+ ["in5","Habermas","facticidad y validez","3.2, apartado f \u2014 el que ya us\u00f3 sin nombrarlo"]];
+
+var RUBRICA=[
+ ["r1","Compilaci\u00f3n y coherencia del dossier",1.0,
+  "Integro las cuatro piezas revisadas, con \u00edndice y continuidad; corrijo y advierto los errores que detect\u00e9.",
+  "Integro las piezas sin revisarlas, o arrastro errores ya advertidos.",
+  "Faltan piezas, o el informe es un pegado de archivos."],
+ ["r2","La resoluci\u00f3n: tesis y fundamentaci\u00f3n",2.0,
+  "Tesis clara en una oraci\u00f3n y defendida con argumentos anclados en el expediente; la soluci\u00f3n es reconociblemente m\u00eda.",
+  "Tesis difusa o defendida con generalidades; repito la soluci\u00f3n de la Corte.",
+  "No hay tesis, o el apartado resume el fallo en lugar de resolver."],
+ ["r3","Los instrumentos del bloque aplicados al caso",2.5,
+  "Uso Ehrlich y Habermas para explicar los trece a\u00f1os; reviso con honestidad mi tabla del Avance 1 a la luz de Reale; mido con Guastini y clasifico con Comanducci.",
+  "Menciono los instrumentos y los defino bien, pero no los aplico al expediente.",
+  "Parafraseo el material sin tocar el caso, o atribuyo a los autores cosas que no dicen."],
+ ["r4","Derrota de la objeci\u00f3n asignada",1.5,
+  "Enfrento la objeci\u00f3n de mi voto salvado con argumentos; o reconozco razonadamente que no la resisto.",
+  "Respondo de forma parcial o desplazo la objeci\u00f3n sin contestarla.",
+  "Ignoro la objeci\u00f3n, respondo la del otro grupo, o la descalifico sin argumentar."],
+ ["r5","\u00cdndice de instrumentos y coherencia conmigo mismo",0.5,
+  "La tabla est\u00e1 completa y su tercera columna dice algo real; reviso mi elecci\u00f3n del Anexo y explico el cambio si lo hubo.",
+  "La tabla se llena con par\u00e1frasis del material, o no reviso mi recorrido.",
+  "No presento la tabla."],
+ ["r6","Autoevaluaci\u00f3n, formato y declaraci\u00f3n de IA",0.5,
+  "Me autoeval\u00fao criterio por criterio; PDF con car\u00e1tula, \u00edndice, nomenclatura y declaraci\u00f3n.",
+  "Cumplo parcialmente.",
+  "No me autoeval\u00fao o no presento declaraci\u00f3n. Se devuelve sin calificar."]];
+
+function grupoDe(ap){ap=(ap||"").trim().toUpperCase();if(!ap)return null;
+  var c=ap.charAt(0);if(c==="\u00d1")return "B";
+  return (c>="A"&&c<="L")?"A":((c>="M"&&c<="Z")?"B":null);}
+
+function pinta(){
+  var cI=$("#ident"); cI.innerHTML="";
+  IDENT.forEach(function(f){
+    var c=el("div","campo"); c.dataset.k=f.id;
+    c.appendChild(el("label","etq",f.t)); c.appendChild(el("p","ayuda",f.h));
+    var i=el("input"); i.type="text"; i.id="f_"+f.id; i.value=datos[f.id]||"";
+    antiPegado(i); c.appendChild(i); cI.appendChild(c);
+  });
+
+  var c0=$("#p0"); c0.innerHTML="";
+  PIEZAS.forEach(function(p){
+    var d=el("div","pieza"+(datos.piezas[p[0]]?" ok":""));
+    var k=el("input"); k.type="checkbox"; k.id="k_"+p[0]; k.checked=!!datos.piezas[p[0]];
+    k.addEventListener("change",function(){ datos.piezas[p[0]]=k.checked;
+      d.classList.toggle("ok",k.checked); marca(); guarda(true); });
+    var tx=el("div","tx"); tx.appendChild(el("span","tt",p[1])); tx.appendChild(el("span","nn",p[2]));
+    d.appendChild(k); d.appendChild(tx); c0.appendChild(d);
+  });
+  $("#p0b").innerHTML="";
+  $("#p0b").appendChild(caja("corr","\u00bfQu\u00e9 corrigi\u00f3 de sus piezas al revisarlas?",
+    "Si no corrigi\u00f3 nada, escriba c\u00f3mo lo comprob\u00f3. Un informe que corrige vale m\u00e1s que uno que arrastra.",3,null,null,120));
+
+  $("#p1").innerHTML="";
+  $("#p1").appendChild(caja("t1","La tesis, en una sola oraci\u00f3n",
+    "Una oraci\u00f3n. Si necesita dos, todav\u00eda no la tiene.",2,null,"ius",70));
+
+  $("#p2").innerHTML="";
+  $("#p2").appendChild(caja("e1","La distancia, explicada con Ehrlich",
+    "El derecho vivo y el derecho de los libros. \u00bfD\u00f3nde estuvo el art\u00edculo 71 entre 2008 y 2021?",4,1,null,250));
+  $("#p2").appendChild(caja("e2","La misma distancia, explicada con Habermas",
+    "Facticidad y validez. No repita a Ehrlich con otras palabras: Habermas dice otra cosa.",4,2,null,250));
+  $("#p2").appendChild(caja("e3","Su resoluci\u00f3n, \u00bfcierra esa distancia o solo la declara?",
+    "<b>Esta es la pregunta que importa.</b> Responderla con \u00abla cierra\u00bb sin explicar c\u00f3mo, no cuenta.",4,3,null,200));
+
+  $("#p3").innerHTML="";
+  $("#p3").appendChild(caja("r31","\u00bfQu\u00e9 clasificaci\u00f3n suya del Avance 1 se sostiene?",
+    "Cite el enunciado y diga por qu\u00e9 resiste la revisi\u00f3n.",4,1,null,180));
+  $("#p3").appendChild(caja("r32","\u00bfCu\u00e1l se le cae?",
+    "<b>Obligatorio.</b> Si ninguna se le cae, no revis\u00f3: defendi\u00f3.",4,2,null,180));
+  $("#p3").appendChild(caja("r33","La implicaci\u00f3n y la polaridad, en su caso",
+    "\u00bfQu\u00e9 hecho transform\u00f3 la norma que naci\u00f3 de esa tensi\u00f3n?",4,3,null,180));
+
+  $("#p4").innerHTML="";
+  $("#p4").appendChild(caja("g1","Primera condici\u00f3n de Guastini probada con el caso",
+    "Nombre la condici\u00f3n y el dato del expediente que la prueba. En grados, no en s\u00ed o no.",4,1,null,200));
+  $("#p4").appendChild(caja("g2","Segunda condici\u00f3n probada con el caso",null,4,2,null,200));
+  $("#p4").appendChild(caja("g3","La condici\u00f3n que est\u00e1 m\u00e1s floja en el Ecuador",
+    "Y por qu\u00e9. Esta casilla distingue a quien midi\u00f3 de quien opin\u00f3.",4,3,null,200));
+  $("#p4").appendChild(caja("g4","\u00bfCu\u00e1l de las tres clases de Comanducci practica el voto de mayor\u00eda?",
+    "Te\u00f3rico, ideol\u00f3gico o metodol\u00f3gico. Diga cu\u00e1l y con qu\u00e9 p\u00e1rrafo lo sostiene.",4,4,null,200));
+  $("#p4").appendChild(caja("g5","\u00bfY cu\u00e1l rechaza su voto salvado?",null,4,5,null,180));
+  $("#p4").appendChild(caja("g6","La etiqueta naci\u00f3 desde fuera y con intenci\u00f3n cr\u00edtica. \u00bfCambia eso c\u00f3mo debe leerse el fallo?",
+    "Nadie se llam\u00f3 a s\u00ed mismo neoconstitucionalista primero.",4,6,null,180));
+
+  $("#p5").innerHTML="";
+  $("#p5").appendChild(caja("o1","La objeci\u00f3n, dicha en sus propias palabras y en su versi\u00f3n m\u00e1s fuerte",
+    "La m\u00e1s fuerte, no la m\u00e1s c\u00f3moda de refutar.",4,1,null,200));
+  $("#p5").appendChild(caja("o2","Su respuesta",
+    "Argumentos anclados en el expediente. No sirve responder que la miner\u00eda es da\u00f1ina.",6,2,null,350));
+  $("#p5").appendChild(caja("o3","\u00bfQueda algo de la objeci\u00f3n en pie?",
+    "<b>Obligatorio.</b> Se admite \u00abs\u00ed, y mi tesis no lo resiste\u00bb: eso vale m\u00e1s que forzar una victoria.",4,3,null,180));
+
+  var c6=$("#p6"); c6.innerHTML="";
+  INSTR.forEach(function(x){
+    var d=el("div","instr"); d.dataset.k=x[0]; d.dataset.min=90;
+    d.appendChild(el("div","cab","<span class='au'>"+x[1]+"</span> \u2014 "+x[2]));
+    d.appendChild(el("div","fuente","Material de lectura bloque 3 \u00b7 "+x[3]));
+    var par=el("div","par");
+    var a=el("div"); a.appendChild(el("label","mn","Apartado de donde lo tom\u00f3"));
+    var ta=el("textarea"); ta.rows=2; ta.id="f_"+x[0]+"a"; ta.value=datos[x[0]+"a"]||"";
+    antiPegado(ta); a.appendChild(ta);
+    var b=el("div"); b.appendChild(el("label","mn","Qu\u00e9 cambi\u00f3 en su resoluci\u00f3n al usarlo"));
+    var tb=el("textarea"); tb.rows=2; tb.id="f_"+x[0]+"b"; tb.value=datos[x[0]+"b"]||"";
+    antiPegado(tb); b.appendChild(tb);
+    par.appendChild(a); par.appendChild(b); d.appendChild(par);
+    d.appendChild(el("div","cuenta-c"));
+    c6.appendChild(d);
+  });
+
+  $("#p7").innerHTML="";
+  $("#p7").appendChild(caja("z1","Vuelva a la casilla que marc\u00f3 en el Anexo internacional",
+    "Antes de saber c\u00f3mo se llamaban esas posiciones. \u00bfSu resoluci\u00f3n final es coherente con aquella elecci\u00f3n?",4,1,null,200));
+  $("#p7").appendChild(caja("z2","Si cambi\u00f3 de opini\u00f3n: \u00bfen qu\u00e9 momento del curso cambi\u00f3, y qu\u00e9 lo hizo cambiar?",
+    "Un autor, una clase, una lectura, una discusi\u00f3n del foro. Sea concreto. Si no cambi\u00f3, d\u00edgalo y explique por qu\u00e9.",4,2,null,200));
+
+  var c8=$("#p8"); c8.innerHTML="";
+  RUBRICA.forEach(function(r){
+    var d=el("div","rub");
+    d.appendChild(el("div","rt","<span class='pt'>"+r[2].toFixed(1)+" pts</span>"+r[1]));
+    var n=el("div","niv");
+    [["e","Excelente",r[3]],["m","Medio",r[4]],["d","Deficiente",r[5]]].forEach(function(v){
+      var b=el("button",v[0]+(datos.rub[r[0]]===v[0]?" on":""),"<b>"+v[1]+"</b>"+v[2]);
+      b.addEventListener("click",function(){
+        datos.rub[r[0]]= (datos.rub[r[0]]===v[0]) ? null : v[0];
+        n.querySelectorAll("button").forEach(function(q){q.classList.remove("on");});
+        if(datos.rub[r[0]]) b.classList.add("on");
+        autoTotal(); marca(); guarda(true);
+      });
+      n.appendChild(b);
+    });
+    d.appendChild(n); c8.appendChild(d);
+  });
+
+  var D=[["ia1","\u00bfUs\u00f3 alguna herramienta de IA en este informe?","Responda \u00abNo\u00bb, o \u00abS\u00ed\u00bb indicando cu\u00e1l."],
+         ["ia2","Si la us\u00f3: \u00bfqu\u00e9 le pregunt\u00f3 exactamente?",""],
+         ["ia3","Una afirmaci\u00f3n que le devolvi\u00f3 y que usted tuvo que corregir contra el texto",
+          "Si no tuvo que corregir ninguna, diga c\u00f3mo lo comprob\u00f3. Pista: preg\u00fantele las siete condiciones de Guastini y contr\u00e1stelas con las del material."]];
+  $("#p9").innerHTML="";
+  D.forEach(function(d){ $("#p9").appendChild(caja(d[0],d[1],d[2],3,null,null,0)); });
+
+  pintaGrupo(); autoTotal();
+  document.querySelectorAll("input[type=text],textarea").forEach(function(n){
+    n.addEventListener("input",function(){ datos[n.id.slice(2)]=n.value; marca(); });
+  });
+  marca();
+}
+
+function pintaGrupo(){
+  var g=grupoDe(datos.apellido), c=$("#cajaGrupo");
+  if(!g){ c.innerHTML="Escriba su primer apellido arriba y le dir\u00e9 qu\u00e9 objeci\u00f3n le toca.";
+    $("#pGrupo").textContent="Sin grupo"; $("#pGrupo").className="pill"; return; }
+  var v=OBJ[g];
+  c.innerHTML="Le corresponde el <b>GRUPO "+g+"</b>. Debe derrotar la objeci\u00f3n de la jueza <b>"+v.j+
+    "</b> \u2014 p\u00e1ginas "+v.pp+".<br><br><b>Su objeci\u00f3n sostiene</b> "+v.q;
+  $("#pGrupo").textContent="Grupo "+g; $("#pGrupo").className="pill ok";
+}
+
+function autoTotal(){
+  var suma=0, marcados=0;
+  RUBRICA.forEach(function(r){
+    var v=datos.rub[r[0]];
+    if(v){ marcados++; suma += r[2]*(v==="e"?1:(v==="m"?0.5:0)); }
+  });
+  if(marcados<RUBRICA.length){
+    $("#autoNum").textContent="\u2014";
+    $("#autoTxt").textContent="Marque los seis criterios para ver su autoevaluaci\u00f3n. Lleva "+marcados+" de 6.";
+    datos.auto=null; return;
+  }
+  suma=Math.round(suma*2)/2;
+  datos.auto=suma;
+  $("#autoNum").textContent=suma.toFixed(1)+" / 8";
+  $("#autoTxt").innerHTML="Esto es lo que usted declara. El docente califica con la misma r\u00fabrica, "+
+    "y <b>la distancia entre las dos notas tambi\u00e9n se lee</b>.";
+}
+
+function marca(){
+  var total=0,hechos=0,cortos=0;
+  document.querySelectorAll(".campo,.instr").forEach(function(c){
+    var ts=c.querySelectorAll("textarea,input[type=text]"); if(!ts.length) return;
+    total++;
+    var n=0; Array.prototype.forEach.call(ts,function(t){ n+=t.value.trim().length; });
+    var min=parseInt(c.dataset.min||"3",10);
+    var ok=n>=Math.max(3,min); if(ok)hechos++;
+    c.classList.toggle("lleno",ok);
+    var m=c.querySelector(".cuenta-c");
+    if(m && min>3){
+      m.textContent=n+" / "+min+" caracteres m\u00ednimos";
+      m.classList.toggle("corto", n<min);
+      if(n>0 && n<min) cortos++;
+    }
+  });
+  var pz=0; PIEZAS.forEach(function(p){ if(datos.piezas[p[0]]) pz++; });
+  var rb=0; RUBRICA.forEach(function(r){ if(datos.rub[r[0]]) rb++; });
+  $("#txtProg").textContent=hechos+" de "+total+"  \u00b7  "+pz+"/4 piezas  \u00b7  "+rb+"/6 r\u00fabrica"+
+    (cortos?"  \u00b7  "+cortos+" por debajo del m\u00ednimo":"");
+  $("#barra").style.width= total ? Math.round(hechos*100/total)+"%" : "0%";
+  var g=grupoDe(datos.apellido);
+  $("#bPdf").disabled=!(datos.nombre && datos.cedula && g && pz===4 && rb===6 && hechos>=total*0.95);
+  $("#cNombre").textContent=datos.nombre||"\u2014";
+  $("#cCedula").textContent=datos.cedula||"\u2014";
+  $("#cGrupo").textContent=g||"\u2014";
+  $("#cVoto").textContent=g?OBJ[g].j:"\u2014";
+  $("#cAuto").textContent=(datos.auto!=null)?datos.auto.toFixed(1):"\u2014";
+  $("#cFecha").textContent=new Date().toLocaleDateString("es-EC",{day:"numeric",month:"long",year:"numeric"});
+  if(datos.nombre && datos.cedula && g){
+    var cuerpo=["IF",soloDig(datos.cedula),normNom(datos.nombre),"G"+g,
+      hechos+"/"+total,"P"+pz,"A"+((datos.auto!=null)?datos.auto.toFixed(1):"-"),
+      minutos()+"M",
+      new Date().toISOString().slice(0,16).replace("T"," ")].join("|");
+    $("#cCodigo").textContent=cuerpo+"|"+b36(djb2(SAL+cuerpo));
+  } else $("#cCodigo").textContent="\u2014 se genera al completar nombre, c\u00e9dula y apellido \u2014";
+}
+
+function guarda(sil){
+  try{ localStorage.setItem(CLAVE,JSON.stringify(datos));
+    if(!sil){ $("#guardado").textContent="Guardado \u2713";
+      setTimeout(function(){$("#guardado").textContent="";},2200); } }catch(e){}
+}
+$("#bGuardar").addEventListener("click",function(){guarda(false);});
+$("#bPdf").addEventListener("click",function(){guarda(true);window.print();});
+document.addEventListener("input",function(){clearTimeout(window._t);
+  window._t=setTimeout(function(){guarda(true);},900);});
+document.addEventListener("input",function(ev){
+  if(ev.target && ev.target.id==="f_apellido"){ pintaGrupo(); marca(); }});
+
+$("#swCua").addEventListener("click",function(){ $("#capaCua").classList.add("on");
+  $("#capaMat").classList.remove("on"); $("#swCua").classList.add("on"); $("#swMat").classList.remove("on"); });
+$("#swMat").addEventListener("click",function(){ $("#capaMat").classList.add("on");
+  $("#capaCua").classList.remove("on"); $("#swMat").classList.add("on"); $("#swCua").classList.remove("on"); });
+$("#tIzq").addEventListener("click",function(){ $("#panIzq").classList.add("on");
+  $("#panDer").classList.remove("on"); $("#tIzq").classList.add("on"); $("#tDer").classList.remove("on"); });
+$("#tDer").addEventListener("click",function(){ $("#panDer").classList.add("on");
+  $("#panIzq").classList.remove("on"); $("#tDer").classList.add("on"); $("#tIzq").classList.remove("on"); });
+
+pinta();
+})();
+</script>
+</body>
+</html>
