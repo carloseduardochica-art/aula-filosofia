@@ -300,6 +300,46 @@ h3{
   .comparativa table{min-width:0;font-size:8.5pt}
   .comparativa{break-inside:avoid}
 }
+
+/* ---------- PASO A PASO ---------- */
+.pasos{
+  column-span:all;margin:3rem 0 .5rem;padding-top:1.2rem;
+  border-top:2px solid var(--tinta);
+}
+.pasos .donde{
+  display:block;text-align:center;font-size:.72rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--sepia);margin-bottom:1.1em;
+}
+.pasos .fila{
+  display:flex;align-items:stretch;gap:.8rem;flex-wrap:wrap;
+}
+.pasos a,.pasos span.inerte{
+  flex:0 0 auto;display:flex;align-items:center;gap:.45em;
+  padding:.72em 1.15em;border:1px solid var(--linea);border-radius:3px;
+  background:var(--papel-alt);color:var(--sepia);text-decoration:none;
+  font-family:var(--serif);font-size:.92rem;line-height:1.3;
+}
+.pasos a:hover{background:var(--sepia);color:var(--papel);border-color:var(--sepia)}
+.pasos span.inerte{opacity:.34;cursor:default}
+.pasos .salto{flex:1 1 220px;min-width:0}
+.pasos select{
+  width:100%;height:100%;padding:.72em 1em;border:1px solid var(--linea);border-radius:3px;
+  background:var(--papel);color:var(--tinta);font-family:var(--serif);
+  font-size:.92rem;line-height:1.3;cursor:pointer;
+}
+.pasos select:focus{outline:2px solid var(--sepia);outline-offset:1px}
+.pasos .indice-vuelta{
+  display:block;text-align:center;margin-top:1.1em;font-size:.84rem;
+  color:var(--nota);font-style:italic;
+}
+.pasos .indice-vuelta a{display:inline;border:0;padding:0;background:none;
+  color:var(--sepia);text-decoration:underline}
+.pasos .indice-vuelta a:hover{background:none;color:var(--tinta)}
+@media (max-width:620px){
+  .pasos .fila{flex-direction:column}
+  .pasos a,.pasos span.inerte,.pasos .salto{width:100%;justify-content:center}
+}
+@media print{.pasos{display:none!important}}
 </style>
 </head>
 <body data-pestana="EL DERECHO VIVO">
@@ -498,6 +538,22 @@ h3{
 
 </div>
 
+
+<nav class="pasos" aria-label="Recorrido del bloque 3">
+  <span class="donde">Apartado 2 de 2 &middot; Bloque 3</span>
+  <div class="fila">
+    <a class="ir" href="3.1.1-3.1.3.html" rel="prev">&#8592; Anterior</a>
+    <div class="salto">
+      <label class="visually-hidden" for="salto1" hidden>Ir a otro apartado</label>
+      <select id="salto1" onchange="if(this.value)location.href=this.value;">
+      <option value="3.1.1-3.1.3.html">1. Subpuntos 3.1.1 a 3.1.3 — La Constitución entrometida</option>
+      <option value="3.2.1-3.2.3.html" selected>2. Subpuntos 3.2.1 a 3.2.3 — Encerrar el río en un estanque</option>
+      </select>
+    </div>
+    <span class="inerte">Siguiente &#8594;</span>
+  </div>
+  <span class="indice-vuelta">¿Prefiere ver el bloque entero? <a href="index.html">Índice del bloque 3</a></span>
+</nav>
 </div>
 
 <script>
