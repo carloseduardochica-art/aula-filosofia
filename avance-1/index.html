@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avance 1 · El planteamiento del problema · Filosofía del Derecho</title>
+<style>
+:root{
+  --papel:#f4f2ee;--blanco:#fff;--tinta:#16181c;--tinta2:#33363c;--nota:#5f625f;
+  --carmesi:#8a111a;--carmesi-osc:#6d0d14;--carmesi-ten:#f6e6e8;--carmesi-bor:#d9b3b7;
+  --verde:#2f5c3f;--verde-ten:#e8f0ea;--verde-bor:#a8c4b2;
+  --ambar:#7a5200;--ambar-ten:#fdf3e0;--ambar-bor:#e0c89a;
+  --gris:#5f625f;--gris-ten:#eeedea;
+  --linea:#c9c5bd;--linea2:#e2ded6;
+  --serif:Charter,Georgia,"Times New Roman",serif;
+  --sans:"Segoe UI",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--papel);color:var(--tinta);font-family:var(--sans);font-size:15px;line-height:1.55}
+.top{background:var(--blanco);border-bottom:4px solid var(--carmesi);padding:14px 20px;
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;position:sticky;top:0;z-index:30}
+.top .marca{font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--carmesi)}
+.top h1{font-family:var(--serif);font-size:19px;font-weight:600;margin:2px 0 0;line-height:1.2}
+.top .der{margin-left:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pill{font-size:12px;font-weight:700;padding:5px 12px;border-radius:20px;background:var(--carmesi-ten);
+  color:var(--carmesi);border:1px solid var(--carmesi-bor)}
+.pill.ok{background:var(--verde-ten);color:var(--verde);border-color:var(--verde-bor)}
+button{font-family:var(--sans);cursor:pointer;border:0}
+.btn{background:var(--carmesi);color:#fff;font-size:14px;font-weight:600;padding:11px 22px;border-radius:4px;
+  box-shadow:0 2px 6px rgba(138,17,26,.28)}
+.btn:hover{background:var(--carmesi-osc)}
+.btn.sec{background:#fff;color:var(--carmesi);border:1.5px solid var(--carmesi);box-shadow:none}
+.btn.chico{padding:7px 15px;font-size:13px}
+.btn:disabled{background:#b9b6b0;box-shadow:none;cursor:not-allowed}
+.tabs{display:none;background:var(--blanco);border-bottom:1px solid var(--linea)}
+.tabs button{flex:1;padding:13px;background:none;font-size:14px;font-weight:700;color:var(--nota);
+  border-bottom:3px solid transparent}
+.tabs button.on{color:var(--carmesi);border-bottom-color:var(--carmesi)}
+.paneles{display:flex;height:calc(100vh - 68px)}
+.pan{overflow-y:auto}
+.izq{flex:0 0 44%;border-right:1px solid var(--linea);background:#3a3a3a;position:relative}
+.izq iframe{width:100%;height:100%;border:0;display:block}
+.izq .avisoPdf{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;
+  justify-content:center;color:#fff;text-align:center;padding:30px;gap:14px}
+.der{flex:1;padding:22px 26px 96px}
+h2{font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--carmesi);
+  margin:30px 0 4px;padding-bottom:7px;border-bottom:2px solid var(--carmesi-bor)}
+h2:first-child{margin-top:0}
+.sub{font-size:13.5px;color:var(--tinta2);margin:0 0 14px;line-height:1.6}
+.campo{background:var(--blanco);border:1px solid var(--linea2);border-left:4px solid var(--linea);
+  border-radius:6px;padding:13px 15px;margin-bottom:11px}
+.campo.lleno{border-left-color:var(--verde)}
+.etq{font-size:13.5px;font-weight:700;color:var(--tinta);margin-bottom:3px;display:block}
+.etq .n{display:inline-block;min-width:22px;color:var(--carmesi);font-weight:800}
+.ayuda{font-size:12.5px;color:var(--nota);margin:0 0 8px;line-height:1.5}
+input[type=text],textarea{width:100%;font-family:var(--sans);font-size:14px;color:var(--tinta);
+  background:#fcfbf9;border:1px solid var(--linea);border-radius:4px;padding:9px 11px;line-height:1.5}
+input[type=text]:focus,textarea:focus{outline:0;border-color:var(--carmesi);background:#fff;
+  box-shadow:0 0 0 3px rgba(138,17,26,.10)}
+textarea{resize:vertical;min-height:62px}
+.mini{font-size:11.5px;color:var(--nota);margin-top:4px}
+.aviso-caja{background:var(--carmesi-ten);border:1px solid var(--carmesi-bor);border-left:5px solid var(--carmesi);
+  border-radius:6px;padding:14px 16px;margin:0 0 18px;font-size:13.5px;line-height:1.6;color:var(--tinta2)}
+.aviso-caja b{color:var(--carmesi)}
+.grupo-box{background:var(--verde-ten);border:1px solid var(--verde-bor);border-left:5px solid var(--verde);
+  border-radius:6px;padding:14px 16px;margin:0 0 16px;font-size:13.5px;line-height:1.6}
+.grupo-box b{color:var(--verde)}
+
+/* tabla de los tres planos */
+.plano{background:var(--blanco);border:1px solid var(--linea2);border-radius:6px;padding:11px 13px;margin-bottom:9px;
+  display:grid;grid-template-columns:34px 1fr 150px 190px;gap:9px;align-items:start}
+.plano.lleno{border-left:4px solid var(--verde);padding-left:9px}
+.plano .idx{font-size:13px;font-weight:800;color:var(--carmesi);padding-top:9px;text-align:center}
+.nvh{display:flex;gap:4px}
+.nvh button{flex:1;padding:8px 0;border:1.5px solid var(--linea);border-radius:4px;background:#fcfbf9;
+  font-size:13px;font-weight:800;color:var(--nota)}
+.nvh button.on{color:#fff}
+.nvh button[data-v=N].on{background:var(--gris);border-color:var(--gris)}
+.nvh button[data-v=V].on{background:var(--carmesi);border-color:var(--carmesi)}
+.nvh button[data-v=H].on{background:var(--verde);border-color:var(--verde)}
+.leyenda{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--tinta2);margin:0 0 12px}
+.leyenda span b{display:inline-block;width:20px;height:20px;line-height:20px;text-align:center;color:#fff;
+  border-radius:3px;margin-right:5px;font-size:12px}
+
+.barra{position:fixed;bottom:0;left:0;right:0;background:var(--blanco);border-top:2px solid var(--carmesi);
+  padding:11px 20px;display:flex;align-items:center;gap:14px;z-index:40;flex-wrap:wrap}
+.prog{flex:1;min-width:140px;height:9px;background:var(--linea2);border-radius:5px;overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:var(--carmesi);transition:width .3s}
+.cuenta{font-size:12.5px;color:var(--nota);font-weight:700;white-space:nowrap}
+
+@media print{
+  .top,.tabs,.izq,.barra,.no-print{display:none!important}
+  .paneles{display:block;height:auto}.der{padding:0}
+  body{background:#fff;font-size:11pt}
+  .campo,.plano{break-inside:avoid;border:1px solid #999;margin-bottom:6px}
+  .plano{grid-template-columns:28px 1fr 90px 150px}
+  .nvh{display:none}.plano .vsel{display:block!important;font-weight:800}
+  h2{margin:16px 0 6px;page-break-after:avoid}
+  #caratula{display:block!important}
+  textarea,input[type=text]{border:0;background:none;padding:2px 0;font-size:11pt}
+  .ayuda,.mini,.sub{color:#555}
+}
+.vsel{display:none}
+#caratula{display:none;border:2px solid var(--carmesi);padding:18px;margin-bottom:18px}
+#caratula .ct{font-family:var(--serif);font-size:17pt;font-weight:600;margin:6px 0}
+#caratula .cl{font-size:10pt;color:#444;line-height:1.7}
+@media(max-width:980px){
+  .paneles{display:block;height:auto}.tabs{display:flex}
+  .izq{flex:none;height:70vh;display:none}.izq.on{display:block}
+  .der{display:none;padding:18px 16px 100px}.der.on{display:block}
+  .plano{grid-template-columns:1fr;gap:7px}.plano .idx{text-align:left;padding-top:0}
+  .top h1{font-size:16px}
+}
+</style>
+</head>
+<body>
+
+<header class="top no-print">
+  <div>
+    <div class="marca">Filosofía del Derecho · Bloque 1 · Estudio de caso · Tarea n.º 1</div>
+    <h1>Avance 1 — El planteamiento del problema</h1>
+  </div>
+  <div class="der">
+    <span class="pill" id="pGrupo">Sin grupo</span>
+    <button class="btn sec" id="bGuardar">Guardar</button>
+    <button class="btn" id="bPdf" disabled>Descargar PDF</button>
+  </div>
+</header>
+
+<div class="tabs no-print">
+  <button id="tIzq">📖 Expediente</button>
+  <button id="tDer" class="on">✍️ Mi avance</button>
+</div>
+
+<div class="paneles">
+  <div class="pan izq" id="panIzq">
+    <iframe id="visor" src="../docs/cuadernillo-1.pdf#view=FitH" title="Cuadernillo 1"></iframe>
+    <div class="avisoPdf" id="avisoPdf">
+      <div style="font-size:15px;line-height:1.6;max-width:320px">
+        Su navegador no muestra el PDF aquí dentro.<br>Ábralo en una pestaña aparte y vuelva.
+      </div>
+      <a class="btn" href="../docs/cuadernillo-1.pdf" target="_blank" rel="noopener">Abrir el expediente</a>
+    </div>
+  </div>
+
+  <div class="pan der on" id="panDer">
+
+    <div id="caratula">
+      <div class="cl">UNIVERSIDAD CATÓLICA DE CUENCA · CARRERA DE DERECHO</div>
+      <div class="cl">FILOSOFÍA DEL DERECHO · Primer ciclo · Septiembre 2026 – Febrero 2027</div>
+      <div class="ct">Avance 1 — El planteamiento del problema</div>
+      <div class="cl">Pieza n.º 2 del dossier · Estudio de caso · Tarea n.º 1 · Bloque 1</div>
+      <div class="cl">Caso: «¿Puede un bosque tener derechos?» · Sentencia N.º 1149-19-JP/21</div>
+      <div class="cl" style="margin-top:10px"><b>Estudiante:</b> <span id="cNombre">—</span></div>
+      <div class="cl"><b>Cédula:</b> <span id="cCedula">—</span> &nbsp;·&nbsp; <b>Grupo:</b> <span id="cGrupo">—</span></div>
+      <div class="cl"><b>Fecha:</b> <span id="cFecha">—</span></div>
+      <div class="cl" style="margin-top:10px;padding-top:8px;border-top:1px solid #c9c5bd"><b>Código de constancia:</b><br>
+        <span id="cCodigo" style="font-family:ui-monospace,Consolas,monospace;font-size:8.5pt;word-break:break-all">—</span></div>
+      <div class="cl" style="font-size:8pt;color:#666;margin-top:4px">Certifica que el avance se trabajó dentro de la
+        aplicación. No califica las respuestas: eso lo hace el docente con la rúbrica.</div>
+    </div>
+
+    <div class="aviso-caja no-print">
+      <b>Dónde estamos.</b> En la Hoja 1 fichó el expediente y anotó tres preguntas que no podía responder.
+      Ahora toca coger <b>una de esas tres</b> y convertirla en un problema filosófico bien planteado.
+      No se le pide resolverlo — eso es el bloque 3. Se le pide <b>plantearlo bien</b>.
+      <br><br><b>No se puede pegar texto:</b> se escribe.
+    </div>
+
+    <h2>Identificación</h2>
+    <div id="ident"></div>
+
+    <h2>1 · La pregunta elegida</h2>
+    <div id="p1"></div>
+
+    <h2>2 · De pregunta a problema filosófico</h2>
+    <p class="sub"><b>Cuántas especies alberga Los Cedros</b> se contesta contando.
+    <b>Si un bosque puede ser titular de derechos</b> se contesta discutiendo. Confundirlas es el error
+    más común de la asignatura.</p>
+    <div id="p2"></div>
+
+    <h2>3 · Dónde vive la pregunta</h2>
+    <div id="p3"></div>
+
+    <h2>4 · Los tres planos del texto</h2>
+    <div class="grupo-box" id="cajaGrupo">Escriba su primer apellido arriba y le diré qué párrafos le tocan.</div>
+    <div class="leyenda">
+      <span><b style="background:#5f625f">N</b> Norma — lo que el texto <i>manda</i></span>
+      <span><b style="background:#8a111a">V</b> Valor — lo que el texto <i>aprecia</i></span>
+      <span><b style="background:#2f5c3f">H</b> Hecho — lo que el texto <i>constata</i></span>
+    </div>
+    <p class="sub">Transcriba el enunciado, etiquétele el plano, y escriba <b>la palabra del propio texto</b>
+    que lo delata. <b>Mínimo doce.</b> Esa tercera columna es la que separa el criterio propio de la copia.</p>
+    <div id="planos"></div>
+    <button class="btn sec chico no-print" id="bMas">+ Añadir otro enunciado</button>
+
+    <h2>5 · Posición provisional</h2>
+    <p class="sub">Media página. Y puede escribir «todavía no lo sé», <b>siempre que diga con precisión
+    qué le falta para saberlo</b>. Lo que no se admite es una respuesta segura sin fundamento.</p>
+    <div id="p5"></div>
+
+    <h2>6 · Autoevaluación</h2>
+    <p class="sub">Califíquese con la misma rúbrica del docente, criterio por criterio, justificando en
+    dos líneas. El Reglamento de Régimen Académico define el componente autónomo, entre otras cosas,
+    por «la reflexión crítica y autoevaluación del estudiante». Aquí se cumple literalmente.</p>
+    <div id="p6"></div>
+
+    <h2>Declaración de uso de inteligencia artificial</h2>
+    <div class="aviso-caja no-print">
+      <b>Obligatoria.</b> Y un aviso propio de esta tarea: pedirle a un modelo que clasifique enunciados
+      en norma, valor y hecho produce tablas <b>muy convincentes y con frecuencia equivocadas</b>.
+      La palabra del texto que usted cite como prueba de la etiqueta es lo que separa el criterio propio
+      de la copia.
+    </div>
+    <div id="p7"></div>
+    <div style="height:30px"></div>
+  </div>
+</div>
+
+<div class="barra no-print">
+  <div class="cuenta" id="txtProg">0 de 0</div>
+  <div class="prog"><i id="barra"></i></div>
+  <span class="cuenta" id="guardado"></span>
+</div>
+
+<script>
+(function(){
+"use strict";
+var CLAVE="avance1-filosofia-v1", SAL="FD-A1-avance-v1", T0=Date.now();
+var MIN_PLANOS=12;
+
+function djb2(x){var h=5381,i;for(i=0;i<x.length;i++){h=((h<<5)+h)+x.charCodeAt(i);h=h>>>0;}return h;}
+function b36(n){return n.toString(36).toUpperCase();}
+function soloDig(x){return (x||"").replace(/\D/g,"");}
+function normNom(x){return (x||"").toUpperCase().replace(/[^A-ZÁÉÍÓÚÑ ]/g,"").trim().replace(/\s+/g," ");}
+function minutos(){return Math.max(1,Math.round((Date.now()-T0)/60000));}
+
+var datos={};
+try{datos=JSON.parse(localStorage.getItem(CLAVE)||"{}");}catch(e){datos={};}
+if(!datos.filas) datos.filas=MIN_PLANOS;
+
+function $(s){return document.querySelector(s);}
+function el(t,c,h){var n=document.createElement(t);if(c)n.className=c;if(h!=null)n.innerHTML=h;return n;}
+
+function antiPegado(c){
+  c.addEventListener("paste",function(ev){
+    ev.preventDefault(); c.style.borderColor="#8a111a";
+    var p=c.closest(".campo")||c.closest(".plano");
+    if(p && !p.querySelector(".pegado")) p.appendChild(el("div","mini pegado",
+      "<b style='color:#8a111a'>Aquí no se puede pegar.</b> Se escribe: es la mitad del ejercicio."));
+    setTimeout(function(){c.style.borderColor="";},1200);
+  });
+  c.addEventListener("drop",function(ev){ev.preventDefault();});
+}
+
+function caja(id,etiqueta,ayuda,filas,num){
+  var c=el("div","campo"); c.dataset.k=id;
+  c.appendChild(el("label","etq",(num!=null?'<span class="n">'+num+'</span>':'')+etiqueta));
+  if(ayuda) c.appendChild(el("p","ayuda",ayuda));
+  var t=el("textarea"); t.rows=filas||3; t.id="f_"+id; t.value=datos[id]||"";
+  antiPegado(t); c.appendChild(t);
+  return c;
+}
+
+var IDENT=[
+ {id:"nombre",t:"Nombres y apellidos completos",h:"Como constan en su cédula."},
+ {id:"apellido",t:"Su primer apellido",h:"De aquí salen los párrafos que le tocan."},
+ {id:"cedula",t:"Cédula",h:"Solo números."}];
+
+function grupoDe(ap){
+  ap=(ap||"").trim().toUpperCase(); if(!ap) return null;
+  var c=ap.charAt(0); if(c==="Ñ") return "B";
+  return (c>="A"&&c<="L")?"A":((c>="M"&&c<="Z")?"B":null);
+}
+
+function planoFila(i){
+  var f=el("div","plano"); f.dataset.i=i;
+  f.appendChild(el("div","idx",String(i+1)));
+  var t=el("textarea"); t.rows=2; t.id="f_e"+i; t.placeholder="Enunciado transcrito del párrafo";
+  t.value=datos["e"+i]||""; antiPegado(t);
+  var wt=el("div"); wt.appendChild(t); f.appendChild(wt);
+  var nv=el("div","nvh");
+  ["N","V","H"].forEach(function(v){
+    var b=el("button",null,v); b.dataset.v=v;
+    if(datos["v"+i]===v) b.classList.add("on");
+    b.addEventListener("click",function(){
+      datos["v"+i]=v; nv.querySelectorAll("button").forEach(function(x){x.classList.remove("on");});
+      b.classList.add("on"); f.querySelector(".vsel").textContent=v; marca();
+    });
+    nv.appendChild(b);
+  });
+  var wn=el("div"); wn.appendChild(nv);
+  wn.appendChild(el("div","vsel",datos["v"+i]||""));
+  f.appendChild(wn);
+  var p=el("input"); p.type="text"; p.id="f_p"+i; p.placeholder="Palabra del texto que lo delata";
+  p.value=datos["p"+i]||""; antiPegado(p);
+  var wp=el("div"); wp.appendChild(p); f.appendChild(wp);
+  return f;
+}
+
+function pinta(){
+  var cI=$("#ident"); cI.innerHTML="";
+  IDENT.forEach(function(f){
+    var c=el("div","campo"); c.dataset.k=f.id;
+    c.appendChild(el("label","etq",f.t)); c.appendChild(el("p","ayuda",f.h));
+    var i=el("input"); i.type="text"; i.id="f_"+f.id; i.value=datos[f.id]||"";
+    antiPegado(i); c.appendChild(i); cI.appendChild(c);
+  });
+
+  $("#p1").innerHTML=""; $("#p1").appendChild(caja("q1",
+    "Transcriba la pregunta tal como la escribió en la Hoja 1",null,2,1));
+  $("#p1").appendChild(caja("q2",
+    "¿Por qué eligió esa y no las otras dos?","Tres líneas.",3,2));
+
+  $("#p2").innerHTML=""; $("#p2").appendChild(caja("q3",
+    "Reescriba la pregunta en la forma más precisa que pueda",null,2,1));
+  $("#p2").appendChild(caja("q4",
+    "¿Por qué no se resuelve reuniendo más datos?",
+    "Diga qué tendría que <b>discutirse</b>, y no medirse, para contestarla.",4,2));
+
+  $("#p3").innerHTML=""; $("#p3").appendChild(caja("q5",
+    "¿A qué disciplina filosófica pertenece su problema?",
+    "Ontología, axiología o teoría del conocimiento. Y <b>por qué no pertenece a las otras dos</b>.",4,1));
+  $("#p3").appendChild(caja("q6",
+    "Dos conceptos del material del bloque, señalando de dónde los tomó",
+    "Del material de lectura del bloque 1. Indique el apartado.",3,2));
+
+  $("#p5").innerHTML=""; $("#p5").appendChild(caja("q7",
+    "¿Qué respondería hoy a su pregunta, y qué le faltaría saber para sostenerlo?",null,6,null));
+
+  var R=[["Elección y formulación del problema","2,5"],["Ubicación disciplinar","2,0"],
+         ["Los tres planos del texto","3,0"],["Posición provisional","1,5"],
+         ["Autoevaluación","0,5"],["Formato, carátula y declaración","0,5"]];
+  $("#p6").innerHTML="";
+  R.forEach(function(r,i){
+    $("#p6").appendChild(caja("a"+i, r[0]+" <span style='color:#5f625f;font-weight:400'>(hasta "+r[1]+")</span>",
+      "Qué nota se pone y por qué, en dos líneas.",2,i+1));
+  });
+
+  var D=[["ia1","¿Usó alguna herramienta de IA en esta tarea?","Responda «No», o «Sí» indicando cuál."],
+         ["ia2","Si la usó: ¿qué le preguntó exactamente?","Transcriba la pregunta."],
+         ["ia3","¿Qué le respondió?",""],
+         ["ia4","¿Qué tuvo que corregir contra el expediente, y por qué?",
+          "Si no corrigió nada, diga cómo lo comprobó."]];
+  $("#p7").innerHTML="";
+  D.forEach(function(d){ $("#p7").appendChild(caja(d[0],d[1],d[2],2,null)); });
+
+  pintaPlanos(); pintaGrupo();
+  document.querySelectorAll("input,textarea").forEach(function(n){
+    n.addEventListener("input",function(){ datos[n.id.slice(2)]=n.value; marca(); });
+  });
+  marca();
+}
+
+function pintaPlanos(){
+  var z=$("#planos"); z.innerHTML="";
+  for(var i=0;i<datos.filas;i++) z.appendChild(planoFila(i));
+  z.querySelectorAll("input,textarea").forEach(function(n){
+    n.addEventListener("input",function(){ datos[n.id.slice(2)]=n.value; marca(); });
+  });
+}
+
+function pintaGrupo(){
+  var g=grupoDe(datos.apellido), c=$("#cajaGrupo");
+  if(!g){ c.innerHTML="Escriba su primer apellido arriba y le diré qué párrafos le tocan.";
+    $("#pGrupo").textContent="Sin grupo"; $("#pGrupo").className="pill"; return; }
+  c.innerHTML="Le corresponde el <b>GRUPO "+g+"</b> — primer apellido de la "+
+    (g==="A"?"<b>A a la L</b>":"<b>M en adelante</b>")+". Trabaje sobre los <b>párrafos "+
+    (g==="A"?"42 a 48":"48 a 54")+"</b> de la sentencia, que están en el Cuadernillo 1, páginas 11 a 14.";
+  $("#pGrupo").textContent="Grupo "+g; $("#pGrupo").className="pill ok";
+}
+
+function marca(){
+  var total=0,hechos=0;
+  document.querySelectorAll(".campo").forEach(function(c){
+    var t=c.querySelector("textarea,input[type=text]"); if(!t) return;
+    total++; var ok=t.value.trim().length>=3; if(ok)hechos++; c.classList.toggle("lleno",ok);
+  });
+  var pl=0;
+  document.querySelectorAll(".plano").forEach(function(f){
+    var i=f.dataset.i;
+    var ok=(datos["e"+i]||"").trim().length>=10 && datos["v"+i] && (datos["p"+i]||"").trim().length>=2;
+    f.classList.toggle("lleno",!!ok); if(ok) pl++;
+  });
+  total += datos.filas; hechos += pl;
+  $("#txtProg").textContent=hechos+" de "+total+"  ·  "+pl+" enunciados de "+MIN_PLANOS+" mínimos";
+  $("#barra").style.width= total ? Math.round(hechos*100/total)+"%" : "0%";
+  var g=grupoDe(datos.apellido);
+  $("#bPdf").disabled = !(datos.nombre && datos.cedula && g && pl>=MIN_PLANOS && hechos>=total*0.9);
+  $("#cNombre").textContent=datos.nombre||"—";
+  $("#cCedula").textContent=datos.cedula||"—";
+  $("#cGrupo").textContent=g||"—";
+  $("#cFecha").textContent=new Date().toLocaleDateString("es-EC",{day:"numeric",month:"long",year:"numeric"});
+  if(datos.nombre && datos.cedula && g){
+    var cuerpo=["A1",soloDig(datos.cedula),normNom(datos.nombre),"G"+g,
+      hechos+"/"+total,pl+"P",minutos()+"M",
+      new Date().toISOString().slice(0,16).replace("T"," ")].join("|");
+    $("#cCodigo").textContent=cuerpo+"|"+b36(djb2(SAL+cuerpo));
+  } else $("#cCodigo").textContent="— se genera al completar nombre, cédula y apellido —";
+}
+
+function guarda(sil){
+  try{ localStorage.setItem(CLAVE,JSON.stringify(datos));
+    if(!sil){ $("#guardado").textContent="Guardado ✓";
+      setTimeout(function(){$("#guardado").textContent="";},2200); }
+  }catch(e){ $("#guardado").textContent="No se pudo guardar"; }
+}
+
+$("#bMas").addEventListener("click",function(){ datos.filas++; pintaPlanos(); marca(); guarda(true); });
+$("#bGuardar").addEventListener("click",function(){ guarda(false); });
+$("#bPdf").addEventListener("click",function(){ guarda(true); window.print(); });
+document.addEventListener("input",function(){ clearTimeout(window._t);
+  window._t=setTimeout(function(){guarda(true);},900); });
+document.addEventListener("input",function(ev){
+  if(ev.target && ev.target.id==="f_apellido"){ pintaGrupo(); marca(); } });
+
+$("#tIzq").addEventListener("click",function(){ $("#panIzq").classList.add("on");
+  $("#panDer").classList.remove("on"); $("#tIzq").classList.add("on"); $("#tDer").classList.remove("on"); });
+$("#tDer").addEventListener("click",function(){ $("#panDer").classList.add("on");
+  $("#panIzq").classList.remove("on"); $("#tDer").classList.add("on"); $("#tIzq").classList.remove("on"); });
+
+setTimeout(function(){ var f=$("#visor");
+  try{ if(!f||f.clientHeight<40){ f.style.display="none"; $("#avisoPdf").style.display="flex"; } }
+  catch(e){ $("#avisoPdf").style.display="flex"; } },2500);
+
+pinta();
+})();
+</script>
+</body>
+</html>
