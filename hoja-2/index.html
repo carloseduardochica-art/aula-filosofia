@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hoja 2 · Los dos alegatos · Filosofía del Derecho</title>
+<style>
+:root{
+  --papel:#f4f2ee;--blanco:#fff;--tinta:#16181c;--tinta2:#33363c;--nota:#5f625f;
+  --carmesi:#8a111a;--carmesi-osc:#6d0d14;--carmesi-ten:#f6e6e8;--carmesi-bor:#d9b3b7;
+  --verde:#2f5c3f;--verde-ten:#e8f0ea;--verde-bor:#a8c4b2;
+  --gris:#5f625f;--gris-ten:#eeedea;--gris-bor:#c9c5bd;
+  --linea:#c9c5bd;--linea2:#e2ded6;
+  --serif:Charter,Georgia,"Times New Roman",serif;
+  --sans:"Segoe UI",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--papel);color:var(--tinta);font-family:var(--sans);font-size:15px;line-height:1.55}
+.top{background:var(--blanco);border-bottom:4px solid var(--carmesi);padding:14px 20px;
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;position:sticky;top:0;z-index:30}
+.top .marca{font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--carmesi)}
+.top h1{font-family:var(--serif);font-size:19px;font-weight:600;margin:2px 0 0;line-height:1.2}
+.top .der{margin-left:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pill{font-size:12px;font-weight:700;padding:5px 12px;border-radius:20px;background:var(--carmesi-ten);
+  color:var(--carmesi);border:1px solid var(--carmesi-bor)}
+.pill.ok{background:var(--verde-ten);color:var(--verde);border-color:var(--verde-bor)}
+button{font-family:var(--sans);cursor:pointer;border:0}
+.btn{background:var(--carmesi);color:#fff;font-size:14px;font-weight:600;padding:11px 22px;border-radius:4px;
+  box-shadow:0 2px 6px rgba(138,17,26,.28)}
+.btn:hover{background:var(--carmesi-osc)}
+.btn.sec{background:#fff;color:var(--carmesi);border:1.5px solid var(--carmesi);box-shadow:none}
+.btn:disabled{background:#b9b6b0;box-shadow:none;cursor:not-allowed}
+.tabs{display:none;background:var(--blanco);border-bottom:1px solid var(--linea)}
+.tabs button{flex:1;padding:13px;background:none;font-size:14px;font-weight:700;color:var(--nota);
+  border-bottom:3px solid transparent}
+.tabs button.on{color:var(--carmesi);border-bottom-color:var(--carmesi)}
+.paneles{display:flex;height:calc(100vh - 68px)}
+.pan{overflow-y:auto}
+.izq{flex:0 0 42%;border-right:1px solid var(--linea);background:#3a3a3a;position:relative;display:flex;flex-direction:column}
+.izq .sw{display:flex;background:#2b2b2b}
+.izq .sw button{flex:1;padding:11px 6px;background:none;color:#cfcfcf;font-size:12.5px;font-weight:700;
+  border-bottom:3px solid transparent}
+.izq .sw button.on{color:#fff;border-bottom-color:var(--carmesi);background:#3a3a3a}
+.izq .cuerpo{flex:1;position:relative;background:#000}
+.izq iframe{width:100%;height:100%;border:0;display:block}
+.capa{display:none;position:absolute;inset:0}
+.capa.on{display:block}
+.der{flex:1;padding:22px 26px 96px}
+h2{font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--carmesi);
+  margin:32px 0 4px;padding-bottom:7px;border-bottom:2px solid var(--carmesi-bor)}
+h2:first-child{margin-top:0}
+h2 .paso{display:inline-block;background:var(--carmesi);color:#fff;border-radius:3px;padding:2px 8px;
+  margin-right:8px;font-size:11px;letter-spacing:.8px}
+.sub{font-size:13.5px;color:var(--tinta2);margin:0 0 14px;line-height:1.6}
+.campo{background:var(--blanco);border:1px solid var(--linea2);border-left:4px solid var(--linea);
+  border-radius:6px;padding:13px 15px;margin-bottom:11px}
+.campo.lleno{border-left-color:var(--verde)}
+.campo.ius{border-left-color:var(--verde-bor)} .campo.ius.lleno{border-left-color:var(--verde)}
+.campo.pos{border-left-color:var(--gris-bor)} .campo.pos.lleno{border-left-color:var(--gris)}
+.etq{font-size:13.5px;font-weight:700;color:var(--tinta);margin-bottom:3px;display:block}
+.etq .n{display:inline-block;min-width:22px;color:var(--carmesi);font-weight:800}
+.ayuda{font-size:12.5px;color:var(--nota);margin:0 0 8px;line-height:1.5}
+input[type=text],textarea{width:100%;font-family:var(--sans);font-size:14px;color:var(--tinta);
+  background:#fcfbf9;border:1px solid var(--linea);border-radius:4px;padding:9px 11px;line-height:1.5}
+input[type=text]:focus,textarea:focus{outline:0;border-color:var(--carmesi);background:#fff;
+  box-shadow:0 0 0 3px rgba(138,17,26,.10)}
+textarea{resize:vertical;min-height:58px}
+.cuenta-c{font-size:11.5px;color:var(--nota);margin-top:4px;text-align:right}
+.cuenta-c.corto{color:var(--carmesi);font-weight:700}
+.mini{font-size:11.5px;color:var(--nota);margin-top:4px}
+.aviso-caja{background:var(--carmesi-ten);border:1px solid var(--carmesi-bor);border-left:5px solid var(--carmesi);
+  border-radius:6px;padding:14px 16px;margin:0 0 18px;font-size:13.5px;line-height:1.6;color:var(--tinta2)}
+.aviso-caja b{color:var(--carmesi)}
+.grupo-box{background:var(--verde-ten);border:1px solid var(--verde-bor);border-left:5px solid var(--verde);
+  border-radius:6px;padding:14px 16px;margin:0 0 16px;font-size:13.5px;line-height:1.6}
+.grupo-box b{color:var(--verde)}
+.bandera{border-radius:6px;padding:13px 16px;margin:0 0 14px;font-size:13.5px;line-height:1.6}
+.bandera.ius{background:var(--verde-ten);border:1px solid var(--verde-bor);border-left:5px solid var(--verde)}
+.bandera.pos{background:var(--gris-ten);border:1px solid var(--gris-bor);border-left:5px solid var(--gris)}
+.bandera b.t{display:block;font-size:14.5px;margin-bottom:5px}
+.bandera.ius b.t{color:var(--verde)} .bandera.pos b.t{color:var(--gris)}
+.barra{position:fixed;bottom:0;left:0;right:0;background:var(--blanco);border-top:2px solid var(--carmesi);
+  padding:11px 20px;display:flex;align-items:center;gap:14px;z-index:40;flex-wrap:wrap}
+.prog{flex:1;min-width:140px;height:9px;background:var(--linea2);border-radius:5px;overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:var(--carmesi);transition:width .3s}
+.cuenta{font-size:12.5px;color:var(--nota);font-weight:700;white-space:nowrap}
+@media print{
+  .top,.tabs,.izq,.barra,.no-print{display:none!important}
+  .paneles{display:block;height:auto}.der{padding:0}
+  body{background:#fff;font-size:11pt}
+  .campo{break-inside:avoid;border:1px solid #999;margin-bottom:6px}
+  h2{margin:16px 0 6px;page-break-after:avoid}
+  #caratula{display:block!important}
+  textarea,input[type=text]{border:0;background:none;padding:2px 0;font-size:11pt}
+  .ayuda,.mini,.sub,.cuenta-c{color:#555}
+}
+#caratula{display:none;border:2px solid var(--carmesi);padding:18px;margin-bottom:18px}
+#caratula .ct{font-family:var(--serif);font-size:17pt;font-weight:600;margin:6px 0}
+#caratula .cl{font-size:10pt;color:#444;line-height:1.7}
+@media(max-width:980px){
+  .paneles{display:block;height:auto}.tabs{display:flex}
+  .izq{flex:none;height:64vh;display:none}.izq.on{display:flex}
+  .der{display:none;padding:18px 16px 100px}.der.on{display:block}
+  .top h1{font-size:15.5px}
+}
+</style>
+</head>
+<body>
+
+<header class="top no-print">
+  <div>
+    <div class="marca">Filosofía del Derecho · Bloque 2 · Guía práctica n.º 2 · Tarea n.º 2 del caso</div>
+    <h1>Hoja 2 — Los dos alegatos</h1>
+  </div>
+  <div class="der">
+    <span class="pill" id="pGrupo">Sin grupo</span>
+    <button class="btn sec" id="bGuardar">Guardar</button>
+    <button class="btn" id="bPdf" disabled>Descargar PDF</button>
+  </div>
+</header>
+
+<div class="tabs no-print">
+  <button id="tIzq">🎬 Documental y votos</button>
+  <button id="tDer" class="on">✍️ Mi hoja</button>
+</div>
+
+<div class="paneles">
+  <div class="pan izq" id="panIzq">
+    <div class="sw">
+      <button id="swDoc" class="on">🎬 Documental</button>
+      <button id="swVoto">📄 Los votos</button>
+    </div>
+    <div class="cuerpo">
+      <div class="capa on" id="capaDoc">
+        <iframe src="https://www.youtube.com/embed/RupkZM8dV14" title="Los derechos de la Naturaleza"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      <div class="capa" id="capaVoto">
+        <iframe src="../docs/cuadernillo-2.pdf#view=FitH" title="Cuadernillo 2"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="pan der on" id="panDer">
+
+    <div id="caratula">
+      <div class="cl">UNIVERSIDAD CATÓLICA DE CUENCA · CARRERA DE DERECHO</div>
+      <div class="cl">FILOSOFÍA DEL DERECHO · Primer ciclo · Septiembre 2026 – Febrero 2027</div>
+      <div class="ct">Hoja 2 — Los dos alegatos</div>
+      <div class="cl">Pieza n.º 4 del dossier · Guía práctica n.º 2 y Tarea n.º 2 del caso · Bloque 2</div>
+      <div class="cl" style="margin-top:10px"><b>Estudiante:</b> <span id="cNombre">—</span></div>
+      <div class="cl"><b>Cédula:</b> <span id="cCedula">—</span> &nbsp;·&nbsp; <b>Grupo:</b> <span id="cGrupo">—</span>
+        &nbsp;·&nbsp; <b>Voto salvado:</b> <span id="cVoto">—</span></div>
+      <div class="cl"><b>Fecha:</b> <span id="cFecha">—</span></div>
+      <div class="cl" style="margin-top:10px;padding-top:8px;border-top:1px solid #c9c5bd"><b>Código de constancia:</b><br>
+        <span id="cCodigo" style="font-family:ui-monospace,Consolas,monospace;font-size:8.5pt;word-break:break-all">—</span></div>
+    </div>
+
+    <div class="aviso-caja no-print">
+      <b>Esta hoja empieza con una película y termina con un desengaño.</b> Las dos cosas son la práctica.
+      Verá el documental y quedará convencido. Después leerá el voto salvado que le toca, escrito por una
+      jueza que <b>no niega el artículo 71</b> —lo acepta— pero sostiene que un juez no puede extenderlo.
+      <br><br>Quien sale de aquí sabiendo que <b>se puede estar emocionalmente convencido y jurídicamente
+      desarmado</b> ha aprendido lo que el bloque tenía que enseñar.
+      <br><br><b>No se puede pegar texto:</b> se escribe.
+    </div>
+
+    <h2>Identificación</h2>
+    <div id="ident"></div>
+
+    <h2><span class="paso">PASO 1</span> El documental, antes de nada</h2>
+    <p class="sub">Véalo completo —52 minutos, panel izquierdo— y <b>sin consultar nada más</b> escriba
+    media página. Esto no se califica por lo que piensa, sino por la precisión con que se observa a sí mismo.</p>
+    <div id="p1"></div>
+
+    <h2><span class="paso">PASO 2</span> El voto salvado, y el frío</h2>
+    <div class="grupo-box" id="cajaGrupo">Escriba su primer apellido arriba y le diré qué voto le toca.</div>
+    <div id="p2"></div>
+
+    <h2><span class="paso">PASO 3</span> Alegato iusnaturalista</h2>
+    <div class="bandera ius">
+      <b class="t">Defienda la decisión de mayoría</b>
+      Máximo dos páginas. Tres partes obligatorias: <b>la tesis en una sola oración</b>, <b>tres argumentos</b>
+      anclados cada uno en un párrafo citado, y <b>la respuesta a la objeción más fuerte</b> del voto salvado.
+    </div>
+    <div id="p3"></div>
+
+    <h2><span class="paso">PASO 4</span> Contraalegato iuspositivista</h2>
+    <div class="bandera pos">
+      <b class="t">Ataque esa misma decisión con el voto que le tocó</b>
+      Misma estructura de tres partes. Y una prohibición: <b>no vale argumentar que la minería es dañina
+      ni que es necesaria.</b> El ataque es técnico o no vale. Recuerde que el contraalegato no es su
+      opinión: es la mejor versión posible del argumento de la jueza.
+    </div>
+    <div id="p4"></div>
+
+    <h2><span class="paso">PASO 5</span> El cierre</h2>
+    <p class="sub">Media página. Y obligatoriamente: <b>qué pierde al elegir</b>.
+    Un cierre que no reconozca ningún costo se califica como no presentado.</p>
+    <div id="p5"></div>
+
+    <h2>Declaración de uso de inteligencia artificial</h2>
+    <div class="aviso-caja no-print">
+      <b>Obligatoria.</b> Si la empleó, señale además <b>una afirmación que la herramienta le devolvió y
+      que usted tuvo que corregir</b> contra el texto. Aviso concreto: los modelos confunden con
+      frecuencia el voto de mayoría con los salvados, y atribuyen a una jueza lo que escribió la otra.
+    </div>
+    <div id="p6"></div>
+    <div style="height:30px"></div>
+  </div>
+</div>
+
+<div class="barra no-print">
+  <div class="cuenta" id="txtProg">0 de 0</div>
+  <div class="prog"><i id="barra"></i></div>
+  <span class="cuenta" id="guardado"></span>
+</div>
+
+<script>
+(function(){
+"use strict";
+var CLAVE="hoja2-filosofia-v1", SAL="FD-H2-alegatos-v1", T0=Date.now();
+function djb2(x){var h=5381,i;for(i=0;i<x.length;i++){h=((h<<5)+h)+x.charCodeAt(i);h=h>>>0;}return h;}
+function b36(n){return n.toString(36).toUpperCase();}
+function soloDig(x){return (x||"").replace(/\D/g,"");}
+function normNom(x){return (x||"").toUpperCase().replace(/[^A-ZÁÉÍÓÚÑ ]/g,"").trim().replace(/\s+/g," ");}
+function minutos(){return Math.max(1,Math.round((Date.now()-T0)/60000));}
+
+var datos={};
+try{datos=JSON.parse(localStorage.getItem(CLAVE)||"{}");}catch(e){datos={};}
+function $(s){return document.querySelector(s);}
+function el(t,c,h){var n=document.createElement(t);if(c)n.className=c;if(h!=null)n.innerHTML=h;return n;}
+
+function antiPegado(c){
+  c.addEventListener("paste",function(ev){
+    ev.preventDefault(); c.style.borderColor="#8a111a";
+    var p=c.closest(".campo");
+    if(p && !p.querySelector(".pegado")) p.appendChild(el("div","mini pegado",
+      "<b style='color:#8a111a'>Aquí no se puede pegar.</b> Se escribe."));
+    setTimeout(function(){c.style.borderColor="";},1200);
+  });
+  c.addEventListener("drop",function(ev){ev.preventDefault();});
+}
+
+function caja(id,etq,ayuda,filas,num,clase,minCar){
+  var c=el("div","campo"+(clase?" "+clase:"")); c.dataset.k=id;
+  if(minCar) c.dataset.min=minCar;
+  c.appendChild(el("label","etq",(num!=null?'<span class="n">'+num+'</span>':'')+etq));
+  if(ayuda) c.appendChild(el("p","ayuda",ayuda));
+  var t=el("textarea"); t.rows=filas||3; t.id="f_"+id; t.value=datos[id]||"";
+  antiPegado(t); c.appendChild(t);
+  if(minCar){ var m=el("div","cuenta-c"); m.dataset.para=id; c.appendChild(m); }
+  return c;
+}
+
+var IDENT=[{id:"nombre",t:"Nombres y apellidos completos",h:"Como constan en su cédula."},
+ {id:"apellido",t:"Su primer apellido",h:"De aquí sale el voto salvado que le toca."},
+ {id:"cedula",t:"Cédula",h:"Solo números."}];
+
+var VOTOS={
+ A:{j:"Teresa Nuques Martínez", pp:"102 a 111",
+    ejes:"el texto y la voluntad del constituyente (¶19-21) · la seguridad jurídica frente a estándares definidos después de los hechos (¶22, ¶26) · el artículo 82 y las normas «previas, públicas y claras»"},
+ B:{j:"Carmen Corral Ponce", pp:"112 a 119",
+    ejes:"la ubicación sistemática de los artículos 14 y 71 en la Constitución (¶5-7) · el desbordamiento de la competencia del juez constitucional"}};
+
+function grupoDe(ap){ap=(ap||"").trim().toUpperCase();if(!ap)return null;
+  var c=ap.charAt(0);if(c==="Ñ")return "B";
+  return (c>="A"&&c<="L")?"A":((c>="M"&&c<="Z")?"B":null);}
+
+function pinta(){
+  var cI=$("#ident"); cI.innerHTML="";
+  IDENT.forEach(function(f){
+    var c=el("div","campo"); c.dataset.k=f.id;
+    c.appendChild(el("label","etq",f.t)); c.appendChild(el("p","ayuda",f.h));
+    var i=el("input"); i.type="text"; i.id="f_"+f.id; i.value=datos[f.id]||"";
+    antiPegado(i); c.appendChild(i); cI.appendChild(c);
+  });
+
+  $("#p1").innerHTML="";
+  $("#p1").appendChild(caja("d1","¿De qué quedó convencido?",null,5,1,null,400));
+  $("#p1").appendChild(caja("d2","¿Por qué medio lo convenció?",
+    "¿Fue una imagen, un testimonio, un dato, un argumento? Sea honesto.",4,2,null,200));
+
+  $("#p2").innerHTML="";
+  $("#p2").appendChild(caja("v1","¿Qué parte de su convicción sobrevive a esa lectura?",null,4,1,null,200));
+  $("#p2").appendChild(caja("v2","¿Y qué parte no sobrevive?","Tres líneas. Esta es la casilla que más dice de usted.",3,2,null,150));
+
+  $("#p3").innerHTML="";
+  $("#p3").appendChild(caja("i1","La tesis, en una sola oración",
+    "Sin subordinadas de escape.",2,1,"ius",60));
+  $("#p3").appendChild(caja("i2","Argumento 1 — con el párrafo citado","Indique el número de párrafo.",4,2,"ius",250));
+  $("#p3").appendChild(caja("i3","Argumento 2 — con el párrafo citado","Que sea <b>otro</b> argumento, no el primero con otras palabras.",4,3,"ius",250));
+  $("#p3").appendChild(caja("i4","Argumento 3 — con el párrafo citado",null,4,4,"ius",250));
+  $("#p3").appendChild(caja("i5","Respuesta a la objeción más fuerte del voto salvado",
+    "La más fuerte, no la más cómoda.",5,5,"ius",300));
+
+  $("#p4").innerHTML="";
+  $("#p4").appendChild(caja("o1","La tesis del contraalegato, en una sola oración",null,2,1,"pos",60));
+  $("#p4").appendChild(caja("o2","Argumento 1 — con el párrafo citado del voto salvado",null,4,2,"pos",250));
+  $("#p4").appendChild(caja("o3","Argumento 2 — con el párrafo citado",null,4,3,"pos",250));
+  $("#p4").appendChild(caja("o4","Argumento 3 — con el párrafo citado",null,4,4,"pos",250));
+  $("#p4").appendChild(caja("o5","Respuesta a la objeción más fuerte de la mayoría",
+    "Ahora al revés: ¿qué diría la mayoría contra su contraalegato, y qué le responde?",5,5,"pos",300));
+
+  $("#p5").innerHTML="";
+  $("#p5").appendChild(caja("c1","¿Cuál de las dos posturas lo convence?",null,4,1,null,250));
+  $("#p5").appendChild(caja("c2","¿Qué pierde al elegirla?",
+    "<b>Obligatorio.</b> Toda postura cuesta algo. Nombrar ese costo es la señal de que entendió el bloque.",4,2,null,200));
+
+  var D=[["ia1","¿Usó alguna herramienta de IA en esta tarea?","Responda «No», o «Sí» indicando cuál."],
+         ["ia2","Si la usó: ¿qué le preguntó exactamente?",""],
+         ["ia3","Una afirmación que le devolvió y que usted tuvo que corregir contra el texto",
+          "Si no tuvo que corregir ninguna, diga cómo lo comprobó."]];
+  $("#p6").innerHTML="";
+  D.forEach(function(d){ $("#p6").appendChild(caja(d[0],d[1],d[2],3,null,null,0)); });
+
+  pintaGrupo();
+  document.querySelectorAll("input,textarea").forEach(function(n){
+    n.addEventListener("input",function(){ datos[n.id.slice(2)]=n.value; marca(); });
+  });
+  marca();
+}
+
+function pintaGrupo(){
+  var g=grupoDe(datos.apellido), c=$("#cajaGrupo");
+  if(!g){ c.innerHTML="Escriba su primer apellido arriba y le diré qué voto le toca.";
+    $("#pGrupo").textContent="Sin grupo"; $("#pGrupo").className="pill"; return; }
+  var v=VOTOS[g];
+  c.innerHTML="Le corresponde el <b>GRUPO "+g+"</b>. Su voto salvado es el de la jueza <b>"+v.j+
+    "</b>, páginas <b>"+v.pp+"</b> del Cuadernillo 2 — pestaña «Los votos» del panel izquierdo."+
+    "<br><br><b>Sus ejes:</b> "+v.ejes;
+  $("#pGrupo").textContent="Grupo "+g; $("#pGrupo").className="pill ok";
+}
+
+function marca(){
+  var total=0,hechos=0,cortos=0;
+  document.querySelectorAll(".campo").forEach(function(c){
+    var t=c.querySelector("textarea,input[type=text]"); if(!t) return;
+    total++;
+    var n=t.value.trim().length, min=parseInt(c.dataset.min||"3",10);
+    var ok=n>=Math.max(3,min); if(ok)hechos++;
+    c.classList.toggle("lleno",ok);
+    var m=c.querySelector(".cuenta-c");
+    if(m && min>3){
+      m.textContent=n+" / "+min+" caracteres mínimos";
+      m.classList.toggle("corto", n<min);
+      if(n>0 && n<min) cortos++;
+    }
+  });
+  $("#txtProg").textContent=hechos+" de "+total+(cortos?"  ·  "+cortos+" por debajo del mínimo":"");
+  $("#barra").style.width= total ? Math.round(hechos*100/total)+"%" : "0%";
+  var g=grupoDe(datos.apellido);
+  $("#bPdf").disabled=!(datos.nombre && datos.cedula && g && hechos>=total*0.95);
+  $("#cNombre").textContent=datos.nombre||"—";
+  $("#cCedula").textContent=datos.cedula||"—";
+  $("#cGrupo").textContent=g||"—";
+  $("#cVoto").textContent=g?VOTOS[g].j:"—";
+  $("#cFecha").textContent=new Date().toLocaleDateString("es-EC",{day:"numeric",month:"long",year:"numeric"});
+  if(datos.nombre && datos.cedula && g){
+    var cuerpo=["H2",soloDig(datos.cedula),normNom(datos.nombre),"G"+g,
+      hechos+"/"+total,minutos()+"M",
+      new Date().toISOString().slice(0,16).replace("T"," ")].join("|");
+    $("#cCodigo").textContent=cuerpo+"|"+b36(djb2(SAL+cuerpo));
+  } else $("#cCodigo").textContent="— se genera al completar nombre, cédula y apellido —";
+}
+
+function guarda(sil){
+  try{ localStorage.setItem(CLAVE,JSON.stringify(datos));
+    if(!sil){ $("#guardado").textContent="Guardado ✓";
+      setTimeout(function(){$("#guardado").textContent="";},2200); } }catch(e){}
+}
+$("#bGuardar").addEventListener("click",function(){guarda(false);});
+$("#bPdf").addEventListener("click",function(){guarda(true);window.print();});
+document.addEventListener("input",function(){clearTimeout(window._t);
+  window._t=setTimeout(function(){guarda(true);},900);});
+document.addEventListener("input",function(ev){
+  if(ev.target && ev.target.id==="f_apellido"){ pintaGrupo(); marca(); }});
+
+$("#swDoc").addEventListener("click",function(){ $("#capaDoc").classList.add("on");
+  $("#capaVoto").classList.remove("on"); $("#swDoc").classList.add("on"); $("#swVoto").classList.remove("on"); });
+$("#swVoto").addEventListener("click",function(){ $("#capaVoto").classList.add("on");
+  $("#capaDoc").classList.remove("on"); $("#swVoto").classList.add("on"); $("#swDoc").classList.remove("on"); });
+$("#tIzq").addEventListener("click",function(){ $("#panIzq").classList.add("on");
+  $("#panDer").classList.remove("on"); $("#tIzq").classList.add("on"); $("#tDer").classList.remove("on"); });
+$("#tDer").addEventListener("click",function(){ $("#panDer").classList.add("on");
+  $("#panIzq").classList.remove("on"); $("#tDer").classList.add("on"); $("#tIzq").classList.remove("on"); });
+
+pinta();
+})();
+</script>
+</body>
+</html>
