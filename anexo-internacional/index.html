@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anexo internacional · Un río en Colombia, un bosque en Ecuador</title>
+<style>
+:root{
+  --papel:#f4f2ee;--blanco:#fff;--tinta:#16181c;--tinta2:#33363c;--nota:#5f625f;
+  --carmesi:#8a111a;--carmesi-osc:#6d0d14;--carmesi-ten:#f6e6e8;--carmesi-bor:#d9b3b7;
+  --verde:#2f5c3f;--verde-ten:#e8f0ea;--verde-bor:#a8c4b2;
+  --azul:#1f4e6b;--azul-ten:#e7eff4;--azul-bor:#a9c4d3;
+  --linea:#c9c5bd;--linea2:#e2ded6;
+  --serif:Charter,Georgia,"Times New Roman",serif;
+  --sans:"Segoe UI",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--papel);color:var(--tinta);font-family:var(--sans);font-size:15px;line-height:1.55}
+.top{background:var(--blanco);border-bottom:4px solid var(--carmesi);padding:14px 20px;
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;position:sticky;top:0;z-index:30}
+.top .marca{font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--carmesi)}
+.top h1{font-family:var(--serif);font-size:19px;font-weight:600;margin:2px 0 0;line-height:1.2}
+.top .der{margin-left:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pill{font-size:12px;font-weight:700;padding:5px 12px;border-radius:20px;background:var(--carmesi-ten);
+  color:var(--carmesi);border:1px solid var(--carmesi-bor)}
+.pill.ok{background:var(--verde-ten);color:var(--verde);border-color:var(--verde-bor)}
+button{font-family:var(--sans);cursor:pointer;border:0}
+.btn{background:var(--carmesi);color:#fff;font-size:14px;font-weight:600;padding:11px 22px;border-radius:4px;
+  box-shadow:0 2px 6px rgba(138,17,26,.28)}
+.btn:hover{background:var(--carmesi-osc)}
+.btn.sec{background:#fff;color:var(--carmesi);border:1.5px solid var(--carmesi);box-shadow:none}
+.btn.azul{background:var(--azul);box-shadow:0 2px 6px rgba(31,78,107,.25)}
+.btn:disabled{background:#b9b6b0;box-shadow:none;cursor:not-allowed}
+.tabs{display:none;background:var(--blanco);border-bottom:1px solid var(--linea)}
+.tabs button{flex:1;padding:13px;background:none;font-size:14px;font-weight:700;color:var(--nota);
+  border-bottom:3px solid transparent}
+.tabs button.on{color:var(--carmesi);border-bottom-color:var(--carmesi)}
+.paneles{display:flex;height:calc(100vh - 68px)}
+.pan{overflow-y:auto}
+.izq{flex:0 0 42%;border-right:1px solid var(--linea);background:#3a3a3a;position:relative;display:flex;flex-direction:column}
+.izq .sw{display:flex;background:#2b2b2b}
+.izq .sw button{flex:1;padding:11px 6px;background:none;color:#cfcfcf;font-size:12.5px;font-weight:700;
+  border-bottom:3px solid transparent}
+.izq .sw button.on{color:#fff;border-bottom-color:var(--carmesi);background:#3a3a3a}
+.izq .cuerpo{flex:1;position:relative}
+.izq iframe{width:100%;height:100%;border:0;display:block}
+.colombia{display:none;position:absolute;inset:0;flex-direction:column;align-items:center;justify-content:center;
+  color:#fff;text-align:center;padding:34px;gap:16px}
+.colombia.on{display:flex}
+.der{flex:1;padding:22px 26px 96px}
+h2{font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--carmesi);
+  margin:30px 0 4px;padding-bottom:7px;border-bottom:2px solid var(--carmesi-bor)}
+h2:first-child{margin-top:0}
+.sub{font-size:13.5px;color:var(--tinta2);margin:0 0 14px;line-height:1.6}
+.campo{background:var(--blanco);border:1px solid var(--linea2);border-left:4px solid var(--linea);
+  border-radius:6px;padding:13px 15px;margin-bottom:11px}
+.campo.lleno{border-left-color:var(--verde)}
+.etq{font-size:13.5px;font-weight:700;color:var(--tinta);margin-bottom:3px;display:block}
+.etq .n{display:inline-block;min-width:22px;color:var(--carmesi);font-weight:800}
+.ayuda{font-size:12.5px;color:var(--nota);margin:0 0 8px;line-height:1.5}
+input[type=text],textarea{width:100%;font-family:var(--sans);font-size:14px;color:var(--tinta);
+  background:#fcfbf9;border:1px solid var(--linea);border-radius:4px;padding:9px 11px;line-height:1.5}
+input[type=text]:focus,textarea:focus{outline:0;border-color:var(--carmesi);background:#fff;
+  box-shadow:0 0 0 3px rgba(138,17,26,.10)}
+textarea{resize:vertical;min-height:58px}
+.mini{font-size:11.5px;color:var(--nota);margin-top:4px}
+.aviso-caja{background:var(--carmesi-ten);border:1px solid var(--carmesi-bor);border-left:5px solid var(--carmesi);
+  border-radius:6px;padding:14px 16px;margin:0 0 18px;font-size:13.5px;line-height:1.6;color:var(--tinta2)}
+.aviso-caja b{color:var(--carmesi)}
+.grupo-box{background:var(--verde-ten);border:1px solid var(--verde-bor);border-left:5px solid var(--verde);
+  border-radius:6px;padding:14px 16px;margin:0 0 16px;font-size:13.5px;line-height:1.6}
+.grupo-box b{color:var(--verde)}
+
+/* cuadro comparativo */
+.comp{background:var(--blanco);border:1px solid var(--linea2);border-radius:6px;padding:12px 14px;margin-bottom:10px}
+.comp.lleno{border-left:4px solid var(--verde);padding-left:10px}
+.comp .q{font-size:13.5px;font-weight:700;margin-bottom:9px}
+.comp .q .n{color:var(--carmesi);font-weight:800;margin-right:6px}
+.dos{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.lado{border-radius:5px;padding:9px 10px}
+.lado.ec{background:var(--carmesi-ten);border:1px solid var(--carmesi-bor)}
+.lado.co{background:var(--azul-ten);border:1px solid var(--azul-bor)}
+.lado .cab{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+.lado.ec .cab{color:var(--carmesi)} .lado.co .cab{color:var(--azul)}
+.lado textarea{background:#fff;min-height:54px}
+
+/* opciones de la parte 2 */
+.opcs{display:flex;flex-direction:column;gap:7px;margin-bottom:10px}
+.opc{border:1.5px solid var(--linea);border-radius:5px;padding:11px 13px;background:#fcfbf9;text-align:left;
+  font-size:13.5px;line-height:1.5;color:var(--tinta2)}
+.opc:hover{border-color:var(--nota)}
+.opc.on{border-width:2px;border-color:var(--carmesi);background:var(--carmesi-ten);font-weight:500}
+.opc b{color:var(--carmesi);margin-right:6px}
+
+.barra{position:fixed;bottom:0;left:0;right:0;background:var(--blanco);border-top:2px solid var(--carmesi);
+  padding:11px 20px;display:flex;align-items:center;gap:14px;z-index:40;flex-wrap:wrap}
+.prog{flex:1;min-width:140px;height:9px;background:var(--linea2);border-radius:5px;overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:var(--carmesi);transition:width .3s}
+.cuenta{font-size:12.5px;color:var(--nota);font-weight:700;white-space:nowrap}
+
+@media print{
+  .top,.tabs,.izq,.barra,.no-print,.opcs{display:none!important}
+  .paneles{display:block;height:auto}.der{padding:0}
+  body{background:#fff;font-size:11pt}
+  .campo,.comp{break-inside:avoid;border:1px solid #999;margin-bottom:6px}
+  h2{margin:16px 0 6px;page-break-after:avoid}
+  #caratula{display:block!important}
+  .opcSel{display:block!important;font-weight:700;margin-bottom:8px}
+  textarea,input[type=text]{border:0;background:none;padding:2px 0;font-size:11pt}
+  .ayuda,.mini,.sub{color:#555}
+}
+.opcSel{display:none}
+#caratula{display:none;border:2px solid var(--carmesi);padding:18px;margin-bottom:18px}
+#caratula .ct{font-family:var(--serif);font-size:17pt;font-weight:600;margin:6px 0}
+#caratula .cl{font-size:10pt;color:#444;line-height:1.7}
+@media(max-width:980px){
+  .paneles{display:block;height:auto}.tabs{display:flex}
+  .izq{flex:none;height:70vh;display:none}.izq.on{display:flex}
+  .der{display:none;padding:18px 16px 100px}.der.on{display:block}
+  .dos{grid-template-columns:1fr}.top h1{font-size:16px}
+}
+</style>
+</head>
+<body>
+
+<header class="top no-print">
+  <div>
+    <div class="marca">Filosofía del Derecho · Bloque 2 · Internacionalización</div>
+    <h1>Anexo internacional — Un río en Colombia, un bosque en Ecuador</h1>
+  </div>
+  <div class="der">
+    <span class="pill" id="pGrupo">Sin grupo</span>
+    <button class="btn sec" id="bGuardar">Guardar</button>
+    <button class="btn" id="bPdf" disabled>Descargar PDF</button>
+  </div>
+</header>
+
+<div class="tabs no-print">
+  <button id="tIzq">📖 Expedientes</button>
+  <button id="tDer" class="on">✍️ Mi anexo</button>
+</div>
+
+<div class="paneles">
+  <div class="pan izq" id="panIzq">
+    <div class="sw">
+      <button id="swEc" class="on">🇪🇨 Los Cedros</button>
+      <button id="swCo">🇨🇴 Río Atrato</button>
+    </div>
+    <div class="cuerpo">
+      <iframe id="visor" src="../docs/cuadernillo-1.pdf#view=FitH" title="Cuadernillo 1"></iframe>
+      <div class="colombia" id="panCo">
+        <div style="font-size:15px;line-height:1.65;max-width:360px">
+          <b>Corte Constitucional de Colombia</b><br>Sentencia T-622 de 2016 · 10 de noviembre de 2016<br>
+          <span style="opacity:.8;font-size:13.5px">Magistrado ponente: Jorge Iván Palacio Palacio ·
+          Expediente T-5.016.242</span>
+        </div>
+        <a class="btn azul" href="https://www.corteconstitucional.gov.co/relatoria/2016/t-622-16.htm"
+           target="_blank" rel="noopener">Abrir la sentencia del río Atrato</a>
+        <div style="font-size:12.5px;opacity:.75;max-width:340px;line-height:1.5">
+          Se abre en el sitio de la Corte colombiana. Déjela en otra pestaña mientras llena el cuadro.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pan der on" id="panDer">
+
+    <div id="caratula">
+      <div class="cl">UNIVERSIDAD CATÓLICA DE CUENCA · CARRERA DE DERECHO</div>
+      <div class="cl">FILOSOFÍA DEL DERECHO · Primer ciclo · Septiembre 2026 – Febrero 2027</div>
+      <div class="ct">Anexo internacional — Un río en Colombia, un bosque en Ecuador</div>
+      <div class="cl">Pieza n.º 3 del dossier · Actividad de internacionalización · Bloque 2</div>
+      <div class="cl" style="margin-top:10px"><b>Estudiante:</b> <span id="cNombre">—</span></div>
+      <div class="cl"><b>Cédula:</b> <span id="cCedula">—</span> &nbsp;·&nbsp; <b>Grupo:</b> <span id="cGrupo">—</span></div>
+      <div class="cl"><b>Fecha:</b> <span id="cFecha">—</span></div>
+      <div class="cl" style="margin-top:10px;padding-top:8px;border-top:1px solid #c9c5bd"><b>Código de constancia:</b><br>
+        <span id="cCodigo" style="font-family:ui-monospace,Consolas,monospace;font-size:8.5pt;word-break:break-all">—</span></div>
+    </div>
+
+    <div class="aviso-caja no-print">
+      <b>La coincidencia que no es coincidencia.</b> El 10 de noviembre de 2021 la Corte del Ecuador
+      declaró que Los Cedros es titular de derechos. El 10 de noviembre de 2016 —cinco años antes, el
+      mismo día del año— la Corte de Colombia había declarado que el río Atrato también lo es.
+      <br><br>Ecuador tiene el artículo 71. <b>Colombia no tiene ninguno.</b> Una corte aplicó un derecho
+      que estaba escrito; la otra lo construyó donde no estaba. Esa es la comparación.
+      <br><br><b>No se puede pegar texto:</b> se escribe.
+    </div>
+
+    <h2>Identificación</h2>
+    <div id="ident"></div>
+
+    <h2>Parte 1 · Los dos fallos en paralelo</h2>
+    <p class="sub">Para los dos grupos. Seis preguntas, dos respuestas cada una. Cuide de no confundir
+    <b>la norma en que se apoya</b> el tribunal con <b>el fundamento</b> con que la justifica: es el
+    error que más baja este criterio.</p>
+    <div id="cuadro"></div>
+
+    <h2>Parte 2 · La pregunta de su grupo</h2>
+    <div class="grupo-box" id="cajaGrupo">Escriba su primer apellido arriba y aparecerá su pregunta.</div>
+    <div id="parte2"></div>
+
+    <h2>Parte 3 · Una línea para la Hoja 2</h2>
+    <div id="parte3"></div>
+
+    <h2>Declaración de uso de inteligencia artificial</h2>
+    <div class="aviso-caja no-print">
+      <b>Obligatoria, aunque no la haya usado.</b> Aviso propio de esta tarea: los modelos confunden
+      con frecuencia los dos ordenamientos y atribuyen a la Corte colombiana el artículo 71
+      ecuatoriano, que no existe allá. Si algo no le cuadra, vaya al texto.
+    </div>
+    <div id="parte4"></div>
+    <div style="height:30px"></div>
+  </div>
+</div>
+
+<div class="barra no-print">
+  <div class="cuenta" id="txtProg">0 de 0</div>
+  <div class="prog"><i id="barra"></i></div>
+  <span class="cuenta" id="guardado"></span>
+</div>
+
+<script>
+(function(){
+"use strict";
+var CLAVE="anexo-filosofia-v1", SAL="FD-AX-anexo-v1", T0=Date.now();
+function djb2(x){var h=5381,i;for(i=0;i<x.length;i++){h=((h<<5)+h)+x.charCodeAt(i);h=h>>>0;}return h;}
+function b36(n){return n.toString(36).toUpperCase();}
+function soloDig(x){return (x||"").replace(/\D/g,"");}
+function normNom(x){return (x||"").toUpperCase().replace(/[^A-ZÁÉÍÓÚÑ ]/g,"").trim().replace(/\s+/g," ");}
+function minutos(){return Math.max(1,Math.round((Date.now()-T0)/60000));}
+
+var datos={};
+try{datos=JSON.parse(localStorage.getItem(CLAVE)||"{}");}catch(e){datos={};}
+function $(s){return document.querySelector(s);}
+function el(t,c,h){var n=document.createElement(t);if(c)n.className=c;if(h!=null)n.innerHTML=h;return n;}
+
+function antiPegado(c){
+  c.addEventListener("paste",function(ev){
+    ev.preventDefault(); c.style.borderColor="#8a111a";
+    var p=c.closest(".campo")||c.closest(".comp");
+    if(p && !p.querySelector(".pegado")) p.appendChild(el("div","mini pegado",
+      "<b style='color:#8a111a'>Aquí no se puede pegar.</b> Se escribe."));
+    setTimeout(function(){c.style.borderColor="";},1200);
+  });
+  c.addEventListener("drop",function(ev){ev.preventDefault();});
+}
+
+function caja(id,etq,ayuda,filas,num){
+  var c=el("div","campo"); c.dataset.k=id;
+  c.appendChild(el("label","etq",(num!=null?'<span class="n">'+num+'</span>':'')+etq));
+  if(ayuda) c.appendChild(el("p","ayuda",ayuda));
+  var t=el("textarea"); t.rows=filas||3; t.id="f_"+id; t.value=datos[id]||"";
+  antiPegado(t); c.appendChild(t); return c;
+}
+
+var IDENT=[{id:"nombre",t:"Nombres y apellidos completos",h:"Como constan en su cédula."},
+ {id:"apellido",t:"Su primer apellido",h:"De aquí sale su pregunta de la Parte 2."},
+ {id:"cedula",t:"Cédula",h:"Solo números."}];
+
+var CUADRO=[
+ "Tribunal que decide y fecha de la sentencia",
+ "Quién presentó la acción",
+ "Qué sujeto se reconoce como titular de derechos",
+ "En qué norma se apoya el tribunal",
+ "En qué fundamenta la decisión — la razón, no la norma",
+ "Qué ordena el tribunal"];
+
+var PREG={
+ A:{t:"Si Colombia no tiene un artículo 71, ¿de dónde salió el derecho del río?",
+    o:["El juez lo <b>creó</b>: antes de la sentencia ese derecho no existía.",
+       "El juez lo <b>dedujo</b> de otras normas que ya estaban en la Constitución.",
+       "El juez lo <b>reconoció</b> porque ya existía, aunque nadie lo hubiera escrito."],
+    c:"Y ahora la contrapregunta, que está puesta para que no se escape por la salida fácil: si fue así, ¿qué impide que mañana otro juez reconozca cualquier otro derecho que considere preexistente?"},
+ B:{t:"Las dos cortes llegaron a lo mismo, ¿por la misma razón?",
+    o:["<b>Sí</b>: el fundamento es equivalente aunque las palabras cambien.",
+       "<b>No</b>: Ecuador funda el derecho en el valor propio de la naturaleza; Colombia, en la relación de las comunidades con su territorio.",
+       "<b>Son dos derechos distintos</b> con el mismo nombre."],
+    c:"Y la contrapregunta: si son dos fundamentos distintos, ¿protegerían lo mismo en un caso donde no hubiera comunidades cerca?"}};
+
+function grupoDe(ap){ap=(ap||"").trim().toUpperCase();if(!ap)return null;
+  var c=ap.charAt(0);if(c==="Ñ")return "B";
+  return (c>="A"&&c<="L")?"A":((c>="M"&&c<="Z")?"B":null);}
+
+function pinta(){
+  var cI=$("#ident"); cI.innerHTML="";
+  IDENT.forEach(function(f){
+    var c=el("div","campo"); c.dataset.k=f.id;
+    c.appendChild(el("label","etq",f.t)); c.appendChild(el("p","ayuda",f.h));
+    var i=el("input"); i.type="text"; i.id="f_"+f.id; i.value=datos[f.id]||"";
+    antiPegado(i); c.appendChild(i); cI.appendChild(c);
+  });
+
+  var z=$("#cuadro"); z.innerHTML="";
+  CUADRO.forEach(function(q,i){
+    var c=el("div","comp"); c.dataset.i=i;
+    c.appendChild(el("div","q",'<span class="n">'+(i+1)+'</span>'+q));
+    var d=el("div","dos");
+    [["ec","🇪🇨 Ecuador · Los Cedros","e"],["co","🇨🇴 Colombia · Río Atrato","c"]].forEach(function(l){
+      var w=el("div","lado "+l[0]); w.appendChild(el("div","cab",l[1]));
+      var t=el("textarea"); t.rows=2; t.id="f_"+l[2]+i; t.value=datos[l[2]+i]||"";
+      antiPegado(t); w.appendChild(t); d.appendChild(w);
+    });
+    c.appendChild(d); z.appendChild(c);
+  });
+
+  $("#parte3").innerHTML="";
+  $("#parte3").appendChild(caja("linea",
+    "En una sola oración: ¿cómo va a usar esta comparación en su alegato o contraalegato de la Hoja 2?",
+    "Esta línea <b>se le cobra</b> en la guía práctica n.º 2. Sea concreto: un uso verificable, no una intención.",2,null));
+
+  var D=[["ia1","¿Usó alguna herramienta de IA en esta tarea?","Responda «No», o «Sí» indicando cuál."],
+         ["ia2","Si la usó: ¿qué le preguntó exactamente?",""],
+         ["ia3","¿Qué le respondió?",""],
+         ["ia4","¿Qué tuvo que corregir contra los textos, y por qué?","Si no corrigió nada, diga cómo lo comprobó."]];
+  $("#parte4").innerHTML="";
+  D.forEach(function(d){ $("#parte4").appendChild(caja(d[0],d[1],d[2],2,null)); });
+
+  pintaParte2();
+  document.querySelectorAll("input,textarea").forEach(function(n){
+    n.addEventListener("input",function(){ datos[n.id.slice(2)]=n.value; marca(); });
+  });
+  marca();
+}
+
+function pintaParte2(){
+  var g=grupoDe(datos.apellido), z=$("#parte2"), c=$("#cajaGrupo");
+  z.innerHTML="";
+  if(!g){ c.innerHTML="Escriba su primer apellido arriba y aparecerá su pregunta.";
+    $("#pGrupo").textContent="Sin grupo"; $("#pGrupo").className="pill"; return; }
+  var p=PREG[g];
+  c.innerHTML="Le corresponde el <b>GRUPO "+g+"</b> — primer apellido de la "+
+    (g==="A"?"<b>A a la L</b>":"<b>M en adelante</b>")+". Responda <b>solo</b> esta pregunta: la del otro grupo no se califica.";
+  $("#pGrupo").textContent="Grupo "+g; $("#pGrupo").className="pill ok";
+
+  var w=el("div","campo"); w.dataset.k="opcion";
+  w.appendChild(el("label","etq",'<span class="n">1</span>'+p.t));
+  w.appendChild(el("p","ayuda","Marque una. <b>Las tres son defendibles</b>: se evalúa cómo argumenta, no qué elige."));
+  var oc=el("div","opcs");
+  p.o.forEach(function(txt,i){
+    var b=el("button","opc","<b>"+"abc"[i]+")</b>"+txt);
+    if(datos.opcion===String(i)) b.classList.add("on");
+    b.addEventListener("click",function(){
+      datos.opcion=String(i);
+      oc.querySelectorAll(".opc").forEach(function(x){x.classList.remove("on");});
+      b.classList.add("on");
+      w.querySelector(".opcSel").innerHTML="Opción marcada: <b>"+"abc"[i]+")</b> "+txt;
+      marca();
+    });
+    oc.appendChild(b);
+  });
+  w.appendChild(oc);
+  w.appendChild(el("div","opcSel", datos.opcion!=null && PREG[g].o[datos.opcion]
+    ? "Opción marcada: <b>"+"abc"[datos.opcion]+")</b> "+PREG[g].o[datos.opcion] : ""));
+  z.appendChild(w);
+
+  z.appendChild(caja("defensa","Defienda su elección","Media página. Con razones apoyadas en los dos textos, no en impresiones.",6,2));
+  z.appendChild(caja("contra","La contrapregunta", p.c, 5, 3));
+
+  z.querySelectorAll("input,textarea").forEach(function(n){
+    n.addEventListener("input",function(){ datos[n.id.slice(2)]=n.value; marca(); });
+  });
+}
+
+function marca(){
+  var total=0,hechos=0;
+  document.querySelectorAll(".campo").forEach(function(c){
+    if(c.dataset.k==="opcion"){ total++; var ok=!!datos.opcion;
+      if(ok)hechos++; c.classList.toggle("lleno",ok); return; }
+    var t=c.querySelector("textarea,input[type=text]"); if(!t) return;
+    total++; var o=t.value.trim().length>=3; if(o)hechos++; c.classList.toggle("lleno",o);
+  });
+  var cc=0;
+  document.querySelectorAll(".comp").forEach(function(f){
+    var i=f.dataset.i;
+    var ok=(datos["e"+i]||"").trim().length>=3 && (datos["c"+i]||"").trim().length>=3;
+    f.classList.toggle("lleno",ok); if(ok) cc++;
+    total+=2; if((datos["e"+i]||"").trim().length>=3) hechos++;
+    if((datos["c"+i]||"").trim().length>=3) hechos++;
+  });
+  $("#txtProg").textContent=hechos+" de "+total+"  ·  cuadro: "+cc+" de 6";
+  $("#barra").style.width= total ? Math.round(hechos*100/total)+"%" : "0%";
+  var g=grupoDe(datos.apellido);
+  $("#bPdf").disabled=!(datos.nombre && datos.cedula && g && datos.opcion!=null && cc===6 && hechos>=total*0.9);
+  $("#cNombre").textContent=datos.nombre||"—";
+  $("#cCedula").textContent=datos.cedula||"—";
+  $("#cGrupo").textContent=g||"—";
+  $("#cFecha").textContent=new Date().toLocaleDateString("es-EC",{day:"numeric",month:"long",year:"numeric"});
+  if(datos.nombre && datos.cedula && g){
+    var cuerpo=["AX",soloDig(datos.cedula),normNom(datos.nombre),"G"+g,
+      hechos+"/"+total,"OP"+(datos.opcion!=null?"abc"[datos.opcion]:"-"),minutos()+"M",
+      new Date().toISOString().slice(0,16).replace("T"," ")].join("|");
+    $("#cCodigo").textContent=cuerpo+"|"+b36(djb2(SAL+cuerpo));
+  } else $("#cCodigo").textContent="— se genera al completar nombre, cédula y apellido —";
+}
+
+function guarda(sil){
+  try{ localStorage.setItem(CLAVE,JSON.stringify(datos));
+    if(!sil){ $("#guardado").textContent="Guardado ✓";
+      setTimeout(function(){$("#guardado").textContent="";},2200); } }catch(e){}
+}
+$("#bGuardar").addEventListener("click",function(){guarda(false);});
+$("#bPdf").addEventListener("click",function(){guarda(true);window.print();});
+document.addEventListener("input",function(){clearTimeout(window._t);
+  window._t=setTimeout(function(){guarda(true);},900);});
+document.addEventListener("input",function(ev){
+  if(ev.target && ev.target.id==="f_apellido"){ pintaParte2(); marca(); }});
+
+$("#swEc").addEventListener("click",function(){ $("#visor").style.display="block";
+  $("#panCo").classList.remove("on"); $("#swEc").classList.add("on"); $("#swCo").classList.remove("on"); });
+$("#swCo").addEventListener("click",function(){ $("#visor").style.display="none";
+  $("#panCo").classList.add("on"); $("#swCo").classList.add("on"); $("#swEc").classList.remove("on"); });
+$("#tIzq").addEventListener("click",function(){ $("#panIzq").classList.add("on");
+  $("#panDer").classList.remove("on"); $("#tIzq").classList.add("on"); $("#tDer").classList.remove("on"); });
+$("#tDer").addEventListener("click",function(){ $("#panDer").classList.add("on");
+  $("#panIzq").classList.remove("on"); $("#tDer").classList.add("on"); $("#tIzq").classList.remove("on"); });
+
+pinta();
+})();
+</script>
+</body>
+</html>
