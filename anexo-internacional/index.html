@@ -482,7 +482,9 @@ pinta();
     +'<p style="margin:.5rem 0">La hoja se guarda en este navegador. Para seguir en otro aparato, guarde su '
     +'<b>respaldo</b> y péguelo allá. Al recuperarlo, su nombre y su cédula quedan fijos.</p>'
     +'<div style="display:flex;gap:.5rem;flex-wrap:wrap"><button type="button" class="btn sec" id="rCopiar">Copiar mi respaldo</button>'
-    +'<button type="button" class="btn sec" id="rBajar">Descargar mi respaldo (.txt)</button></div>'
+    +'<button type="button" class="btn sec" id="rBajar">Descargar mi respaldo (.txt)</button>'
+    +'<button type="button" class="btn sec" id="rCodigo">Copiar el código de mi hoja</button></div>'
+    +'<p style="margin:.5rem 0 0">Al entregar en Moodle, pegue en los <b>COMENTARIOS</b> de la tarea el código de su hoja y su respaldo.</p>'
     +'<p style="margin:.6rem 0 .2rem">¿Viene de otro aparato? Pegue aquí su respaldo:</p>'
     +'<textarea id="rEntrada" spellcheck="false" style="width:100%;min-height:60px;font:12px monospace"></textarea>'
     +'<button type="button" class="btn sec" id="rRecuperar" style="margin-top:.4rem">Recuperar mi hoja</button>'
@@ -492,6 +494,14 @@ pinta();
   document.getElementById('rCopiar').addEventListener('click', function(){
     copiar(pase()); var b=this; b.textContent='Respaldo copiado';
     setTimeout(function(){ b.textContent='Copiar mi respaldo'; }, 2500);
+  });
+  /* El codigo solo se imprime en la caratula: aqui se ofrece para copiarlo. */
+  document.getElementById('rCodigo').addEventListener('click', function(){
+    var c=document.getElementById('cCodigo'), v=c ? c.textContent.trim() : '';
+    var b=this;
+    if(!/\|/.test(v)){ b.textContent='Complete nombre, cédula y apellido primero'; setTimeout(function(){ b.textContent='Copiar el código de mi hoja'; }, 2500); return; }
+    copiar(v); b.textContent='Código copiado';
+    setTimeout(function(){ b.textContent='Copiar el código de mi hoja'; }, 2500);
   });
   document.getElementById('rBajar').addEventListener('click', function(){
     var datos=leerDatos(), linea=pase();
