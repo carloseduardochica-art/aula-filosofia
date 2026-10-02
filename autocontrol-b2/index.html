@@ -1757,6 +1757,9 @@ document.head.appendChild(css);
   var CLAVE = 'control-lectura::' + BANCO.bloque + '::v2'
             + (BANCO.muestra ? '::muestra' : '');
   var TOPE = BANCO.nota_maxima;
+  /* Una lectura formativa declara sin_nota en el banco: no muestra nota ni
+     puntos y no emite constancia. Conserva el avance y el pase. */
+  var SIN_NOTA = !!BANCO.sin_nota;
   /* ---------- redondeo de la nota (regla tomada de Derecho Mercantil) ----------
      El docente califica en medios puntos y la nota informada sube SIEMPRE al
      medio punto inmediato superior: 12,10 se informa 12,5 y 14,23 se informa
@@ -1999,7 +2002,8 @@ document.head.appendChild(css);
     var cifras = document.querySelector('.avance .cifras');
     if (cifras) {
       cifras.textContent = r.hechos + ' de ' + TOTAL_AP + ' apartados (' + pct + ' %)'
-        + '  ·  nota provisional ' + fmtNota(r.nota) + ' / ' + TOPE;
+        + (SIN_NOTA ? '  ·  lectura no calificada'
+                    : '  ·  nota provisional ' + fmtNota(r.nota) + ' / ' + TOPE);
     }
     var lista = document.querySelector('.avance ol');
     if (lista) {
@@ -2008,7 +2012,7 @@ document.head.appendChild(css);
         var s = r.por[i];
         lis[i].className = (s.hechos === s.total && s.total) ? 'completa' : '';
         lis[i].textContent = s.pestana + ' — ' + s.hechos + '/' + s.total
-          + (s.hechos === s.total && s.total ? '  ·  ' + s.puntos.toFixed(2) + ' pt' : '');
+          + (s.hechos === s.total && s.total && !SIN_NOTA ? '  ·  ' + s.puntos.toFixed(2) + ' pt' : '');
       }
     }
     bloquearIdentidad();
@@ -2042,6 +2046,13 @@ document.head.appendChild(css);
     function engancharRespaldo(){
       var br = caja.querySelector('.respaldo');
       if (br) br.addEventListener('click', function(){ copiarRespaldo(this); });
+    }
+    if (SIN_NOTA) {
+      caja.innerHTML = '<p class="aun-no">Su avance queda guardado en este navegador. '
+        + 'Este bloque no emite constancia ni suma puntos: lo que aquí comprueba se le '
+        + 'preguntará en el informe final y en la sustentación.</p>' + respaldoHtml;
+      engancharRespaldo();
+      return;
     }
     if (!r.completo) {
       var faltan = TOTAL_AP - r.hechos;
