@@ -120,6 +120,15 @@ textarea{resize:vertical;min-height:58px}
   .der{display:none;padding:18px 16px 100px}.der.on{display:block}
   .dos{grid-template-columns:1fr}.top h1{font-size:16px}
 }
+
+/* Un textarea impreso solo muestra lo que cabe en su caja: el resto de la
+   respuesta no llegaba al PDF. Al imprimir se oculta y en su lugar sale una
+   copia de texto que crece con la respuesta. */
+.espejo{display:none}
+@media print{
+  textarea{display:none!important}
+  .espejo{display:block!important;white-space:pre-wrap;overflow-wrap:anywhere;font-size:11pt;padding:2px 0;min-height:1.2em}
+}
 </style>
 </head>
 <body>
@@ -416,6 +425,26 @@ $("#tDer").addEventListener("click",function(){ $("#panDer").classList.add("on")
   $("#panIzq").classList.remove("on"); $("#tDer").classList.add("on"); $("#tIzq").classList.remove("on"); });
 
 pinta();
+})();
+</script>
+<script>
+/* Copia el texto completo de cada textarea a un bloque imprimible justo antes
+   de imprimir (boton «Descargar PDF» o Ctrl+P). */
+(function(){
+  function espejar(){
+    var tas = document.querySelectorAll('textarea');
+    for (var i = 0; i < tas.length; i++) {
+      var t = tas[i], e = t.nextElementSibling;
+      if (!e || !e.classList.contains('espejo')) {
+        e = document.createElement('div'); e.className = 'espejo';
+        t.parentNode.insertBefore(e, t.nextSibling);
+      }
+      e.textContent = t.value;
+    }
+  }
+  window.addEventListener('beforeprint', espejar);
+  var b = document.getElementById('bPdf');
+  if (b) b.addEventListener('click', espejar, true);
 })();
 </script>
 </body>
