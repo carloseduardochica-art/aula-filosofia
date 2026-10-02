@@ -515,6 +515,26 @@ pinta();
     try{ localStorage.setItem(CLAVE, JSON.stringify(d)); }catch(e){ aviso.textContent='Este navegador no permite guardar.'; return; }
     location.reload();
   });
+  /* La hoja se imprime: el respaldo va en un bloque final, en letra pequena,
+     para que la mesa del docente lo lea del PDF sin que el estudiante copie
+     nada. En pantalla no se ve. */
+  var impreso=document.createElement('div');
+  impreso.id='respaldo-impreso';
+  impreso.innerHTML='<p style="margin:0 0 4px;font:8pt sans-serif;color:#666">Datos para la mesa del docente '
+    +'(no hace falta leerlos):</p><div style="font:5pt/1.25 monospace;color:#888;word-break:break-all"></div>';
+  var marco=document.getElementById('caratula');
+  (marco ? marco.parentNode : document.body).appendChild(impreso);
+  var estilo=document.createElement('style');
+  estilo.textContent='#respaldo-impreso{display:none}@media print{#respaldo-impreso{display:block!important;break-before:page;margin-top:12px}}';
+  document.head.appendChild(estilo);
+  function llenarImpreso(){
+    var c=document.getElementById('cCodigo'), v=c ? c.textContent.trim() : '';
+    impreso.lastChild.textContent='INICIO-DATOS '+pase()+' FIN-DATOS';
+  }
+  window.addEventListener('beforeprint', llenarImpreso);
+  var bPdf=document.getElementById('bPdf');
+  if(bPdf) bPdf.addEventListener('click', llenarImpreso, true);
+
   if(leerDatos()._fijo){
     ['f_nombre','f_cedula','f_apellido'].forEach(function(id){
       var c=document.getElementById(id); if(c){ c.readOnly=true; c.title='Fijado por el respaldo recuperado'; }
