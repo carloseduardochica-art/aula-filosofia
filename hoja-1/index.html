@@ -421,6 +421,98 @@ pinta();
 })();
 </script>
 <script>
+/* ---------- RESPALDO DE LA HOJA ----------
+   La hoja se guarda en este navegador. El respaldo (PASEF|...) la lleva a otro
+   aparato y le permite al docente leerla en la mesa del docente.
+   La hoja se llena escribiendo y no admite pegar. Para que el respaldo no
+   sirva para copiar la hoja de un companero, al recuperarlo la identidad
+   queda fija: nombre, cedula y apellido son los del dueno del respaldo. */
+(function(){
+  /* El codigo de la hoja vive en un bloque cerrado: estos dos valores se copian
+     de el, y los datos se leen de lo que la hoja guarda en el navegador. */
+  var CLAVE = 'hoja1-filosofia-v1', SAL = 'FD-H1-hoja-v1';
+  function leerDatos(){ try{ return JSON.parse(localStorage.getItem(CLAVE) || '{}') || {}; }catch(e){ return {}; } }
+  function cod(n){ return n.toString(36).toUpperCase(); }
+  function firma(s){ var h=5381; for(var i=0;i<s.length;i++) h=((h*33)+s.charCodeAt(i))>>>0; return cod(h); }
+  function aB64(t){ var b=new TextEncoder().encode(t), s=''; for(var i=0;i<b.length;i++) s+=String.fromCharCode(b[i]); return btoa(s); }
+  function deB64(t){ var s=atob(t), b=new Uint8Array(s.length); for(var i=0;i<s.length;i++) b[i]=s.charCodeAt(i); return new TextDecoder().decode(b); }
+  function etiquetas(){
+    var out=[];
+    document.querySelectorAll('.campo').forEach(function(c){
+      var l=c.querySelector('label'), t=c.querySelector('textarea,input[type=text]');
+      if(!t || !l || /^f_(nombre|apellido|cedula)$/.test(t.id)) return;
+      var d=c.querySelector('input.donde'), n=l.querySelector('.n'), txt=l.textContent;
+      if(n) txt=txt.slice(n.textContent.length);
+      out.push([txt.replace(/\s+/g,' ').trim(), t.value, d ? d.value : null]);
+    });
+    return out;
+  }
+  function pase(){
+    var g=document.getElementById('bGuardar'); if(g) g.click();
+    var cuerpo='PASEF|'+CLAVE+'|'+aB64(JSON.stringify({ d: leerDatos(), e: etiquetas(), ts: Date.now() }));
+    return cuerpo+'|'+firma(SAL+cuerpo);
+  }
+  function leer(t){
+    var m=String(t||'').replace(/\s+/g,'').match(/PASEF\|([^|]+)\|([A-Za-z0-9+\/=]+)\|([0-9A-Z]+)/);
+    if(!m) return { error:'No encontré un respaldo. Cópielo entero, desde PASEF hasta el final.' };
+    if(m[1]!==CLAVE) return { error:'Ese respaldo es de otra hoja. Ábralo en la hoja que corresponde.' };
+    if(firma(SAL+'PASEF|'+m[1]+'|'+m[2])!==m[3]) return { error:'Ese respaldo está incompleto o fue modificado.' };
+    try{ return { v: JSON.parse(deB64(m[2])) }; }catch(e){ return { error:'Ese respaldo no se pudo leer.' }; }
+  }
+  function copiar(texto){
+    var ta=document.createElement('textarea'); ta.value=texto; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select(); var ok=false;
+    try{ ok=document.execCommand('copy'); }catch(e){}
+    if(!ok && navigator.clipboard) navigator.clipboard.writeText(texto);
+    document.body.removeChild(ta);
+  }
+  var ancla=document.getElementById('bGuardar');
+  if(!ancla) return;
+  var caja=document.createElement('details');
+  caja.className='no-print';
+  caja.style.cssText='margin:.8rem 0;padding:.7rem .9rem;border:1px dashed #bbb;border-radius:6px;font-size:.9rem';
+  caja.innerHTML='<summary style="cursor:pointer;font-weight:600">Continuar en otro dispositivo</summary>'
+    +'<p style="margin:.5rem 0">La hoja se guarda en este navegador. Para seguir en otro aparato, guarde su '
+    +'<b>respaldo</b> y péguelo allá. Al recuperarlo, su nombre y su cédula quedan fijos.</p>'
+    +'<div style="display:flex;gap:.5rem;flex-wrap:wrap"><button type="button" class="btn sec" id="rCopiar">Copiar mi respaldo</button>'
+    +'<button type="button" class="btn sec" id="rBajar">Descargar mi respaldo (.txt)</button></div>'
+    +'<p style="margin:.6rem 0 .2rem">¿Viene de otro aparato? Pegue aquí su respaldo:</p>'
+    +'<textarea id="rEntrada" spellcheck="false" style="width:100%;min-height:60px;font:12px monospace"></textarea>'
+    +'<button type="button" class="btn sec" id="rRecuperar" style="margin-top:.4rem">Recuperar mi hoja</button>'
+    +'<p id="rAviso" style="margin:.4rem 0 0"></p>';
+  var fila=ancla.parentNode;
+  fila.parentNode.insertBefore(caja, fila.nextSibling);
+  document.getElementById('rCopiar').addEventListener('click', function(){
+    copiar(pase()); var b=this; b.textContent='Respaldo copiado';
+    setTimeout(function(){ b.textContent='Copiar mi respaldo'; }, 2500);
+  });
+  document.getElementById('rBajar').addEventListener('click', function(){
+    var datos=leerDatos(), linea=pase();
+    var texto='Respaldo de '+document.title+'\nEstudiante: '+(datos.nombre||'')+' · Cédula: '+(datos.cedula||'')
+      +'\n\nPara recuperar su hoja, ábrala, despliegue «Continuar en otro dispositivo» y pegue la línea de abajo completa.\n\n'+linea+'\n';
+    var a=document.createElement('a');
+    a.href=URL.createObjectURL(new Blob([texto],{type:'text/plain;charset=utf-8'}));
+    a.download='Respaldo_'+CLAVE+'_'+String(datos.cedula||'').replace(/\D/g,'')+'.txt';
+    document.body.appendChild(a); a.click(); a.remove();
+  });
+  document.getElementById('rRecuperar').addEventListener('click', function(){
+    var aviso=document.getElementById('rAviso'), r=leer(document.getElementById('rEntrada').value);
+    if(r.error){ aviso.textContent=r.error; return; }
+    var datos=leerDatos();
+    var lleno=Object.keys(datos).some(function(k){ return k!=='_fijo' && datos[k]; });
+    if(lleno && !confirm('En este navegador ya hay una hoja en curso. Si continúa, se reemplaza por la del respaldo. ¿Continuar?')) return;
+    var d=r.v.d||{}; d._fijo=true;
+    try{ localStorage.setItem(CLAVE, JSON.stringify(d)); }catch(e){ aviso.textContent='Este navegador no permite guardar.'; return; }
+    location.reload();
+  });
+  if(leerDatos()._fijo){
+    ['f_nombre','f_cedula','f_apellido'].forEach(function(id){
+      var c=document.getElementById(id); if(c){ c.readOnly=true; c.title='Fijado por el respaldo recuperado'; }
+    });
+  }
+})();
+</script>
+<script>
 /* Copia el texto completo de cada textarea a un bloque imprimible justo antes
    de imprimir (boton «Descargar PDF» o Ctrl+P). */
 (function(){
