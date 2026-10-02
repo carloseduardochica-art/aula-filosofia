@@ -11,6 +11,7 @@ modalidad en línea, período septiembre 2026 – febrero 2027).
 | `/autocontrol-b1/` | Autocontrol de lectura · bloque 1 | AA · 15 puntos |
 | `/autocontrol-b2/` | Autocontrol de lectura · bloque 2 | AA · 15 puntos |
 | `/lectura-b3/` | Lectura guiada · bloque 3 | formativa, sin nota |
+| `/docente/` | Mesa del docente: verifica códigos de constancia y regenera la constancia en PDF desde el pase de avance (no enlazada en la portada) | uso del docente |
 | `/worker/` | Código del proxy de IA en Cloudflare (no se publica como página) | — |
 
 ## El worker
