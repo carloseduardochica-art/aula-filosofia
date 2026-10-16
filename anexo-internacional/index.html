@@ -40,7 +40,7 @@ button{font-family:var(--sans);cursor:pointer;border:0}
 .pan{overflow-y:auto}
 .izq{flex:0 0 42%;border-right:1px solid var(--linea);background:#3a3a3a;position:relative;display:flex;flex-direction:column}
 .izq .sw{display:flex;background:#2b2b2b}
-.izq .sw button{flex:1;padding:11px 6px;background:none;color:#cfcfcf;font-size:12.5px;font-weight:700;
+.izq .sw button{flex:1;padding:12px 6px;background:none;color:#e6e6e6;font-size:14px;font-weight:700;
   border-bottom:3px solid transparent}
 .izq .sw button.on{color:#fff;border-bottom-color:var(--carmesi);background:#3a3a3a}
 .izq .cuerpo{flex:1;position:relative}
@@ -153,8 +153,8 @@ textarea{resize:vertical;min-height:58px}
 <div class="paneles">
   <div class="pan izq" id="panIzq">
     <div class="sw">
-      <button id="swEc" class="on">🇪🇨 Los Cedros</button>
-      <button id="swCo">🇨🇴 Río Atrato</button>
+      <button id="swEc" class="on">Ecuador · Los Cedros</button>
+      <button id="swCo" style="color:#ffd27a">Colombia · Río Atrato ▸ clic aquí</button>
     </div>
     <div class="cuerpo">
       <iframe id="visor" src="../docs/cuadernillo-1.pdf#view=FitH" title="Cuadernillo 1"></iframe>
@@ -193,6 +193,9 @@ textarea{resize:vertical;min-height:58px}
       mismo día del año— la Corte de Colombia había declarado que el río Atrato también lo es.
       <br><br>Ecuador tiene el artículo 71. <b>Colombia no tiene ninguno.</b> Una corte aplicó un derecho
       que estaba escrito; la otra lo construyó donde no estaba. Esa es la comparación.
+      <br><br><b>Las dos sentencias:</b> la de Los Cedros está en el panel izquierdo (Cuadernillo 1). La de Colombia se abre aquí:
+      <div style="margin:10px 0 4px"><a class="btn azul" href="https://www.corteconstitucional.gov.co/relatoria/2016/t-622-16.htm" target="_blank" rel="noopener">Abrir la sentencia de Colombia · T-622 de 2016 (río Atrato)</a></div>
+      <span style="font-size:13px">Se abre en el sitio oficial de la Corte Constitucional de Colombia, en otra pestaña. También está en la pestaña «Colombia · Río Atrato» del panel izquierdo.</span>
       <br><br><b>No se puede pegar texto:</b> se escribe.
     </div>
 
@@ -305,7 +308,7 @@ function pinta(){
     var c=el("div","comp"); c.dataset.i=i;
     c.appendChild(el("div","q",'<span class="n">'+(i+1)+'</span>'+q));
     var d=el("div","dos");
-    [["ec","🇪🇨 Ecuador · Los Cedros","e"],["co","🇨🇴 Colombia · Río Atrato","c"]].forEach(function(l){
+    [["ec","Ecuador · Los Cedros","e"],["co","Colombia · Río Atrato","c"]].forEach(function(l){
       var w=el("div","lado "+l[0]); w.appendChild(el("div","cab",l[1]));
       var t=el("textarea"); t.rows=2; t.id="f_"+l[2]+i; t.value=datos[l[2]+i]||"";
       antiPegado(t); w.appendChild(t); d.appendChild(w);
