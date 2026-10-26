@@ -29,3 +29,15 @@ añadirlo ahí o el navegador bloqueará las llamadas por CORS.
 
 GitHub Pages, rama `main`, carpeta raíz. El archivo `.nojekyll` evita que Jekyll ignore
 directorios; sin él, Pages no sirve correctamente el sitio.
+
+## Segundo ciclo · 2 créditos (`/2c/`)
+
+Aula del plan 2020, segundo ciclo, módulo del 02/11/2026 al 14/12/2026. Usa el mismo caso y el mismo dossier que el primer ciclo, en dos bloques. Las páginas tienen sus propias claves de `localStorage`, para no mezclarse con las del primer ciclo, y leen los PDF de `/docs/`.
+
+| Ruta | Actividad | Componente |
+|---|---|---|
+| `/2c/foro-b1/` | Foro socrático con IA · bloque 1 · cierra el 15/11 | CD · 5 puntos |
+| `/2c/hoja-1/` | Hoja 1 del expediente, con la parte de los votos | AP · 10 puntos |
+| `/2c/autocontrol-b1/` | Autocontrol de lectura · bloque 1 (14 pestañas) | AA · 15 puntos |
+| `/2c/avance-1/` | Avance 1 · el planteamiento del problema | AA · 10 puntos |
+| `/2c/docente/` | Mesa del docente del aula de segundo ciclo | uso del docente |
