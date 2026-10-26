@@ -230,7 +230,22 @@ textarea.escrito:disabled{background:var(--papel-alt);color:var(--nota)}
 <!-- ============ PORTADA ============ -->
 <section class="portada" id="portada">
   <h2>Foro de debate socrático con IA</h2>
-  <p class="bajada">Actividad en contacto con el docente · 5 puntos</p>
+  <p class="bajada">Docencia asistida · Foro sobre la clase magistral del bloque 1 · 10 puntos</p>
+
+  <div class="ficha">
+    <h3>Antes de entrar: la clase magistral del bloque 1</h3>
+    <p>Este foro es la actividad sobre la <strong>Escena 1</strong> de la clase magistral,
+    «Una ley válida que nadie debería obedecer» (7 minutos). Véala completa antes de
+    identificarse: Kelsen, Radbruch y García Máynez discuten justamente la pregunta de este
+    debate, y la IA le va a preguntar por ellos.</p>
+    <div style="position:relative;padding-top:56.25%;margin:1rem 0;border:1px solid var(--linea)">
+      <iframe src="https://www.youtube-nocookie.com/embed/N_pAPV95GCM" title="Escena 1 · Una ley válida que nadie debería obedecer"
+        style="position:absolute;inset:0;width:100%;height:100%;border:0" loading="lazy"
+        allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <p>Las voces de la escena están interpretadas: esa conversación nunca ocurrió. Lo fiel es
+    la posición de cada autor, no sus palabras. Para citar, vaya al material escrito del bloque.</p>
+  </div>
 
   <div class="ficha">
     <h3>La cuestión que se debate</h3>
@@ -289,7 +304,7 @@ textarea.escrito:disabled{background:var(--papel-alt);color:var(--nota)}
           <td>Cita el artículo 71 de la Constitución o párrafos numerados de la
           sentencia, y los cita para lo que sirven. Atribuir a la Corte algo que no
           dijo, o confundir el voto de mayoría con un voto salvado, resta.</td>
-          <td>1,5</td>
+          <td>2,5</td>
         </tr>
         <tr>
           <td>Uso de la lectura del bloque</td>
@@ -297,7 +312,15 @@ textarea.escrito:disabled{background:var(--papel-alt);color:var(--nota)}
           una científica, qué disciplina filosófica responde cada problema, y la
           diferencia entre describir un hecho, enunciar una norma y afirmar un
           valor. Discutir solo con la sentencia tiene techo aquí.</td>
-          <td>1,5</td>
+          <td>2,0</td>
+        </tr>
+        <tr>
+          <td>Diálogo con la clase magistral</td>
+          <td>Usa la Escena 1: distingue la pregunta que contesta Kelsen (cómo se reconoce
+          que algo es Derecho) de la que contesta Radbruch (si se debe obedecer), o aplica
+          al artículo 71 los cuatro criterios de García Máynez. Mencionar la escena sin
+          usarla no cuenta.</td>
+          <td>2,0</td>
         </tr>
         <tr>
           <td>Salida de la falsa disyuntiva</td>
@@ -305,14 +328,14 @@ textarea.escrito:disabled{background:var(--papel-alt);color:var(--nota)}
           Derecho no se reduce a la moral, pero tampoco se aplica sin ninguna
           valoración. Elegir el extremo contrario al de la IA es caer en la misma
           trampa.</td>
-          <td>1,0</td>
+          <td>2,0</td>
         </tr>
         <tr>
           <td>Resistencia adversarial</td>
           <td>Nombra el salto lógico de la IA y lo desmonta, en vez de repetir su
           propio argumento más alto. Sostiene la posición cuatro rondas sin
           contradecirse.</td>
-          <td>1,0</td>
+          <td>1,5</td>
         </tr>
       </tbody>
     </table>
@@ -449,6 +472,12 @@ const MANDATO_COMUN = [
   '  filosófica y una científica, cuáles son las disciplinas filosóficas y qué',
   '  pregunta responde cada una, o la distinción entre describir un hecho, enunciar',
   '  una norma y afirmar un valor. Si no leyó, se nota en la ronda 1.',
+  '- EXIGES LA CLASE MAGISTRAL. El estudiante tuvo que ver la Escena 1, «Una ley',
+  '  válida que nadie debería obedecer», donde Kelsen, Radbruch y García Máynez',
+  '  discuten esta misma cuestión. En la ronda 1 o en la 2 le preguntas por ella:',
+  '  qué pregunta contesta Kelsen y cuál Radbruch, o qué pasa cuando García Máynez',
+  '  aplica sus cuatro criterios (bilateral, externa, heterónoma, coercible) al',
+  '  artículo 71. Esos tres autores sí puedes nombrarlos.',
   '- NUNCA discutes si la minería es buena o mala, ni si el bosque merece ser',
   '  protegido. Ese no es el debate y si el estudiante se va por ahí, lo devuelves',
   '  al asunto. El debate es si el Derecho puede fundarse en lo que algo vale.',
@@ -573,23 +602,26 @@ const INSTRUCCION_FINAL = [
   'Después, saliendo del papel, el dictamen con este formato EXACTO:',
   '',
   '### DICTAMEN',
-  '**1. Apoyo en la fuente (1,5):** [dos o tres frases: si citó el artículo 71 o',
-  'párrafos de la sentencia, y si los usó para lo que sirven] — **X,X/1,5**',
-  '**2. Uso de la lectura del bloque (1,5):** [dos o tres frases: si trajo lo leído',
-  'esta semana y si distinguió hecho, norma y valor] — **X,X/1,5**',
-  '**3. Salida de la falsa disyuntiva (1,0):** [dos o tres frases] — **X,X/1,0**',
-  '**4. Resistencia adversarial (1,0):** [dos o tres frases] — **X,X/1,0**',
+  '**1. Apoyo en la fuente (2,5):** [dos o tres frases: si citó el artículo 71 o',
+  'párrafos de la sentencia, y si los usó para lo que sirven] — **X,X/2,5**',
+  '**2. Uso de la lectura del bloque (2,0):** [dos o tres frases: si trajo lo leído',
+  'esta semana y si distinguió hecho, norma y valor] — **X,X/2,0**',
+  '**3. Diálogo con la clase magistral (2,0):** [dos o tres frases: si usó la',
+  'Escena 1 —las dos preguntas de Kelsen y Radbruch, o los cuatro criterios de',
+  'García Máynez— y no solo la mencionó] — **X,X/2,0**',
+  '**4. Salida de la falsa disyuntiva (2,0):** [dos o tres frases] — **X,X/2,0**',
+  '**5. Resistencia adversarial (1,5):** [dos o tres frases] — **X,X/1,5**',
   '**Lo mejor de su defensa:** [una frase]',
   '**Lo que le faltó:** [una frase]',
-  '**TOTAL SUGERIDO: X,X/5**',
+  '**TOTAL SUGERIDO: X,X/10**',
   '',
   'Califica con criterio de PRIMER AÑO: no exijas erudición ni vocabulario',
   'técnico, pero tampoco regales puntos por esfuerzo o por buena redacción. El',
-  'criterio del punto 3 es si llegó a ver que las DOS posturas extremas son',
+  'criterio del punto 4 es si llegó a ver que las DOS posturas extremas son',
   'insostenibles: que el Derecho no se reduce a la moral, pero tampoco se aplica',
   'sin ninguna valoración. Esa es la salida a la falsa disyuntiva que le',
   'planteaste. Quien se limitó a defender el extremo contrario al tuyo no puede',
-  'pasar de 0,3 en ese criterio. Tampoco lo castigues por no haberte convencido:',
+  'pasar de 0,6 en ese criterio. Tampoco lo castigues por no haberte convencido:',
   'no debías dejarte convencer.',
   'La última línea debe empezar exactamente por "**TOTAL SUGERIDO:".'
 ].join('\n');
@@ -925,12 +957,12 @@ document.getElementById('anclas').addEventListener('click', e => {
    CIERRE
    --------------------------------------------------------------------- */
 function extraeTotal(texto){
-  // La rubrica de Filosofia es sobre 5, no sobre 10 como la de Mercantil.
-  // El denominador es opcional: admite «4,5/5», «4,5» y «4.5».
-  const m = texto.match(/TOTAL\s+SUGERIDO[:\s*]*([0-9]{1,2})[.,]?([0-9]?)\s*(?:\/\s*5)?/i);
+  // En el aula de 2 créditos el foro vale 10, como el de Mercantil.
+  // El denominador es opcional: admite «8,5/10», «8,5» y «8.5».
+  const m = texto.match(/TOTAL\s+SUGERIDO[:\s*]*([0-9]{1,2})[.,]?([0-9]?)\s*(?:\/\s*10)?/i);
   if(!m) return null;
   const n = parseFloat(m[1] + '.' + (m[2] || '0'));
-  return (isFinite(n) && n >= 0 && n <= 5) ? n : null;
+  return (isFinite(n) && n >= 0 && n <= 10) ? n : null;
 }
 
 function cierraDebate(replica, cortada){

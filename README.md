@@ -32,12 +32,11 @@ directorios; sin él, Pages no sirve correctamente el sitio.
 
 ## Segundo ciclo · 2 créditos (`/2c/`)
 
-Aula del plan 2020, segundo ciclo, módulo del 02/11/2026 al 14/12/2026. Usa el mismo caso y el mismo dossier que el primer ciclo, en dos bloques. Las páginas tienen sus propias claves de `localStorage`, para no mezclarse con las del primer ciclo, y leen los PDF de `/docs/`.
+Aula del plan 2020, segundo ciclo, módulo del 02/11/2026 al 14/12/2026, con la plantilla oficial de 2 créditos: ocho actividades, el mismo caso que el primer ciclo y dos bloques. Las páginas tienen sus propias claves de `localStorage`, para no mezclarse con las del primer ciclo, y leen los PDF de `/docs/`.
 
 | Ruta | Actividad | Componente |
 |---|---|---|
-| `/2c/foro-b1/` | Foro socrático con IA · bloque 1 · cierra el 15/11 | CD · 5 puntos |
-| `/2c/hoja-1/` | Hoja 1 del expediente, con la parte de los votos | AP · 10 puntos |
-| `/2c/autocontrol-b1/` | Autocontrol de lectura · bloque 1 (14 pestañas) | AA · 15 puntos |
-| `/2c/avance-1/` | Avance 1 · el planteamiento del problema | AA · 10 puntos |
+| `/2c/foro-b1/` | Foro sobre la clase magistral del bloque 1 (Escena 1), debate socrático con IA · cierra el 15/11 | Docencia asistida · 10 puntos |
+| `/2c/hoja-1/` | Guía práctica n.º 1 · Hoja 1 del expediente, con la parte de los votos | Práctico · 10 puntos |
+| `/2c/autocontrol-b1/` | Aprendizaje autónomo del bloque 1 · autocontrol de lectura (14 pestañas) | Autónomo · 15 puntos |
 | `/2c/docente/` | Mesa del docente del aula de segundo ciclo | uso del docente |
