@@ -98,10 +98,10 @@ code{font-size:.8rem;overflow-wrap:anywhere}
     <details class="pegar">
     <summary>O pegue códigos y respaldos a mano</summary>
     <p>Pegue aquí, uno por línea, los <b>pases de avance</b> (empiezan por <code>PASE|B1|</code>)
-      o los <b>códigos de validación</b> de las constancias (empiezan por <code>B1|</code>, <code>B2|</code> o
-      <code>B3|</code>). Del <b>ABP</b> (hojas 1 y 2, avance, informe final, anexo), el respaldo
-      (<code>PASEF|</code>) y el código de la hoja (<code>H1|</code>, <code>H2|</code>, <code>A1|</code>,
-      <code>IF|</code>, <code>AX|</code>). Del <b>foro</b>, el código del acta (<code>FD1|</code>).
+      o los <b>códigos de validación</b> de las constancias (empiezan por <code>B1|</code>, <code>B2|</code>).
+      Del <b>ABP</b> (hojas 1 y 2 y caso Harvard), el respaldo
+      (<code>PASEF|</code>) y el código de la hoja (<code>H1|</code>, <code>H2|</code>
+      o <code>IF|</code>, el del caso Harvard). De los <b>foros</b>, el código del acta (<code>FD1|</code> o <code>FD2|</code>).
       Puede pegar todo lo de un paralelo junto: la página arma una <b>ficha de sustentación por
       estudiante</b> con preguntas que salen de su propio trabajo. Puede pegarlos con texto alrededor, por ejemplo copiados de un mensaje.</p>
     <textarea id="entrada" spellcheck="false" aria-label="Pases o códigos, uno por línea"></textarea>
@@ -150,6 +150,7 @@ code{font-size:.8rem;overflow-wrap:anywhere}
   /* Otras tareas con codigo firmado: prefijo del codigo -> [pagina, nombre].
      La sal se lee de cada pagina publicada. */
   var OTROS = { FD1: ['../foro-b1/', 'Foro sobre la clase magistral · Bloque 1', 10],
+                FD2: ['../foro-b2/', 'Foro sobre la clase magistral · Bloque 2', 10],
                 H1: ['../hoja-1/', 'Hoja 1'], H2: ['../hoja-2/', 'Hoja 2'],
                 IF: ['../informe-final/', 'Caso Harvard · parte escrita'] };
   /* El mismo Worker de los foros: guarda la clave de la IA y solo responde a
