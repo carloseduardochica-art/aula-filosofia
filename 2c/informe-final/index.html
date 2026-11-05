@@ -178,11 +178,19 @@ textarea{resize:vertical;min-height:58px}
 <div class="paneles">
 <div class="pan izq" id="panIzq">
 <div class="sw">
-<button id="swCua" class="on">📄 Cuadernillo 3</button>
-<button id="swMat">⚖️ Sentencia íntegra</button>
+<button class="sw-b on" data-capa="capaC1">📄 Cuadernillo 1</button>
+<button class="sw-b" data-capa="capaC2">📄 Cuadernillo 2</button>
+<button class="sw-b" data-capa="capaC3">📄 Cuadernillo 3</button>
+<button class="sw-b" data-capa="capaMat">⚖️ Sentencia íntegra</button>
 </div>
 <div class="cuerpo">
-<div class="capa on" id="capaCua">
+<div class="capa on" id="capaC1">
+<iframe src="../../docs/cuadernillo-1.pdf#view=FitH" title="Cuadernillo 1"></iframe>
+</div>
+<div class="capa" id="capaC2">
+<iframe src="../../docs/cuadernillo-2.pdf#view=FitH" title="Cuadernillo 2"></iframe>
+</div>
+<div class="capa" id="capaC3">
 <iframe src="../../docs/cuadernillo-3.pdf#view=FitH" title="Cuadernillo 3"></iframe>
 </div>
 <div class="capa" id="capaMat">
@@ -208,32 +216,34 @@ textarea{resize:vertical;min-height:58px}
 <b>Imagine que la Corte Constitucional le pide a usted, como asesor jurídico, el proyecto de resolución
 del caso Los Cedros.</b> Tiene el expediente, conoce los votos y sabe desde dónde razona cada uno. Lo que
 no tiene todavía es una decisión propia. Eso es este examen: decidir y sostener lo que decidió.
-<br><br>No se escribe desde cero: <b>se arma</b> con su Hoja 1 y su Hoja 2, revisadas, y se le añade lo único
-que falta, su decisión. El PDF que descarga aquí <b>es su parte escrita completa</b>: las cinco partes, con
-carátula.
+<br><br>La parte escrita <b>se resuelve entera aquí, de una sola vez</b>: tiene el expediente completo a la
+izquierda —los tres cuadernillos y la sentencia íntegra— y a la derecha las cinco partes del método. Si ya
+hizo la Hoja 1 y la Hoja 2, téngalas al lado: le ahorran trabajo, pero no hacen falta para empezar. El PDF
+que descarga aquí <b>es su parte escrita completa</b>, con carátula.
 <br><br><b>No se puede pegar texto:</b> se escribe.
 </div>
 <h2>Identificación</h2>
 <div id="ident"></div>
-<h2><span class="paso">PASO 0</span> Sus dos piezas, antes de escribir nada</h2>
-<p class="sub">Confirme que las tiene abiertas al lado. <b>Sin ellas este examen no se puede armar.</b>
-Si al revisarlas descubrió un dato mal fichado, corríjalo aquí y dígalo: un escrito que corrige un error
-ya advertido vale más que uno que lo arrastra.</p>
+<h2><span class="paso">PASO 0</span> Lo que ya tiene hecho <span style="font-weight:400;font-size:13px;color:#6b6b68">· opcional</span></h2>
+<p class="sub">Marque lo que haya entregado durante el módulo. <b>No es obligatorio:</b> el escrito se puede
+hacer entero desde el expediente. Si al revisar sus piezas descubrió un dato mal fichado, corríjalo aquí y
+dígalo: un escrito que corrige un error ya advertido vale más que uno que lo arrastra.</p>
 <div id="p0"></div>
 <div id="p0b"></div>
 <h2><span class="paso">I</span> Los hechos</h2>
-<p class="sub">Una página con el expediente: quién acciona, contra qué acto y qué se decidió. Sale de su
-Hoja 1, revisada, no copiada.</p>
+<p class="sub">Una página con el expediente: quién acciona, contra qué acto y qué se decidió. Sale del
+Cuadernillo 1; si hizo la Hoja 1, revísela y no la copie.</p>
 <div id="p1"></div>
 <h2><span class="paso">II</span> El problema</h2>
-<p class="sub">Elija una de las tres preguntas abiertas de su Hoja 1 y conviértala en un problema
-filosófico. Después, en el tramo de la sentencia que le toca, separe <b>diez enunciados</b> en norma, valor
+<p class="sub">Elija una pregunta que le deje la lectura del expediente —si hizo la Hoja 1, puede tomar
+una de sus tres— y conviértala en un problema filosófico. Después, en el tramo de la sentencia que le toca, separe <b>diez enunciados</b> en norma, valor
 y hecho, con la palabra del texto que delata cada uno.</p>
 <div class="grupo-box" id="cajaTramo">Escriba su primer apellido arriba y le diré qué tramo de la sentencia le toca.</div>
 <div id="p2"></div>
 <div id="p2e"></div>
 <h2><span class="paso">III</span> Las alternativas</h2>
-<p class="sub">Los dos alegatos de su Hoja 2, el iusnaturalista y el iuspositivista, en su mejor versión.
+<p class="sub">Los dos alegatos, el iusnaturalista y el iuspositivista, en su mejor versión; los votos
+están en el Cuadernillo 2.
 <b>No los repita:</b> diga qué tiene de fuerte cada uno y dónde se rompe.</p>
 <div id="p3"></div>
 <h2><span class="paso">IV</span> La decisión</h2>
@@ -549,10 +559,10 @@ function marca(){
   var pz=0; PIEZAS.forEach(function(p){ if(datos.piezas[p[0]]) pz++; });
   var rb=0; RUBRICA.forEach(function(r){ if(datos.rub[r[0]]) rb++; });
   $("#txtProg").textContent=hechos+" de "+total+"  ·  "+enOk+"/"+N_EN+" enunciados  ·  "+usados+"/"+INSTR_EXIGIDOS+" instrumentos  ·  "+
-    pz+"/2 piezas  ·  "+rb+"/6 rúbrica"+(cortos?"  ·  "+cortos+" por debajo del mínimo":"");
+    (pz?pz+"/2 piezas previas  ·  ":"")+rb+"/6 rúbrica"+(cortos?"  ·  "+cortos+" por debajo del mínimo":"");
   $("#barra").style.width= total ? Math.round(hechos*100/total)+"%" : "0%";
   var g=grupoDe(datos.apellido);
-  $("#bPdf").disabled=!(datos.nombre && datos.cedula && g && pz===2 && rb===6 && enOk===N_EN &&
+  $("#bPdf").disabled=!(datos.nombre && datos.cedula && g && rb===6 && enOk===N_EN &&
     usados>=INSTR_EXIGIDOS && hechos>=total*0.95);
   $("#cNombre").textContent=datos.nombre||"—";
   $("#cCedula").textContent=datos.cedula||"—";
@@ -579,10 +589,13 @@ document.addEventListener("input",function(){clearTimeout(window._t);
   window._t=setTimeout(function(){guarda(true);},900);});
 document.addEventListener("input",function(ev){
   if(ev.target && ev.target.id==="f_apellido"){ pintaGrupo(); marca(); }});
-$("#swCua").addEventListener("click",function(){ $("#capaCua").classList.add("on");
-  $("#capaMat").classList.remove("on"); $("#swCua").classList.add("on"); $("#swMat").classList.remove("on"); });
-$("#swMat").addEventListener("click",function(){ $("#capaMat").classList.add("on");
-  $("#capaCua").classList.remove("on"); $("#swMat").classList.add("on"); $("#swCua").classList.remove("on"); });
+document.querySelectorAll(".sw-b").forEach(function(b){
+  b.addEventListener("click",function(){
+    document.querySelectorAll(".sw-b").forEach(function(x){ x.classList.remove("on"); });
+    document.querySelectorAll(".capa").forEach(function(x){ x.classList.remove("on"); });
+    b.classList.add("on"); $("#"+b.dataset.capa).classList.add("on");
+  });
+});
 $("#tIzq").addEventListener("click",function(){ $("#panIzq").classList.add("on");
   $("#panDer").classList.remove("on"); $("#tIzq").classList.add("on"); $("#tDer").classList.remove("on"); });
 $("#tDer").addEventListener("click",function(){ $("#panDer").classList.add("on");
